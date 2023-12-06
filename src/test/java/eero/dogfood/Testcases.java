@@ -2,7 +2,7 @@ package eero.dogfood;
 
 import org.testng.annotations.Test;
 
-public class dummy extends BaseTest {
+public class Testcases extends BaseTest {
 	@Test
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
