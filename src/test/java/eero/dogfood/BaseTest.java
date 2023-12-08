@@ -29,4 +29,8 @@ public class BaseTest {
 
 	}
 
+	public void configureAppTosettings() throws MalformedURLException {
+		// TODO Auto-generated method stub
+
+	}
 }

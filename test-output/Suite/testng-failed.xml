@@ -3,13 +3,26 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="eero.dogfood.dummy">
+      <class name="eero.dogfood.Testcases">
         <methods>
-          <include name="DeleteNetwork"/>
+          <include name="configureAppToEero"/>
           <include name="CreateNetwork"/>
+          <include name="DeleteNetwork"/>
+        </methods>
+      </class> <!-- eero.dogfood.Testcases -->
+      <class name="eero.dogfood.BridgeModecases">
+        <methods>
+          <include name="turnonBridge"/>
           <include name="configureAppToEero"/>
         </methods>
-      </class> <!-- eero.dogfood.dummy -->
+      </class> <!-- eero.dogfood.BridgeModecases -->
+      <class name="eero.dogfood.C2245">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="sampleTest"/>
+        </methods>
+      </class> <!-- eero.dogfood.C2245 -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
