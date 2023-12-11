@@ -19,8 +19,24 @@ public class clientConnectPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network & internet\"]")
 	private WebElement netWorkElement;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
+	private WebElement interElement;
+
+	@AndroidFindBy(xpath = "/android.widget.TextView[@text=\"+guestname+\"]")
+	private WebElement networkNamElement;
+
 	public void clickNetwork() throws InterruptedException {
 		netWorkElement.click();
-		Thread.sleep(1000);
 	}
+
+	public void clickInternet() {
+		interElement.click();
+
+	}
+
+	public void connectToGuest(String guestname) {
+		networkNamElement.click();
+
+	}
+
 }

@@ -37,9 +37,10 @@ public class editGuestNetworkPage {
 
 	}
 
-	public void getGuestNetworkName() {
+	public String getGuestNetworkName() {
 		String guestname = guestNameElement.getText();
 		System.out.println("Guest Network Name :" + guestname);
+		return guestname;
 	}
 
 	public void changeGuestNetworkName(String newGuestName) {
@@ -47,10 +48,10 @@ public class editGuestNetworkPage {
 		guestNameElement.sendKeys(newGuestName);
 	}
 
-	public void getGuestPassword() {
+	public String getGuestPassword() {
 		String guestPassword = guestnetworkpasswordElement.getText();
 		System.out.println("Guest Network Password: " + guestPassword);
-
+		return guestPassword;
 	}
 
 	public void changeGuestPassword(String newGuestPassword) {

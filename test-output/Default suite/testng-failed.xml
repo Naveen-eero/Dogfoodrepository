@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="eero.dogfood.dummy">
+      <class name="eero.dogfood.Testcases">
         <methods>
-          <include name="DeleteNetwork"/>
+          <include name="TurnOnGuest"/>
           <include name="configureAppToEero"/>
         </methods>
-      </class> <!-- eero.dogfood.dummy -->
+      </class> <!-- eero.dogfood.Testcases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

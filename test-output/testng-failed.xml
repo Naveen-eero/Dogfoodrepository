@@ -5,8 +5,8 @@
     <classes>
       <class name="eero.dogfood.Testcases">
         <methods>
+          <include name="TurnOnGuest"/>
           <include name="configureAppToEero"/>
-          <include name="CreateNetwork"/>
         </methods>
       </class> <!-- eero.dogfood.Testcases -->
     </classes>
