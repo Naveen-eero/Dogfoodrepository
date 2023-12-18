@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
+
 	@Test(enabled = true, priority = 2, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
