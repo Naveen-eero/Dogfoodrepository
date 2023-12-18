@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class BridgModeSection extends BaseTest {
 
-	@Test(description = "Enable Bridge Mode case", enabled = false)
+	@Test(description = "Enable Bridge Mode case", enabled = true, priority = 1)
 
 	private void enableBridgeMode() throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -23,7 +23,7 @@ public class BridgModeSection extends BaseTest {
 
 	}
 
-	@Test(description = "Disable BridgeMode case", enabled = true)
+	@Test(description = "Disable BridgeMode case", enabled = true, priority = 2)
 
 	private void disableBridgeMode() throws InterruptedException {
 		// TODO Auto-generated method stub

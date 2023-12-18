@@ -42,7 +42,6 @@ public class BusinessNetworkCases extends BaseTest {
 		editMainNetworkPage editMainNetworkPage = new editMainNetworkPage(driver);
 		editMainNetworkPage.getMainNetworkName();
 		editMainNetworkPage.getMainNetworkPassword();
-		String eerosourceString = driver.getPageSource();
 		BaseTest baseTest = new BaseTest();
 		baseTest.configureAppTosettings();
 		driver.startActivity(

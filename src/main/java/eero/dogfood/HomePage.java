@@ -74,6 +74,11 @@ public class HomePage {
 	private WebElement closeIcon;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start Setup\"]")
 	private WebElement startSetupElement;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/next_button")
+	private WebElement startBtnElement;
+
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/right_action")
+	private WebElement skipElement;
 
 	public void clickStartSetup() {
 		// TODO Auto-generated method stub
@@ -169,7 +174,12 @@ public class HomePage {
 	}
 
 	public void clickNext() {
-		nextBtn.click();
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			wait.until(ExpectedConditions.visibilityOf(nextBtn)).click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public void EnterBusinessName(String businessname) {
@@ -200,4 +210,12 @@ public class HomePage {
 		wait.until(ExpectedConditions.visibilityOf(closeIcon)).click();
 	}
 
+	public void clickStartBtn() {
+		startBtnElement.click();
+
+	}
+
+	public void clickSkip() {
+		skipElement.click();
+	}
 }

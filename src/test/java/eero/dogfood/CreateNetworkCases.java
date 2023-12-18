@@ -8,7 +8,7 @@ import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
 
-	@Test(enabled = true, priority = 2, description = "Delete network")
+	@Test(enabled = false, priority = 2, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
 		homepage.clickHome();
@@ -23,7 +23,7 @@ public class CreateNetworkCases extends BaseTest {
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true, priority = 3, description = "Turn On guest network")
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -36,14 +36,13 @@ public class CreateNetworkCases extends BaseTest {
 		String guestname = editguestpage.getGuestNetworkName();
 		String guestpassword = editguestpage.getGuestPassword();
 		editguestpage.saveGuestChanges();
-		Activity activity1 = new Activity("com.android.settings",
-				"com.android.settings.homepage.SettingsHomepageActivity");
-		driver.startActivity(activity1);
+		BaseTest baseTest = new BaseTest();
+		baseTest.configureAppTosettings();
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
 		clientConnectPage clientconnectpage = new clientConnectPage(driver);
 		clientconnectpage.clickNetwork();
 		clientconnectpage.clickInternet();
-		homePage.clickActivity();
-
 	}
 
 	@Test(enabled = false, priority = 1, description = "Createnetwork dhcp network")
@@ -52,12 +51,13 @@ public class CreateNetworkCases extends BaseTest {
 		// TODO Auto-generated method stub
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
-		startSetupPage startsetuppage = new startSetupPage(driver);
-		startsetuppage.clickStartBtn();
+		homePage.clickStartBtn();
+		homePage.clickNext();
 		addOrReplaceEeroPage addorreplacepage = new addOrReplaceEeroPage(driver);
 		addorreplacepage.clickArrowBtn();
 		addorreplacepage.clickArrowBtn();
 		addorreplacepage.clickArrowBtn();
+		homePage.clickNext();
 		placementTestPage placementtest = new placementTestPage(driver);
 		placementtest.selectLoc();
 		addorreplacepage.enterNetworkName("My Name");
@@ -66,12 +66,12 @@ public class CreateNetworkCases extends BaseTest {
 		addorreplacepage.clickArrowBtn();
 		addorreplacepage.clickInstallNow();
 		homePage.clickJoinBtn();
-		startsetuppage.clickSkip();
+		homePage.clickSkip();
 		homePage.clickJoinBtn();
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = false, priority = 4)
 	public void changeDhcpToManual() throws InterruptedException {
 		// TODO Auto-generated method stub
 		// goto homepage
