@@ -1,7 +1,11 @@
 package eero.dogfood;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -25,8 +29,12 @@ public class addOrReplaceEeroPage {
 	private WebElement replaceEeroBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.ImageButton")
 	private WebElement closeBtnElement;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/setup_confirmation_next_button")
+	private WebElement lookForGreenElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/button_next")
-	private WebElement nextBtnElement;
+	private WebElement arrowBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Finish setup\"]")
+	private WebElement finishSetupBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/skip_button")
 	private WebElement skipBtnElement;
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id=\"com.eero.android.dogfood:id/toolbarView\"]/android.widget.ImageButton")
@@ -37,24 +45,28 @@ public class addOrReplaceEeroPage {
 	private WebElement networkPasswordElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Set Up Using a Serial Number\"]")
 	private WebElement setupusingSerial;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/zero_day_update_primary_button")
+	private WebElement installNowBtn;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/zero_day_update_secondary_button")
+	private WebElement mayBeLaterBtn;
 
 	public void clickAddeero() {
 		addEeroBtnElement.click();
 	}
 
 	public void replaceEero() {
-		replaceEeroBtnElement.click();
 
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(replaceEeroBtnElement)).click();
 	}
 
-	public void clickNext() throws InterruptedException {
-		nextBtnElement.click();
-
+	public void clickArrowBtn() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(arrowBtn)).click();
 	}
 
 	public void clickSkip() {
 		skipBtnElement.click();
-
 	}
 
 	public void clickBack() {
@@ -82,4 +94,39 @@ public class addOrReplaceEeroPage {
 
 	}
 
+	public void addAnotherEero() {
+		replaceEeroBtnElement.click();
+	}
+
+	public void addLeaf() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(lookForGreenElement)).click();
+
+	}
+
+	public void clickFinishSetup() {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(finishSetupBtn)).click();
+
+	}
+
+	public void clickInstallNow() {
+		try {
+			installNowBtn.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("No updates required");
+		}
+
+	}
+
+	public void clickMaybeLater() {
+		try {
+			mayBeLaterBtn.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("No updates required");
+		}
+	}
 }

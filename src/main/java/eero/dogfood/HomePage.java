@@ -1,7 +1,11 @@
 package eero.dogfood;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -45,68 +49,86 @@ public class HomePage {
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/alertTitle")
 	private WebElement alertElement;
 	@AndroidFindBy(id = "android:id/button1")
-	private WebElement okBtnElement;
+	private WebElement JoinoryesBtn;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/status_button")
+	private WebElement statusBtnElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Residential']")
+	private WebElement residentialNetwork;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business']")
+	private WebElement businessNetworkoptElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Community']")
+	private WebElement communityElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
+	private WebElement nextBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start\"]")
+	private WebElement startBtn;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_input")
+	private WebElement businessNameElement;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_secondary_setup")
+	private WebElement guidedSetupElement;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_primary_setup")
+	private WebElement quickSetupElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Link to customer\"]")
+	private WebElement LinkToCustomer;
+	@AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Close button\"]")
+	private WebElement closeIcon;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start Setup\"]")
+	private WebElement startSetupElement;
+
+	public void clickStartSetup() {
+		// TODO Auto-generated method stub
+
+		try {
+			startSetupElement.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+			addMarkElement.click();
+		}
+	}
 
 	public void clickHome() throws InterruptedException {
 		homeBtnElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickSettings() throws InterruptedException {
 		settingBtn.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickDiscover() throws InterruptedException {
 		discoverBtnElement.click();
-		Thread.sleep(3000);
 
 	}
 
 	public void clickActivity() throws InterruptedException {
 		activityBtnElement.click();
-		Thread.sleep(3000);
-	}
-
-	void clickAddBtn() throws InterruptedException {
-		addMarkElement.click();
-		Thread.sleep(1000);
-
 	}
 
 	void clickInternet() throws InterruptedException {
 		internetElement.click();
-		Thread.sleep(1000);
 	}
 
 	public void clickaddDevice() throws InterruptedException {
 		addDeviceElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickaddprofile() throws InterruptedException {
 		addProfilElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickaddnetwork() throws InterruptedException {
 		addNetworkElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickaddorreplcenode() throws InterruptedException {
 		addorreplacElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickinviteguest() throws InterruptedException {
 		inviteGuestElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickAddnetworkAdm() throws InterruptedException {
 		addNetworkAdminElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickProfileBtn() {
@@ -114,11 +136,68 @@ public class HomePage {
 
 	}
 
-	public void clickOkBtn() {
-		if (alertElement.isDisplayed()) {
-			okBtnElement.click();
-		}
+	public void clickJoinBtn() {
+		try {
+			JoinoryesBtn.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Network update not required");
 
+		}
+	}
+
+	public String getInternetStatus() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		String internetstatusString = wait.until(ExpectedConditions.visibilityOf(statusBtnElement)).getText();
+		System.out.println(internetstatusString);
+		return internetstatusString;
+	}
+
+	public void selectResidential() {
+		residentialNetwork.click();
+
+	}
+
+	public void selectBusiness() {
+		businessNetworkoptElement.click();
+
+	}
+
+	public void selectCommunity() {
+		communityElement.click();
+
+	}
+
+	public void clickNext() {
+		nextBtn.click();
+	}
+
+	public void EnterBusinessName(String businessname) {
+		businessNameElement.sendKeys(businessname);
+
+	}
+
+	public void clickQuickSetup() {
+		quickSetupElement.click();
+	}
+
+	public void clickGuidedSetup() {
+		guidedSetupElement.click();
+	}
+
+	public void clickStartbtn() {
+		startBtn.click();
+
+	}
+
+	public void clickLinkToCustmer() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(LinkToCustomer)).click();
+	}
+
+	public void clickCloseIcon() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(closeIcon)).click();
 	}
 
 }

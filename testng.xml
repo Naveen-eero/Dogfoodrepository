@@ -3,8 +3,6 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="eero.dogfood.C2245"/>
-      <class name="eero.dogfood.Testcases"/>
       <class name="eero.dogfood.BridgeModecases"/>
     </classes>
   </test> <!-- Test -->

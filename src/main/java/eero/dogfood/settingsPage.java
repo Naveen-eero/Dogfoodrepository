@@ -1,7 +1,11 @@
 package eero.dogfood;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -30,28 +34,32 @@ public class settingsPage {
 	private WebElement cancelbtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/account_item_row_container")
 	private WebElement accountSettingsElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Wifi name & password\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi name & password\"]")
 	private WebElement wifinamePasswordElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Guest Network\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Guest Network\"]")
 	private WebElement guestNetworkElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Network settings\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network settings\"]")
 	private WebElement networkSettingsElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Network users\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network users\"]")
 	private WebElement networkUsersElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Nickname and timezone\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Nickname and timezone\"]")
 	private WebElement nicknamElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Notifications\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Notifications\"]")
 	private WebElement notificationElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Software version\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Software version\"]")
 	private WebElement softwareversionElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Appearance\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Appearance\"]")
 	private WebElement appearanceeElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Troubleshooting\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Troubleshooting\"]")
 	private WebElement troubleshootingElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Legal\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Legal\"]")
 	private WebElement legalElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.eero.android.dogfood:id/title\" and @text=\"Debug settings\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Debug settings\"]")
 	private WebElement debugsettingsElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi network details\"]")
+	private WebElement WifiNetworkDetails;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Multi SSID\"]")
+	private WebElement MultiSsid;
 
 	public void clicksettingsmenu() throws InterruptedException {
 		settingsElement.click();
@@ -90,7 +98,6 @@ public class settingsPage {
 	void clickGuestconf() throws InterruptedException {
 		// TODO Auto-generated method stub
 		guestNetworkElement.click();
-		Thread.sleep(5000);
 	}
 
 	public void clickNetworkSettings() {
@@ -140,6 +147,15 @@ public class settingsPage {
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Debug settings\").instance(0))"));
 		debugsettingsElement.click();
 
+	}
+
+	public void clickWifiNameAndPassword() {
+		WifiNetworkDetails.click();
+	}
+
+	public void clickMultiSSID() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(MultiSsid)).click();
 	}
 
 }

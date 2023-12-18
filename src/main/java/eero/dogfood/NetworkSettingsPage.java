@@ -93,7 +93,6 @@ public class NetworkSettingsPage {
 
 	public void clickDhcpNat() throws InterruptedException {
 		DHCPNATBtnElement.click();
-		Thread.sleep(1000);
 	}
 
 	public void restartNetwork() {

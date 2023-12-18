@@ -15,7 +15,7 @@ public class BaseTest {
 	String dogfoodActivity = "com.eero.android.v3.common.activity.TabBarActivity";
 
 	@BeforeTest
-	public void configureAppToEero() throws MalformedURLException {
+	public void BaseConfig() throws MalformedURLException {
 		// TODO Auto-generated method stub
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
@@ -31,6 +31,18 @@ public class BaseTest {
 
 	public void configureAppTosettings() throws MalformedURLException {
 		// TODO Auto-generated method stub
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setCapability("appium:appPackage", "com.android.settings");
+		desiredCapabilities.setCapability("appium:appActivity",
+				"com.android.settings.homepage.SettingsHomepageActivity");
+
+	}
+
+	public void configureAppToPingTools() throws MalformedURLException {
+		// TODO Auto-generated method stub
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setCapability("appium:appPackage", "ua.com.streamsoft.pingtools");
+		desiredCapabilities.setCapability("appium:appActivity", "ua.com.streamsoft.pingtools.MainActivity_AA");
 
 	}
 }

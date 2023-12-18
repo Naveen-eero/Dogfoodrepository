@@ -1,7 +1,11 @@
 package eero.dogfood;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -47,8 +51,9 @@ public class placementTestPage {
 		infoBtnElement.click();
 	}
 
-	public void selectLoc() {
-
+	public void selectLoc() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(selectLocationElement));
 		selectLocationElement.click();
 
 	}
