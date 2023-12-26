@@ -8,7 +8,7 @@ import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
 
-	@Test(enabled = false, priority = 2, description = "Delete network")
+	@Test(enabled = true, priority = 2, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
 		homepage.clickHome();
@@ -23,7 +23,7 @@ public class CreateNetworkCases extends BaseTest {
 
 	}
 
-	@Test(enabled = true, priority = 3, description = "Turn On guest network")
+	@Test(enabled = false, priority = 3, description = "Turn On guest network")
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);

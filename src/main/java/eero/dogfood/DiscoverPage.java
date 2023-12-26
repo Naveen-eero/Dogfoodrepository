@@ -28,17 +28,14 @@ public class DiscoverPage {
 
 	public void clickeeroSecure() throws InterruptedException {
 		eeroSecurElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickAmazonhome() throws InterruptedException {
 		amazonhomeElement.click();
-		Thread.sleep(3000);
 	}
 
 	public void clickeeroLabs() throws InterruptedException {
 		eeroLabsElement.click();
-		Thread.sleep(3000);
 	}
 
 }

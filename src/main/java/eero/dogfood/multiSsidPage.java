@@ -27,13 +27,28 @@ public class multiSsidPage {
 	private WebElement addBusinessnet;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add IoT wifi network\"]")
 	private WebElement addIotNetwork;
-
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='0']")
+	private WebElement guestNetworkElement;
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='1']")
+	public WebElement subnetAElement;
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='2']")
+	private WebElement subnetBElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_name")
 	private WebElement wifiNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_password")
 	private WebElement wifiPasswordElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/save")
 	private WebElement saveBtnElement;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/basic_switch")
+	private WebElement toggleElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DISABLE\"]")
+	private WebElement confirmDisablElement;
+	@AndroidFindBy(id = "//android.widget.Button[@text=\\\"CANCEL\\\"]")
+	private WebElement cancelDisablElement;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/delete_wifi")
+	private WebElement deleteWifiElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE\"]")
+	private WebElement confirmDelete;
 
 	public void clickaddWifi() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -47,10 +62,12 @@ public class multiSsidPage {
 
 	public void addIOTSSID() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(addBusinessnet)).click();
+		wait.until(ExpectedConditions.visibilityOf(addIotNetwork)).click();
 	}
 
 	public void enterssidName(String ssidname) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(wifiNameElement));
 		wifiNameElement.sendKeys(ssidname);
 	}
 
@@ -58,9 +75,52 @@ public class multiSsidPage {
 		wifiPasswordElement.sendKeys(ssidpassowrd);
 	}
 
-	public void clickSave() {
+	public void clickSave() throws InterruptedException {
 		saveBtnElement.click();
-
 	}
 
+	public void clickGuest() {
+		// TODO Auto-generated method stub
+		guestNetworkElement.click();
+	}
+
+	public void clickSubnetA() {
+		subnetAElement.click();
+	}
+
+	public void clickSubB() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(subnetBElement)).click();
+	}
+
+	public void clickEnableToggle() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(toggleElement)).click();
+	}
+
+	public void clickconfirm() {
+		// TODO Auto-generated method stub
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(confirmDisablElement)).click();
+	}
+
+	public void deleteWifi() {
+		deleteWifiElement.click();
+	}
+
+	public void clickDelete() {
+		confirmDelete.click();
+	}
+
+	public boolean isElementVisible(WebElement element) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			wait.until(ExpectedConditions.visibilityOf(element));
+			return element.isDisplayed();
+		} catch (Exception e) {
+			System.out.println("Element not visible");
+			return false;
+		}
+		// TODO: handle exception
+	}
 }

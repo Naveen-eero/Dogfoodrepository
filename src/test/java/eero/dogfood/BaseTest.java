@@ -1,20 +1,23 @@
 package eero.dogfood;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
 
 import io.appium.java_client.android.AndroidDriver;
 
 public class BaseTest {
-	// Dogfood capabilities
 	public AndroidDriver driver;
 	String dogfoodAppName = "com.eero.android.dogfood";
 	String dogfoodActivity = "com.eero.android.v3.common.activity.TabBarActivity";
 
-	@BeforeTest
+	@BeforeTest(alwaysRun = true)
 	public void BaseConfig() throws MalformedURLException {
 		// TODO Auto-generated method stub
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -44,5 +47,21 @@ public class BaseTest {
 		desiredCapabilities.setCapability("appium:appPackage", "ua.com.streamsoft.pingtools");
 		desiredCapabilities.setCapability("appium:appActivity", "ua.com.streamsoft.pingtools.MainActivity_AA");
 
+	}
+
+	public void configureAppToeero() throws MalformedURLException {
+		// TODO Auto-generated method stub
+		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+		desiredCapabilities.setCapability("appium:appPackage", "com.eero.android.dogfood");
+		desiredCapabilities.setCapability("appium:appActivity", "com.eero.android.v3.common.activity.TabBarActivity");
+
+	}
+
+	public void getscreenshot(AndroidDriver driver, String filename) throws IOException {
+		File source = driver.getScreenshotAs(OutputType.FILE);
+		File destString = new File(
+				"C://Users//kunnavee//Desktop//Eero Automation//Dogfoodrepository//src//main//java//reports//"
+						+ filename + ".png");
+		FileUtils.copyFile(source, destString);
 	}
 }

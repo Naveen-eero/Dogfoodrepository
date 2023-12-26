@@ -2,6 +2,7 @@ package eero.dogfood;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -55,23 +58,35 @@ public class clientConnectPage {
 
 	}
 
-	public void connectToBusiness() {
+	public void connectToBusiness() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOf(businessnetworkssidElement)).click();
 
 	}
 
-	public void enterPassword(String password) {
-		passwordElement.sendKeys(password);
+	public void enterPassword(String password) throws InterruptedException {
+		try {
+			passwordElement.sendKeys(password);
+			driver.pressKey(new KeyEvent(AndroidKey.ENTER));
+			connectToBusiness();
+		} catch (Exception e) {
+			// TODO: handle exception
+			connectToBusiness();
+
+		}
 	}
 
 	public void getClientIp() throws InterruptedException {
-		Thread.sleep(3000);
+
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Ip address\").instance(0))"));
 		String ipaddr = ipaddressofclient.getText();
-		System.out.println(ipaddr);
+		System.out.println("Ip Address of client device is " + ipaddr);
 	}
 
+	public void checkNetworkAvailability(String networkName) {
+		driver.findElement(By.xpath("//android.widget.TextView[@text=\"Naveen\"]"));
+
+	}
 }

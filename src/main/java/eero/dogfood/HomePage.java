@@ -72,17 +72,15 @@ public class HomePage {
 	private WebElement LinkToCustomer;
 	@AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Close button\"]")
 	private WebElement closeIcon;
-	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start Setup\"]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start Setup\" or @text= \"Create network\"]")
 	private WebElement startSetupElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/next_button")
 	private WebElement startBtnElement;
-
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/right_action")
 	private WebElement skipElement;
 
 	public void clickStartSetup() {
 		// TODO Auto-generated method stub
-
 		try {
 			startSetupElement.click();
 		} catch (Exception e) {
@@ -154,8 +152,13 @@ public class HomePage {
 	public String getInternetStatus() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		String internetstatusString = wait.until(ExpectedConditions.visibilityOf(statusBtnElement)).getText();
-		System.out.println(internetstatusString);
-		return internetstatusString;
+		if (statusBtnElement.getText() == "Online") {
+			System.out.println("The network created is " + internetstatusString);
+			return internetstatusString;
+		} else {
+			System.out.println("The network created is " + internetstatusString);
+			return internetstatusString;
+		}
 	}
 
 	public void selectResidential() {
