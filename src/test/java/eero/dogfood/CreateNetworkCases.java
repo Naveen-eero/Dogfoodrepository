@@ -1,6 +1,7 @@
 package eero.dogfood;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 import org.testng.annotations.Test;
 
@@ -8,7 +9,7 @@ import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
 
-	@Test(enabled = true, priority = 2, description = "Delete network")
+	@Test(enabled = false, priority = 2, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
 		homepage.clickHome();
@@ -23,7 +24,7 @@ public class CreateNetworkCases extends BaseTest {
 
 	}
 
-	@Test(enabled = false, priority = 3, description = "Turn On guest network")
+	@Test(enabled = true, priority = 3, description = "Turn On guest network")
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -36,6 +37,7 @@ public class CreateNetworkCases extends BaseTest {
 		String guestname = editguestpage.getGuestNetworkName();
 		String guestpassword = editguestpage.getGuestPassword();
 		editguestpage.saveGuestChanges();
+		driver.runAppInBackground(Duration.ofSeconds(-1));
 		BaseTest baseTest = new BaseTest();
 		baseTest.configureAppTosettings();
 		driver.startActivity(

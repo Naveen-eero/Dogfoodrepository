@@ -5,8 +5,7 @@
     <classes>
       <class name="eero.dogfood.BusinessNetworkCases">
         <methods>
-          <include name="C29192"/>
-          <include name="createBusinessNetwork"/>
+          <include name="C235445"/>
           <include name="BaseConfig"/>
         </methods>
       </class> <!-- eero.dogfood.BusinessNetworkCases -->

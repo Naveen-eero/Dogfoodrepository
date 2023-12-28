@@ -36,7 +36,7 @@ public class settingsPage {
 	private WebElement accountSettingsElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi name & password\"]")
 	private WebElement wifinamePasswordElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Guest Network\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Guest Network\" or  @text=\"Guest network\"]")
 	private WebElement guestNetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network settings\"]")
 	private WebElement networkSettingsElement;
@@ -97,7 +97,8 @@ public class settingsPage {
 
 	void clickGuestconf() throws InterruptedException {
 		// TODO Auto-generated method stub
-		guestNetworkElement.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(guestNetworkElement)).click();
 	}
 
 	public void clickNetworkSettings() {

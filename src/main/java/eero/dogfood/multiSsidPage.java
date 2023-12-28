@@ -32,7 +32,7 @@ public class multiSsidPage {
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='1']")
 	public WebElement subnetAElement;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='2']")
-	private WebElement subnetBElement;
+	public WebElement subnetBElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_name")
 	private WebElement wifiNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_password")
@@ -49,6 +49,10 @@ public class multiSsidPage {
 	private WebElement deleteWifiElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE\"]")
 	private WebElement confirmDelete;
+	@AndroidFindBy(xpath = "//*[@text=\"Enable captive portal\"]")
+	public WebElement enableCaptivePortalElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Bandwidth limit\"]")
+	public WebElement bandwidthElement;
 
 	public void clickaddWifi() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -77,6 +81,7 @@ public class multiSsidPage {
 
 	public void clickSave() throws InterruptedException {
 		saveBtnElement.click();
+		Thread.sleep(20000);
 	}
 
 	public void clickGuest() {
@@ -110,6 +115,14 @@ public class multiSsidPage {
 
 	public void clickDelete() {
 		confirmDelete.click();
+	}
+
+	public void enableBandwith() {
+		bandwidthElement.click();
+	}
+
+	public void clickEnableCaptivePortal() {
+		enableCaptivePortalElement.click();
 	}
 
 	public boolean isElementVisible(WebElement element) {

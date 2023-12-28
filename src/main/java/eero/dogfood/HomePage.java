@@ -90,7 +90,9 @@ public class HomePage {
 	}
 
 	public void clickHome() throws InterruptedException {
-		homeBtnElement.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(homeBtnElement)).click();
+
 	}
 
 	public void clickSettings() throws InterruptedException {
@@ -139,12 +141,14 @@ public class HomePage {
 
 	}
 
-	public void clickJoinBtn() {
+	public void clickJoinBtn() throws InterruptedException {
 		try {
 			JoinoryesBtn.click();
+			Thread.sleep(30000);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Network update not required");
+			Thread.sleep(30000);
 
 		}
 	}

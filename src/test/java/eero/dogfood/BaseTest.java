@@ -15,7 +15,7 @@ import io.appium.java_client.android.AndroidDriver;
 public class BaseTest {
 	public AndroidDriver driver;
 	String dogfoodAppName = "com.eero.android.dogfood";
-	String dogfoodActivity = "com.eero.android.v3.common.activity.TabBarActivity";
+	String dogfoodActivity = "com.eero.android.v3.common.activity.TabBarActivity}";
 
 	@BeforeTest(alwaysRun = true)
 	public void BaseConfig() throws MalformedURLException {
@@ -24,7 +24,7 @@ public class BaseTest {
 		desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
 		desiredCapabilities.setCapability("platformname", "Android");
 		desiredCapabilities.setCapability("appium:udid", "89FX09KX4");
-		desiredCapabilities.setCapability("appium:appPackage", dogfoodAppName);
+		desiredCapabilities.setCapability("appium:appName", dogfoodAppName);
 		desiredCapabilities.setCapability("appium:appActivity", dogfoodActivity);
 		desiredCapabilities.setCapability("appium:noReset", true);
 		URL remoteUrl = new URL("http://127.0.0.1:4723");
