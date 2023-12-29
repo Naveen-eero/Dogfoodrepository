@@ -52,7 +52,7 @@ public class placementTestPage {
 	}
 
 	public void selectLoc() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(90));
 		wait.until(ExpectedConditions.visibilityOf(selectLocationElement));
 		selectLocationElement.click();
 

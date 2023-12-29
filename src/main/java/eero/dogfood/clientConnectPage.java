@@ -75,7 +75,8 @@ public class clientConnectPage {
 	}
 
 	public void connectToIotSubnetA() throws InterruptedException {
-
+		driver.findElement(AppiumBy.androidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"IOT network\").instance(0))"));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOf(IOTSSIDsubA)).click();
 
@@ -84,8 +85,7 @@ public class clientConnectPage {
 	public void connectToIotSubnetB() throws InterruptedException {
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"subnet B ssid as iot\").instance(0))"));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(iOTSUBBElement)).click();
+		iOTSUBBElement.click();
 
 	}
 

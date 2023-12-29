@@ -59,7 +59,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "  Create and enable Subnet A and configure it as Business network  ", priority = 1)
+	@Test(enabled = true, description = "  Create and enable Subnet A and configure it as Business network  ", priority = 1)
 	private void C29192() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		// click on home
@@ -118,7 +118,7 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = false, description = "disable Subnet A Business network  ", priority = 2)
+	@Test(enabled = true, description = "disable Subnet A Business network  ", priority = 3)
 
 	private void C23964() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -162,7 +162,7 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 3)
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 4)
 
 	private void C233647() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -214,7 +214,7 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 4)
+	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 2)
 
 	private void C235445() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
