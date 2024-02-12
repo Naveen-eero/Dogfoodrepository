@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -60,10 +61,16 @@ public class clientConnectPage {
 
 	}
 
-	public void connectToMain() {
-
+	public void connectToMain(String mainnetwork) throws InterruptedException {
+		Thread.sleep(20000);
+		String xpath_locator = String.format("//android.widget.TextView[@text=" + "\"" + "" + mainnetwork + "\"]");
+		@SuppressWarnings("deprecation")
+		WebElement element = driver.findElement(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ mainnetwork + "\").instance(0))"));
+		WebElement mainssid = driver.findElement(By.xpath(xpath_locator));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(networkNameElement)).click();
+		wait.until(ExpectedConditions.visibilityOf(mainssid)).click();
 
 	}
 
@@ -89,11 +96,10 @@ public class clientConnectPage {
 
 	}
 
-	public void enterPasswordforBusiness(String password) throws InterruptedException {
+	public void enterPassword(String password) throws InterruptedException {
 		try {
 			passwordElement.sendKeys(password);
 			driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-			connectToBusiness();
 		} catch (Exception e) {
 			// TODO: handle exception
 			connectToBusiness();

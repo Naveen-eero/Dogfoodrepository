@@ -81,7 +81,7 @@ public class multiSsidPage {
 
 	public void clickSave() throws InterruptedException {
 		saveBtnElement.click();
-		Thread.sleep(20000);
+		Thread.sleep(40000);
 	}
 
 	public void clickGuest() {

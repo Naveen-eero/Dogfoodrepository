@@ -30,8 +30,10 @@ public class deleteNetworkPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@test=\"CANCEL\"]")
 	private WebElement cancelBtnElement;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
+	@AndroidFindBy(xpath = "//android.widget.Textview[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
 	private WebElement deleteConfirmationElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
+	private WebElement deleteConfirmationBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Keep subscription\"]")
 	private WebElement keepSubscription;
@@ -78,5 +80,10 @@ public class deleteNetworkPage {
 
 	public void cancelsubscription() {
 		cancelSubscription.click();
+	}
+
+	public void clickDeleteBtn() {
+		deleteConfirmationBtn.click();
+
 	}
 }

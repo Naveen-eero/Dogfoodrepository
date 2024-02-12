@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -29,8 +30,8 @@ public class placementTestPage {
 	private WebElement closeBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/info_button")
 	private WebElement infoBtnElement;
-	@AndroidFindBy(xpath = "(//android.widget.FrameLayout[@resource-id=\"com.eero.android.dogfood:id/room_picker_card_view\"])[5]")
-	private WebElement selectLocationElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"This will help you identify it later.\"]")
+	private WebElement placementpagElement;
 
 	public void clickNewPlacement() {
 		testNewPlacementBtn.click();
@@ -51,10 +52,14 @@ public class placementTestPage {
 		infoBtnElement.click();
 	}
 
-	public void selectLoc() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(90));
-		wait.until(ExpectedConditions.visibilityOf(selectLocationElement));
-		selectLocationElement.click();
+	public void selectLoc(String location) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+		wait.until(ExpectedConditions.visibilityOf(placementpagElement));
+		String xpath_locator = String
+				.format("//android.widget.TextView[contains(@text," + "\"" + "" + location + "\")]");
+		WebElement ele = driver.findElement(AppiumBy.xpath(xpath_locator));
+		wait.until(ExpectedConditions.visibilityOf(ele));
+		ele.click();
 
 	}
 

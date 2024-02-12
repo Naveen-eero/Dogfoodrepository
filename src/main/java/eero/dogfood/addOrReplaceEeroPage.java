@@ -35,8 +35,6 @@ public class addOrReplaceEeroPage {
 	private WebElement arrowBtn;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Finish setup\"]")
 	private WebElement finishSetupBtn;
-	@AndroidFindBy(id = "com.eero.android.dogfood:id/skip_button")
-	private WebElement skipBtnElement;
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id=\"com.eero.android.dogfood:id/toolbarView\"]/android.widget.ImageButton")
 	private WebElement backbtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/network_name_edit_text")
@@ -49,6 +47,22 @@ public class addOrReplaceEeroPage {
 	private WebElement installNowBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/zero_day_update_secondary_button")
 	private WebElement mayBeLaterBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Internet settings\"]")
+	private WebElement internetSettingsElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"WAN type\"]")
+	private WebElement wantypElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Static IP\"]")
+	private WebElement staticipElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IP address\"]/following-sibling::android.widget.EditText")
+	private WebElement staticIpAddr;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Subnet mask\"]/following-sibling::android.widget.EditText")
+	private WebElement subnet;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Router IP\"]/following-sibling::android.widget.EditText")
+	private WebElement RouterIp;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Apply\"]")
+	private WebElement applyBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Save settings\"]")
+	private WebElement saveBtn;
 
 	public void clickAddeero() {
 		addEeroBtnElement.click();
@@ -61,12 +75,7 @@ public class addOrReplaceEeroPage {
 	}
 
 	public void clickArrowBtn() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(arrowBtn)).click();
-	}
-
-	public void clickSkip() {
-		skipBtnElement.click();
+		arrowBtn.click();
 	}
 
 	public void clickBack() {
@@ -84,8 +93,8 @@ public class addOrReplaceEeroPage {
 	}
 
 	public void enterNetworkName(String networkName) {
-
-		networkNamElement.sendKeys(networkName);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(networkNamElement)).sendKeys(networkName);
 
 	}
 
@@ -129,4 +138,34 @@ public class addOrReplaceEeroPage {
 			System.out.println("No updates required");
 		}
 	}
+
+	public void clickInternetSettings() {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(150));
+		wait.until(ExpectedConditions.visibilityOf(internetSettingsElement)).click();
+	}
+
+	public void clickWanType() {
+		wantypElement.click();
+	}
+
+	public void selectStaticIp() {
+		staticipElement.click();
+	}
+
+	public void enterStaticIpdetails(String staticip, String Subnetaddr, String routerString) {
+		staticIpAddr.sendKeys(staticip);
+		subnet.sendKeys(Subnetaddr);
+		RouterIp.sendKeys(routerString);
+
+	}
+
+	public void clickApply() {
+		applyBtn.click();
+	}
+
+	public void clicksave() {
+		saveBtn.click();
+	}
+
 }

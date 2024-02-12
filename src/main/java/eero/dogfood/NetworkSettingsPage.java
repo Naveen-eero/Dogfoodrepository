@@ -39,10 +39,12 @@ public class NetworkSettingsPage {
 	private WebElement clientSteeringElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Thread\"]")
 	private WebElement threadElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView@text=\"Restart network\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Restart network\"]")
 	private WebElement restartNetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[ @text=\"Delete network\"]")
 	private WebElement deleteNetworkElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Restart network\"]")
+	private WebElement restartNetworkBtn;
 
 	public void getWanIp() {
 		String wanIpaddressString = wanIpAddressElement.getText();
@@ -95,10 +97,17 @@ public class NetworkSettingsPage {
 		DHCPNATBtnElement.click();
 	}
 
-	public void restartNetwork() {
+	public void restartNetwork() throws InterruptedException {
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Restart network\").instance(0))"));
 		restartNetworkElement.click();
+	}
+
+	public void clickRestartBtn() throws InterruptedException {
+		driver.findElement(AppiumBy.androidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Restart network\").instance(0))"));
+		restartNetworkBtn.click();
+		Thread.sleep(10000);
 	}
 
 	public void deleteNetwork() {

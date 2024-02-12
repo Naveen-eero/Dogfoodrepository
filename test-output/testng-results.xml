@@ -1,20 +1,226 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="8" total="9" passed="1" failed="0" skipped="0">
+<testng-results ignored="15" total="20" passed="2" failed="3" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-12-28T17:24:45 IST" name="Default suite" finished-at="2023-12-28T17:26:29 IST" duration-ms="104324">
+  <suite started-at="2024-02-11T22:11:15 IST" name="Default suite" finished-at="2024-02-11T22:20:33 IST" duration-ms="558291">
     <groups>
     </groups>
-    <test started-at="2023-12-28T17:24:45 IST" name="Default test" finished-at="2023-12-28T17:26:29 IST" duration-ms="104324">
-      <class name="eero.dogfood.BusinessNetworkCases">
-        <test-method is-config="true" signature="BaseConfig()[pri:0, instance:eero.dogfood.BusinessNetworkCases@4659191b]" started-at="2023-12-28T17:24:45 IST" name="BaseConfig" finished-at="2023-12-28T17:24:54 IST" duration-ms="8869" status="PASS">
+    <test started-at="2024-02-11T22:11:15 IST" name="Default test" finished-at="2024-02-11T22:20:33 IST" duration-ms="558291">
+      <class name="eero.dogfood.CreateNetworkCases">
+        <test-method is-config="true" signature="BaseConfig()[pri:0, instance:eero.dogfood.CreateNetworkCases@3ba987b8]" started-at="2024-02-11T22:11:15 IST" name="BaseConfig" finished-at="2024-02-11T22:11:24 IST" duration-ms="9002" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BaseConfig -->
-        <test-method signature="C235445()[pri:4, instance:eero.dogfood.BusinessNetworkCases@4659191b]" started-at="2023-12-28T17:24:54 IST" name="C235445" description="  Create and enable Subnet B and configure it as Business Subnet " finished-at="2023-12-28T17:26:29 IST" duration-ms="95420" status="PASS">
+        <test-method signature="createStaticNetwork(java.util.HashMap)[pri:1, instance:eero.dogfood.CreateNetworkCases@3ba987b8]" started-at="2024-02-11T22:11:24 IST" name="createStaticNetwork" description="Createnetwork static network" data-provider="getData" finished-at="2024-02-11T22:15:55 IST" duration-ms="270879" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{static ip=192.168.0.144, Main ssid=Static network, password=12345678, Router ip=192.168.0.1, Gateway place=Kitchen, Business name=Asif, Subnet=255.255.255.0, status filename=internet status}]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- C235445 -->
+        </test-method> <!-- createStaticNetwork -->
+        <test-method signature="C2788()[pri:2, instance:eero.dogfood.CreateNetworkCases@3ba987b8]" started-at="2024-02-11T22:15:55 IST" name="C2788" description="Reboot static network" finished-at="2024-02-11T22:19:06 IST" duration-ms="190724" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for text ('Online') to be present in element Located by By.chained({AppiumBy.id: com.eero.android.dogfood:id/status_button}) (tried for 160 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:appActivity: com.eero.android.v3.common...., appium:appName: com.eero.android.dogfood, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: com.eero.android.v3.common...., appName: com.eero.android.dogfood, automationName: UiAutomator2, noReset: true, platformName: ANDROID, platformname: Android, udid: 89FX09KX4}, appium:deviceApiLevel: 31, appium:deviceManufacturer: Google, appium:deviceModel: Pixel 3, appium:deviceName: 89FX09KX4, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2160, appium:deviceUDID: 89FX09KX4, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 12, appium:platformname: Android, appium:statBarHeight: 77, appium:takesScreenshot: true, appium:udid: 89FX09KX4, appium:viewportRect: {height: 1951, left: 0, top: 77, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 2cec46fc-0856-4553-9e2d-9adddbf3b32c]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for text ('Online') to be present in element Located by By.chained({AppiumBy.id: com.eero.android.dogfood:id/status_button}) (tried for 160 second(s) with 500 milliseconds interval)
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appium:appActivity: com.eero.android.v3.common...., appium:appName: com.eero.android.dogfood, appium:automationName: UiAutomator2, appium:databaseEnabled: false, appium:desired: {appActivity: com.eero.android.v3.common...., appName: com.eero.android.dogfood, automationName: UiAutomator2, noReset: true, platformName: ANDROID, platformname: Android, udid: 89FX09KX4}, appium:deviceApiLevel: 31, appium:deviceManufacturer: Google, appium:deviceModel: Pixel 3, appium:deviceName: 89FX09KX4, appium:deviceScreenDensity: 440, appium:deviceScreenSize: 1080x2160, appium:deviceUDID: 89FX09KX4, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:noReset: true, appium:pixelRatio: 2.75, appium:platformVersion: 12, appium:platformname: Android, appium:statBarHeight: 77, appium:takesScreenshot: true, appium:udid: 89FX09KX4, appium:viewportRect: {height: 1951, left: 0, top: 77, width: 1080}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
+Session ID: 2cec46fc-0856-4553-9e2d-9adddbf3b32c
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+at eero.dogfood.HomePage.getInternetStatus(HomePage.java:160)
+at eero.dogfood.CreateNetworkCases.C2788(CreateNetworkCases.java:149)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- C2788 -->
+        <test-method signature="TurnOnGuest()[pri:3, instance:eero.dogfood.CreateNetworkCases@3ba987b8]" started-at="2024-02-11T22:19:06 IST" name="TurnOnGuest" description="Turn On guest network" finished-at="2024-02-11T22:19:30 IST" duration-ms="24108" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TurnOnGuest -->
+        <test-method signature="DeleteNetwork()[pri:4, instance:eero.dogfood.CreateNetworkCases@3ba987b8]" started-at="2024-02-11T22:19:30 IST" name="DeleteNetwork" description="Delete network" finished-at="2024-02-11T22:20:33 IST" duration-ms="63002" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of Located by By.chained({AppiumBy.id: com.eero.android.dogfood:id/home}) (tried for 60 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Located by By.chained({AppiumBy.id: com.eero.android.dogfood:id/home}) (tried for 60 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+at eero.dogfood.HomePage.clickHome(HomePage.java:95)
+at eero.dogfood.CreateNetworkCases.DeleteNetwork(CreateNetworkCases.java:45)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: Can't locate an element by this strategy: By.chained({AppiumBy.id: com.eero.android.dogfood:id/home})
+at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:166)
+at io.appium.java_client.pagefactory.interceptors.InterceptorOfASingleElement.call(InterceptorOfASingleElement.java:64)
+at io.appium.java_client.proxy.Interceptor.intercept(Interceptor.java:78)
+at org.openqa.selenium.remote.RemoteWebElement$ByteBuddy$XJ3ZR2gc.isDisplayed(Unknown Source)
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:304)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:37)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:287)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
+... 30 more
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction@324bb7fb (tried for 1 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:262)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+at io.appium.java_client.pagefactory.AppiumElementLocator.waitFor(AppiumElementLocator.java:135)
+at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:160)
+... 38 more
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.chained({AppiumBy.id: com.eero.android.dogfood:id/home})
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.13.0', revision: 'ba948ece5b*'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
+Driver info: driver.version: RemoteWebDriver
+at io.appium.java_client.pagefactory.bys.builder.ByChained.findElement(ByChained.java:77)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:139)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+at io.appium.java_client.pagefactory.bys.ContentMappedBy.findElement(ContentMappedBy.java:53)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:139)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
+at io.appium.java_client.pagefactory.AppiumElementLocator.lambda$findElement$1(AppiumElementLocator.java:160)
+at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:217)
+at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:210)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:205)
+... 40 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteNetwork -->
+      </class> <!-- eero.dogfood.CreateNetworkCases -->
+      <class name="eero.dogfood.BusinessNetworkCases">
+        <test-method signature="createBusinessNetwork(java.util.HashMap)[pri:1, instance:eero.dogfood.BusinessNetworkCases@5e2c3d18]" started-at="2024-02-11T22:20:33 IST" name="createBusinessNetwork" description="Create an eB network with DHCP" data-provider="getData" finished-at="2024-02-11T22:20:33 IST" duration-ms="312" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{static ip=192.168.0.144, Main ssid=Static network, password=12345678, Router ip=192.168.0.1, Gateway place=Kitchen, Business name=Asif, Subnet=255.255.255.0, status filename=internet status}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.IllegalStateException">
+            <message>
+              <![CDATA[The element By.id: settingBtn is not locatable anymore because its context has been garbage collected]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IllegalStateException: The element By.id: settingBtn is not locatable anymore because its context has been garbage collected
+at io.appium.java_client.pagefactory.AppiumElementLocator.lambda$findElement$0(AppiumElementLocator.java:154)
+at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:153)
+at io.appium.java_client.pagefactory.interceptors.InterceptorOfASingleElement.call(InterceptorOfASingleElement.java:64)
+at io.appium.java_client.proxy.Interceptor.intercept(Interceptor.java:78)
+at org.openqa.selenium.remote.RemoteWebElement$ByteBuddy$rXi04bsm.click(Unknown Source)
+at eero.dogfood.HomePage.clickStartSetup(HomePage.java:85)
+at eero.dogfood.BusinessNetworkCases.createBusinessNetwork(BusinessNetworkCases.java:23)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IllegalStateException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createBusinessNetwork -->
       </class> <!-- eero.dogfood.BusinessNetworkCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

@@ -4,11 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.appium.java_client.android.AndroidDriver;
 
@@ -63,5 +69,16 @@ public class BaseTest {
 				"C://Users//kunnavee//Desktop//Eero Automation//Dogfoodrepository//src//main//java//reports//"
 						+ filename + ".png");
 		FileUtils.copyFile(source, destString);
+	}
+
+	public List<HashMap<String, String>> getJsondata(String jsonFilePath) throws IOException {
+		String jsonContent = FileUtils.readFileToString(new File(jsonFilePath), StandardCharsets.UTF_8);
+		ObjectMapper mapper = new ObjectMapper();
+		List<HashMap<String, String>> data = mapper.readValue(jsonContent,
+				new TypeReference<List<HashMap<String, String>>>() {
+				});
+
+		return data;
+
 	}
 }

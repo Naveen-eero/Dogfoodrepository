@@ -1,0 +1,17 @@
+[
+{
+"Business name":"Asif",
+"Gateway place":"Kitchen",
+"Main ssid":"Static network",
+"password":"12345678",
+"static ip":"192.168.0.144",
+"Subnet":"255.255.255.0",
+"Router ip":"192.168.0.1",
+"status filename":"internet status"
+},
+{
+"subnet A":"Kumar",
+"password":"11112222"
+}
+
+]

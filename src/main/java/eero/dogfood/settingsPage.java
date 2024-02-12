@@ -74,18 +74,15 @@ public class settingsPage {
 	}
 
 	void clickAddNewNetwork() {
-		// TODO Auto-generated method stub
 		addnetworkElement.click();
 
 	}
 
 	void clickcancelbtn() {
-		// TODO Auto-generated method stub
 		cancelbtnElement.click();
 	}
 
 	void clickAccount() {
-		// TODO Auto-generated method stub
 		accountSettingsElement.click();
 
 	}

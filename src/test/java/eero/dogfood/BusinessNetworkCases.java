@@ -3,9 +3,12 @@ package eero.dogfood;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.android.Activity;
@@ -13,22 +16,24 @@ import io.appium.java_client.android.Activity;
 public class BusinessNetworkCases extends BaseTest {
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "Create an eB network with DHCP", priority = 1)
-	private void createBusinessNetwork() throws InterruptedException, IOException {
+	@Test(enabled = true, description = "Create an eB network with DHCP", priority = 1, dataProvider = "getData")
+	private void createBusinessNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		// TODO Auto-generated method stub
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
 		homePage.selectBusiness();
 		homePage.clickNext();
-		homePage.EnterBusinessName("Naveen");
+		homePage.EnterBusinessName(input.get("Business name"));
 		homePage.clickQuickSetup();
-		homePage.clickStartbtn();
+		homePage.clickStartBtn();
+		homePage.clickNext();
+		// for jupiter or crane
 		homePage.clickNext();
 		placementTestPage placementTestPage = new placementTestPage(driver);
-		placementTestPage.selectLoc();
+		placementTestPage.selectLoc(input.get("Gateway place"));
 		addOrReplaceEeroPage addOrReplaceEeroPage = new addOrReplaceEeroPage(driver);
-		addOrReplaceEeroPage.enterNetworkName("Naveen");
-		addOrReplaceEeroPage.setNetworkPassword("11112222");
+		addOrReplaceEeroPage.enterNetworkName(input.get("Main ssid"));
+		addOrReplaceEeroPage.setNetworkPassword(input.get("password"));
 		addOrReplaceEeroPage.clickArrowBtn();
 		addOrReplaceEeroPage.clickFinishSetup();
 		addOrReplaceEeroPage.clickMaybeLater();
@@ -36,31 +41,28 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickLinkToCustmer();
 		homePage.clickCloseIcon();
 		homePage.clickJoinBtn();
-		if (homePage.getInternetStatus() == "Online") {
-			homePage.clickSettings();
-			settingsPage settingsPage = new settingsPage(driver);
-			settingsPage.clickWifiNameAndPassword();
-			editMainNetworkPage editMainNetworkPage = new editMainNetworkPage(driver);
-			editMainNetworkPage.getMainNetworkName();
-			editMainNetworkPage.getMainNetworkPassword();
-			BaseTest baseTest = new BaseTest();
-			baseTest.configureAppTosettings();
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
-			clientConnectPage clientConnectPage = new clientConnectPage(driver);
-			clientConnectPage.clickNetwork();
-			clientConnectPage.clickInternet();
-			clientConnectPage.connectToMain();
-			baseTest.getscreenshot(driver, "mainnetworkscreenshot");
-		} else {
-			System.out.println("Network offline ");
-		}
+		homePage.clickSettings();
+		settingsPage settingsPage = new settingsPage(driver);
+		settingsPage.clickWifiNameAndPassword();
+		editMainNetworkPage editMainNetworkPage = new editMainNetworkPage(driver);
+		editMainNetworkPage.getMainNetworkName();
+		editMainNetworkPage.getMainNetworkPassword();
+		BaseTest baseTest = new BaseTest();
+		baseTest.configureAppTosettings();
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
+		clientConnectPage clientConnectPage = new clientConnectPage(driver);
+		clientConnectPage.clickNetwork();
+		clientConnectPage.clickInternet();
+		clientConnectPage.connectToMain(input.get("Main ssid"));
+		clientConnectPage.enterPassword(input.get("password"));
+		baseTest.getscreenshot(driver, "mainnetworkscreenshot");
 
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Create and enable Subnet A and configure it as Business network  ", priority = 1)
-	private void C29192() throws InterruptedException, IOException {
+	@Test(enabled = false, description = "  Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
+	private void C29192(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		// click on home
 		homePage.clickHome();
@@ -75,8 +77,8 @@ public class BusinessNetworkCases extends BaseTest {
 		// click on add business ssid
 		multiSsidPage.addBusinessSSID();
 		// Enter business SSID name and password
-		multiSsidPage.enterssidName("Business network");
-		multiSsidPage.enterssidpassword("11112222");
+		multiSsidPage.enterssidName(input.get("subnet A"));
+		multiSsidPage.enterssidpassword(input.get("password"));
 		// click on save
 		multiSsidPage.clickSave();
 		// Check whether Business SSID is created in APP
@@ -94,7 +96,7 @@ public class BusinessNetworkCases extends BaseTest {
 			clientConnectPage.clickInternet();
 			// click on business SSID enter password
 			clientConnectPage.connectToBusiness();
-			clientConnectPage.enterPasswordforBusiness("11112222");
+			clientConnectPage.enterPassword(input.get("password"));
 			// Check for the IP connected to business network
 			clientConnectPage.getClientIp();
 			BaseTest baseTest = new BaseTest();
@@ -118,7 +120,7 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = true, description = "disable Subnet A Business network  ", priority = 3)
+	@Test(enabled = false, description = "disable Subnet A Business network  ", priority = 3)
 
 	private void C23964() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -162,7 +164,7 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 4)
+	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 4)
 
 	private void C233647() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -214,7 +216,7 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 2)
+	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 2)
 
 	private void C235445() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -339,6 +341,13 @@ public class BusinessNetworkCases extends BaseTest {
 			System.out.println("element not present");
 		}
 
+	}
+
+	@DataProvider
+	public Object[][] getData() throws IOException {
+		List<HashMap<String, String>> data = getJsondata(
+				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
+		return new Object[][] { { data.get(0) } };
 	}
 
 }

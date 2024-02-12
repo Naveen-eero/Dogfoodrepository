@@ -48,7 +48,7 @@ public class HomePage {
 	private WebElement profileBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/alertTitle")
 	private WebElement alertElement;
-	@AndroidFindBy(id = "android:id/button1")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"JOIN\"]")
 	private WebElement JoinoryesBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/status_button")
 	private WebElement statusBtnElement;
@@ -66,7 +66,7 @@ public class HomePage {
 	private WebElement businessNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_secondary_setup")
 	private WebElement guidedSetupElement;
-	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_primary_setup")
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Quick setup\"]")
 	private WebElement quickSetupElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Link to customer\"]")
 	private WebElement LinkToCustomer;
@@ -74,24 +74,26 @@ public class HomePage {
 	private WebElement closeIcon;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start Setup\" or @text= \"Create network\"]")
 	private WebElement startSetupElement;
-	@AndroidFindBy(id = "com.eero.android.dogfood:id/next_button")
-	private WebElement startBtnElement;
-	@AndroidFindBy(id = "com.eero.android.dogfood:id/right_action")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Skip\"]")
 	private WebElement skipElement;
 
-	public void clickStartSetup() {
-		// TODO Auto-generated method stub
+	public void clickStartSetup() throws InterruptedException {
+		// Click on start setup button
 		try {
 			startSetupElement.click();
 		} catch (Exception e) {
-			// TODO: handle exception
-			addMarkElement.click();
+			settingBtn.click();
+			settingsPage settingsPage = new settingsPage(driver);
+			settingsPage.clicksettingsmenu();
+			settingsPage.clickAddNewNetwork();
+
 		}
 	}
 
 	public void clickHome() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOf(homeBtnElement)).click();
+		Thread.sleep(10000);
 
 	}
 
@@ -143,8 +145,8 @@ public class HomePage {
 
 	public void clickJoinBtn() throws InterruptedException {
 		try {
-			JoinoryesBtn.click();
-			Thread.sleep(30000);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+			wait.until(ExpectedConditions.visibilityOf(JoinoryesBtn)).click();
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Network update not required");
@@ -153,16 +155,12 @@ public class HomePage {
 		}
 	}
 
-	public String getInternetStatus() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		String internetstatusString = wait.until(ExpectedConditions.visibilityOf(statusBtnElement)).getText();
-		if (statusBtnElement.getText() == "Online") {
-			System.out.println("The network created is " + internetstatusString);
-			return internetstatusString;
-		} else {
-			System.out.println("The network created is " + internetstatusString);
-			return internetstatusString;
-		}
+	public String getInternetStatus() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(160));
+		wait.until(ExpectedConditions.textToBePresentInElement(statusBtnElement, "Online"));
+		Thread.sleep(10000);
+		String intstat = statusBtnElement.getText();
+		return intstat;
 	}
 
 	public void selectResidential() {
@@ -172,7 +170,6 @@ public class HomePage {
 
 	public void selectBusiness() {
 		businessNetworkoptElement.click();
-
 	}
 
 	public void selectCommunity() {
@@ -182,16 +179,14 @@ public class HomePage {
 
 	public void clickNext() {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-			wait.until(ExpectedConditions.visibilityOf(nextBtn)).click();
+			nextBtn.click();
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 	}
 
 	public void EnterBusinessName(String businessname) {
 		businessNameElement.sendKeys(businessname);
-
 	}
 
 	public void clickQuickSetup() {
@@ -200,11 +195,6 @@ public class HomePage {
 
 	public void clickGuidedSetup() {
 		guidedSetupElement.click();
-	}
-
-	public void clickStartbtn() {
-		startBtn.click();
-
 	}
 
 	public void clickLinkToCustmer() {
@@ -218,7 +208,7 @@ public class HomePage {
 	}
 
 	public void clickStartBtn() {
-		startBtnElement.click();
+		startBtn.click();
 
 	}
 
