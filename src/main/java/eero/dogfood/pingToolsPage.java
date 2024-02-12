@@ -43,14 +43,16 @@ public class pingToolsPage {
 		wait.until(ExpectedConditions.visibilityOf(pingBtnElement)).click();
 	}
 
-	public void internetStatuscheck() {
+	public String internetStatuscheck() {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			wait.until(ExpectedConditions.visibilityOf(errorMsgElement)).click();
 			System.out.println("Device is not online");
+			return "device offline";
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Device is online");
+			return "device online";
 		}
 	}
 

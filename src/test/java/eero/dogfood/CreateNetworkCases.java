@@ -111,6 +111,19 @@ public class CreateNetworkCases extends BaseTest {
 			clientConnectPage.connectToMain(input.get("Main ssid"));
 			if (clientConnectPage.getClientIp().substring(0, 7).contains(input.get("Manual ip").substring(0, 7))) {
 				System.out.println("Client got ip in Manual subnet");
+				driver.startActivity(
+						new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
+				// Open ping tools app and check for interntet connectivity
+				pingToolsPage pingToolsPage = new pingToolsPage(driver);
+				pingToolsPage.clickTabBar();
+				pingToolsPage.selectPingFromOptions();
+				pingToolsPage.clickPingBtn();
+				if (pingToolsPage.internetStatuscheck().equals("device online")) {
+					System.out.println("Testcase pass");
+
+				} else {
+					System.out.println("testcase failed");
+				}
 			} else {
 				System.out.println("Client ip not matched with manual ip,Testcase failed");
 			}

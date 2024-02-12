@@ -5,17 +5,10 @@
     <classes>
       <class name="eero.dogfood.CreateNetworkCases">
         <methods>
-          <include name="DeleteNetwork"/>
+          <include name="C2691" invocation-numbers="0"/>
           <include name="BaseConfig"/>
-          <include name="C2788"/>
         </methods>
       </class> <!-- eero.dogfood.CreateNetworkCases -->
-      <class name="eero.dogfood.BusinessNetworkCases">
-        <methods>
-          <include name="createBusinessNetwork" invocation-numbers="0"/>
-          <include name="BaseConfig"/>
-        </methods>
-      </class> <!-- eero.dogfood.BusinessNetworkCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

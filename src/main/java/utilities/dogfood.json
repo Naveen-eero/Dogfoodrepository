@@ -2,12 +2,13 @@
 {
 "Business name":"Asif",
 "Gateway place":"Kitchen",
-"Main ssid":"Static network",
+"Main ssid":"kalan network",
 "password":"12345678",
 "static ip":"192.168.0.144",
 "Subnet":"255.255.255.0",
 "Router ip":"192.168.0.1",
-"status filename":"internet status"
+"status filename":"internet status",
+"Manual ip":"172.16.0.0"
 },
 {
 "subnet A":"Kumar",
