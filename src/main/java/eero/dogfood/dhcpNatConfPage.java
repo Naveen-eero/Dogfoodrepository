@@ -3,6 +3,7 @@ package eero.dogfood;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -46,8 +47,11 @@ public class dhcpNatConfPage {
 		manualIpOptionElement.click();
 	}
 
-	public void selectManulaIpaddr() {
-		manualIpaddress.click();
+	public void selectManulaIpaddr(String manualip) {
+		String xpath_locator = String
+				.format("//android.widget.TextView[contains(@text," + "\"" + "" + manualip + "\")]");
+		WebElement ele = driver.findElement(AppiumBy.xpath(xpath_locator));
+		ele.click();
 	}
 
 	public void selectAutomatic() {

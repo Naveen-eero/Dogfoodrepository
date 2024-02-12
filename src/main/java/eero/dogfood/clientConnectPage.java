@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -64,14 +63,11 @@ public class clientConnectPage {
 	public void connectToMain(String mainnetwork) throws InterruptedException {
 		Thread.sleep(20000);
 		String xpath_locator = String.format("//android.widget.TextView[@text=" + "\"" + "" + mainnetwork + "\"]");
-		@SuppressWarnings("deprecation")
-		WebElement element = driver.findElement(MobileBy.AndroidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ mainnetwork + "\").instance(0))"));
-		WebElement mainssid = driver.findElement(By.xpath(xpath_locator));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(mainssid)).click();
 
+		driver.findElement(AppiumBy.androidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ mainnetwork + "\").instance(0))"))
+				.click();
 	}
 
 	public void connectToBusiness() throws InterruptedException {
@@ -102,17 +98,17 @@ public class clientConnectPage {
 			driver.pressKey(new KeyEvent(AndroidKey.ENTER));
 		} catch (Exception e) {
 			// TODO: handle exception
-			connectToBusiness();
 
 		}
 	}
 
-	public void getClientIp() throws InterruptedException {
+	public String getClientIp() throws InterruptedException {
 
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Ip address\").instance(0))"));
 		String ipaddr = ipaddressofclient.getText();
 		System.out.println("Ip Address of client device is " + ipaddr);
+		return ipaddr;
 	}
 
 	public void checkNetworkAvailability(String networkName) {

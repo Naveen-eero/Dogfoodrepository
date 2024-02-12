@@ -32,6 +32,7 @@ public class deleteNetworkPage {
 
 	@AndroidFindBy(xpath = "//android.widget.Textview[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
 	private WebElement deleteConfirmationElement;
+
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
 	private WebElement deleteConfirmationBtn;
 

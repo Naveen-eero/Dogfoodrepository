@@ -179,7 +179,8 @@ public class HomePage {
 
 	public void clickNext() {
 		try {
-			nextBtn.click();
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+			wait.until(ExpectedConditions.visibilityOf(nextBtn)).click();
 		} catch (Exception e) {
 
 		}

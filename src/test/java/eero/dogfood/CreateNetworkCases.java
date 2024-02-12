@@ -21,25 +21,27 @@ public class CreateNetworkCases extends BaseTest {
 		addOrReplaceEeroPage addorreplacepage = new addOrReplaceEeroPage(driver);
 		homePage.clickStartSetup();
 		homePage.clickStartBtn();
-		homePage.clickNext();
 		addorreplacepage.clickArrowBtn();
 		addorreplacepage.clickArrowBtn();
 		addorreplacepage.clickArrowBtn();
 		homePage.clickNext();
 		placementTestPage placementtest = new placementTestPage(driver);
 		placementtest.selectLoc(input.get("Gateway place"));
-		addorreplacepage.enterNetworkName(input.get("ssid"));
+		addorreplacepage.enterNetworkName(input.get("Main ssid"));
 		addorreplacepage.setNetworkPassword(input.get("password"));
 		addorreplacepage.clickArrowBtn();
-		addorreplacepage.clickArrowBtn();
-		addorreplacepage.clickInstallNow();
-		homePage.clickJoinBtn();
+		addorreplacepage.clickFinishSetup();
 		homePage.clickSkip();
 		homePage.clickJoinBtn();
+		if (homePage.getInternetStatus().equals("Online")) {
+			System.out.println("Network Online, Testcase passed");
+		} else {
+			System.out.println("Network is offline, Testcase failed");
+		}
 
 	}
 
-	@Test(enabled = true, priority = 4, description = "Delete network")
+	@Test(enabled = false, priority = 4, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
 		homepage.clickHome();
@@ -49,13 +51,14 @@ public class CreateNetworkCases extends BaseTest {
 		settingspage.clickNetworkSettings();
 		networkSettingsPage.deleteNetwork();
 		deleteNetworkPage deletenetworkpage = new deleteNetworkPage(driver);
-		deletenetworkpage.clickNext();
 		deletenetworkpage.keepsubscription();
 		deletenetworkpage.confirmDelete();
 		deletenetworkpage.clickDeleteBtn();
+		deletenetworkpage.clickDeleteBtn();
+
 	}
 
-	@Test(enabled = true, priority = 3, description = "Turn On guest network")
+	@Test(enabled = false, priority = 3, description = "Turn On guest network")
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -79,10 +82,8 @@ public class CreateNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = false, priority = 4)
-	public void changeDhcpToManual() throws InterruptedException {
-		// TODO Auto-generated method stub
-		// goto homepage
+	@Test(enabled = true, priority = 4, dataProvider = "getData", description = "Set DHCP to custom range ")
+	public void C2691(HashMap<String, String> input) throws InterruptedException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickHome();
 		homePage.clickSettings();
@@ -92,20 +93,35 @@ public class CreateNetworkCases extends BaseTest {
 		networksettingspage.clickDhcpNat();
 		dhcpNatConfPage dhcpnatconf = new dhcpNatConfPage(driver);
 		dhcpnatconf.selectManualIpoption();
-		dhcpnatconf.selectManulaIpaddr();
+		dhcpnatconf.selectManulaIpaddr(input.get("Manual ip"));
 		dhcpnatconf.clickSave();
 		dhcpnatconf.clickReboot();
 		homePage.clickHome();
 		String internetstat = homePage.getInternetStatus();
-		if (internetstat == "Online") {
+		if (internetstat.equals("Online")) {
 			System.out.println("Network is Online");
-		} else {
-			System.out.println(internetstat);
-		}
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+			driver.startActivity(
+					new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
+			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			clientConnectPage.clickNetwork();
+			clientConnectPage.clickInternet();
+			clientConnectPage.connectToMain(input.get("Main ssid"));
+			clientConnectPage.enterPassword(input.get("password"));
+			clientConnectPage.connectToMain(input.get("Main ssid"));
+			if (clientConnectPage.getClientIp().substring(0, 7).contains(input.get("Manual ip").substring(0, 7))) {
+				System.out.println("Client got ip in Manual subnet");
+			} else {
+				System.out.println("Client ip not matched with manual ip,Testcase failed");
+			}
+			driver.activateApp("com.eero.android.dogfood");
 
+		} else {
+			System.out.println("Network Offline, Testcase failed");
+		}
 	}
 
-	@Test(enabled = true, priority = 1, description = "Createnetwork static network", dataProvider = "getData")
+	@Test(enabled = false, priority = 1, description = "Createnetwork static network", dataProvider = "getData")
 	public void createStaticNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
@@ -137,7 +153,7 @@ public class CreateNetworkCases extends BaseTest {
 		getscreenshot(driver, input.get("status filename"));
 	}
 
-	@Test(enabled = true, priority = 2, description = "Reboot static network")
+	@Test(enabled = false, priority = 2, description = "Reboot static network")
 	public void C2788() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickSettings();
