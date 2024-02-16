@@ -11,8 +11,11 @@
 "Manual ip":"172.16.0.0"
 },
 {
-"subnet A":"Kumar",
-"password":"11112222"
-}
+"subnet A Business ssid":"kakara",
+"subnet A iot ssid":"IOT ssid",
+"subnet B Business ssid":"Business B ssid",
+"subnet B iot ssid":"IOT B iot ssid",
+"password":"11117895454542"
 
+}
 ]

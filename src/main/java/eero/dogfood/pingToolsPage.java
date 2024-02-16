@@ -50,7 +50,6 @@ public class pingToolsPage {
 			System.out.println("Device is not online");
 			return "device offline";
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println("Device is online");
 			return "device online";
 		}

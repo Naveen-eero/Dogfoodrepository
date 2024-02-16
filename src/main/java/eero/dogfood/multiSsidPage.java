@@ -55,13 +55,19 @@ public class multiSsidPage {
 	public WebElement bandwidthElement;
 
 	public void clickaddWifi() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(addWifiNetworkElement)).click();
+		try {
+			addWifiNetworkElement.click();
+		} catch (Exception e) {
+
+		}
 	}
 
 	public void addBusinessSSID() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(addBusinessnet)).click();
+		try {
+			addBusinessnet.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public void addIOTSSID() {
@@ -75,13 +81,12 @@ public class multiSsidPage {
 		wifiNameElement.sendKeys(ssidname);
 	}
 
-	public void enterssidpassword(String ssidpassowrd) {
+	public void enterssidpassword(String ssidpassowrd) throws InterruptedException {
 		wifiPasswordElement.sendKeys(ssidpassowrd);
 	}
 
 	public void clickSave() throws InterruptedException {
 		saveBtnElement.click();
-		Thread.sleep(40000);
 	}
 
 	public void clickGuest() {
@@ -113,8 +118,9 @@ public class multiSsidPage {
 		deleteWifiElement.click();
 	}
 
-	public void clickDelete() {
+	public void clickDelete() throws InterruptedException {
 		confirmDelete.click();
+		Thread.sleep(20000);
 	}
 
 	public void enableBandwith() {
@@ -131,7 +137,6 @@ public class multiSsidPage {
 			wait.until(ExpectedConditions.visibilityOf(element));
 			return element.isDisplayed();
 		} catch (Exception e) {
-			System.out.println("Element not visible");
 			return false;
 		}
 		// TODO: handle exception

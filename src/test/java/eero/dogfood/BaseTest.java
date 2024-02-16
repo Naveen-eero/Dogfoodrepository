@@ -66,7 +66,7 @@ public class BaseTest {
 	public void getscreenshot(AndroidDriver driver, String filename) throws IOException {
 		File source = driver.getScreenshotAs(OutputType.FILE);
 		File destString = new File(
-				"C://Users//kunnavee//Desktop//Eero Automation//Dogfoodrepository//src//main//java//reports//"
+				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\reports\\"
 						+ filename + ".png");
 		FileUtils.copyFile(source, destString);
 	}

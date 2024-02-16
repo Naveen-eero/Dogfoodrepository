@@ -20,7 +20,6 @@ public class BridgModeSection extends BaseTest {
 		dhcpNatConfPage.clickSave();
 		dhcpNatConfPage.clickReboot();
 		homePage.clickHome();
-
 	}
 
 	@Test(description = "Disable BridgeMode case", enabled = false, priority = 2)

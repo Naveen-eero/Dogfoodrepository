@@ -60,13 +60,13 @@ public class clientConnectPage {
 
 	}
 
-	public void connectToMain(String mainnetwork) throws InterruptedException {
+	public void connectToNetwork(String networkName) throws InterruptedException {
 		Thread.sleep(20000);
-		String xpath_locator = String.format("//android.widget.TextView[@text=" + "\"" + "" + mainnetwork + "\"]");
+		String xpath_locator = String.format("//android.widget.TextView[@text=" + "\"" + "" + networkName + "\"]");
 
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ mainnetwork + "\").instance(0))"))
+						+ networkName + "\").instance(0))"))
 				.click();
 	}
 

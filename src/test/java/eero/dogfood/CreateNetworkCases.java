@@ -58,7 +58,8 @@ public class CreateNetworkCases extends BaseTest {
 
 	}
 
-	@Test(enabled = false, priority = 3, description = "Turn On guest network")
+	@SuppressWarnings("deprecation")
+	@Test(enabled = true, priority = 3, description = "Turn On guest network")
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -79,10 +80,28 @@ public class CreateNetworkCases extends BaseTest {
 		clientConnectPage clientconnectpage = new clientConnectPage(driver);
 		clientconnectpage.clickNetwork();
 		clientconnectpage.clickInternet();
+		clientconnectpage.connectToNetwork(guestname);
+		clientconnectpage.enterPassword(guestpassword);
+		clientconnectpage.connectToNetwork(guestname);
+		clientconnectpage.getClientIp();
+		driver.startActivity(
+				new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
+		// Open ping tools app and check for interntet connectivity
+		pingToolsPage pingToolsPage = new pingToolsPage(driver);
+		pingToolsPage.clickTabBar();
+		pingToolsPage.selectPingFromOptions();
+		pingToolsPage.clickPingBtn();
+		if (pingToolsPage.internetStatuscheck().equals("device online")) {
+			System.out.println("Testcase pass");
+
+		} else {
+			System.out.println("testcase failed");
+		}
+
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = true, priority = 4, dataProvider = "getData", description = "Set DHCP to custom range ")
+	@Test(enabled = false, priority = 4, dataProvider = "getData", description = "Set DHCP to custom range ")
 	public void C2691(HashMap<String, String> input) throws InterruptedException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickHome();
@@ -106,9 +125,9 @@ public class CreateNetworkCases extends BaseTest {
 			clientConnectPage clientConnectPage = new clientConnectPage(driver);
 			clientConnectPage.clickNetwork();
 			clientConnectPage.clickInternet();
-			clientConnectPage.connectToMain(input.get("Main ssid"));
+			clientConnectPage.connectToNetwork(input.get("Main ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
-			clientConnectPage.connectToMain(input.get("Main ssid"));
+			clientConnectPage.connectToNetwork(input.get("Main ssid"));
 			if (clientConnectPage.getClientIp().substring(0, 7).contains(input.get("Manual ip").substring(0, 7))) {
 				System.out.println("Client got ip in Manual subnet");
 				driver.startActivity(

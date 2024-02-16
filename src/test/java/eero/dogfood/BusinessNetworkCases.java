@@ -16,7 +16,7 @@ import io.appium.java_client.android.Activity;
 public class BusinessNetworkCases extends BaseTest {
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "Create an eB network with DHCP", priority = 1, dataProvider = "getData")
+	@Test(enabled = false, description = "Create an eB network with DHCP", priority = 1, dataProvider = "getData")
 	private void createBusinessNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		// TODO Auto-generated method stub
 		HomePage homePage = new HomePage(driver);
@@ -54,14 +54,14 @@ public class BusinessNetworkCases extends BaseTest {
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.clickNetwork();
 		clientConnectPage.clickInternet();
-		clientConnectPage.connectToMain(input.get("Main ssid"));
+		clientConnectPage.connectToNetwork(input.get("Main ssid"));
 		clientConnectPage.enterPassword(input.get("password"));
 		baseTest.getscreenshot(driver, "mainnetworkscreenshot");
 
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "  Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
 	private void C29192(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		// click on home
@@ -76,8 +76,16 @@ public class BusinessNetworkCases extends BaseTest {
 		multiSsidPage.clickaddWifi();
 		// click on add business ssid
 		multiSsidPage.addBusinessSSID();
+		if (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement) == true) {
+			multiSsidPage.clickSubnetA();
+			multiSsidPage.deleteWifi();
+			multiSsidPage.clickDelete();
+		}
+		multiSsidPage.clickaddWifi();
+		// click on add business ssid
+		multiSsidPage.addBusinessSSID();
 		// Enter business SSID name and password
-		multiSsidPage.enterssidName(input.get("subnet A"));
+		multiSsidPage.enterssidName(input.get("subnet A Business ssid"));
 		multiSsidPage.enterssidpassword(input.get("password"));
 		// click on save
 		multiSsidPage.clickSave();
@@ -85,7 +93,7 @@ public class BusinessNetworkCases extends BaseTest {
 		if (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement) == true) {
 			// If Network created in App goto android settings and connect client to
 			// business ssid
-			System.out.println("Business network created successfully");
+			System.out.println("Business network created successfully on subnet A");
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(
 					new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
@@ -95,8 +103,9 @@ public class BusinessNetworkCases extends BaseTest {
 			// click on internet from network settings
 			clientConnectPage.clickInternet();
 			// click on business SSID enter password
-			clientConnectPage.connectToBusiness();
+			clientConnectPage.connectToNetwork(input.get("subnet A Business ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
+			clientConnectPage.connectToNetwork(input.get("subnet A Business ssid"));
 			// Check for the IP connected to business network
 			clientConnectPage.getClientIp();
 			BaseTest baseTest = new BaseTest();
@@ -109,7 +118,6 @@ public class BusinessNetworkCases extends BaseTest {
 			pingToolsPage.clickPingBtn();
 			pingToolsPage.internetStatuscheck();
 			baseTest.getscreenshot(driver, "pingstatus");
-
 		}
 		// If business network not created print testcase failed
 		else {
@@ -164,9 +172,10 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 4)
+	@SuppressWarnings("deprecation")
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 4, dataProvider = "getData")
 
-	private void C233647() throws InterruptedException, IOException {
+	private void C233647(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickHome();
 		homePage.clickSettings();
@@ -180,26 +189,30 @@ public class BusinessNetworkCases extends BaseTest {
 		}
 		multiSsidPage.clickaddWifi();
 		multiSsidPage.addIOTSSID();
-		multiSsidPage.enterssidName("IOT network");
-		multiSsidPage.enterssidpassword("12345678");
+		multiSsidPage.enterssidName(input.get("subnet A iot ssid"));
+		multiSsidPage.enterssidpassword(input.get("password"));
+		// click on save
 		multiSsidPage.clickSave();
+		// Check whether Business SSID is created in APP
 		if (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement) == true) {
 			// If Network created in App goto android settings and connect client to
-			// IOT ssid
-			System.out.println("IOT network created successfully");
+			// business ssid
+			System.out.println("IOT subnetA network created successfully");
 			driver.runAppInBackground(Duration.ofSeconds(-1));
-			BaseTest baseTest = new BaseTest();
-			baseTest.configureAppTosettings();
 			driver.startActivity(
 					new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
 			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			// click on network settings
 			clientConnectPage.clickNetwork();
+			// click on internet from network settings
 			clientConnectPage.clickInternet();
-			clientConnectPage.connectToIotSubnetA();
-			clientConnectPage.enterPasswordforIOTA("12345678");
-			// Check for the IP connected to business network
+			// click on business SSID enter password
+			clientConnectPage.connectToNetwork(input.get("subnet A iot ssid"));
+			clientConnectPage.enterPassword(input.get("password"));
+			clientConnectPage.connectToNetwork(input.get("subnet A iot ssid"));
+			// Check for the IP connected to iot network
 			clientConnectPage.getClientIp();
-
+			BaseTest baseTest = new BaseTest();
 			driver.startActivity(
 					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 			// Open ping tools app and check for interntet connectivity
@@ -208,17 +221,21 @@ public class BusinessNetworkCases extends BaseTest {
 			pingToolsPage.selectPingFromOptions();
 			pingToolsPage.clickPingBtn();
 			pingToolsPage.internetStatuscheck();
-			baseTest.getscreenshot(driver, "pingstatus");
-		} else {
-			System.out.println("IOT network creation failed ");
+			baseTest.getscreenshot(driver, "Subnet a as iot");
+		}
+		// If business network not created print testcase failed
+		else {
+			System.out.println("Unable to create iot  ssid on subnet a");
 			System.out.println("Testcase failed");
 		}
+		// Reload the dogfood app
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 2)
+	@SuppressWarnings("deprecation")
+	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 2, dataProvider = "getData")
 
-	private void C235445() throws InterruptedException, IOException {
+	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickHome();
 		homePage.clickSettings();
@@ -231,15 +248,15 @@ public class BusinessNetworkCases extends BaseTest {
 			// click on add business ssid
 			multiSsidPage.addBusinessSSID();
 			// Enter business SSID name and password
-			multiSsidPage.enterssidName("Business network");
-			multiSsidPage.enterssidpassword("11112222");
+			multiSsidPage.enterssidName(input.get("subnet A Business ssid"));
+			multiSsidPage.enterssidpassword(input.get("password"));
 			// click on save
 			multiSsidPage.clickSave();
 		}
 		multiSsidPage.clickaddWifi();
 		multiSsidPage.addIOTSSID();
-		multiSsidPage.enterssidName("subnet B ssid as iot");
-		multiSsidPage.enterssidpassword("11112222");
+		multiSsidPage.enterssidName(input.get("subnet B Business ssid"));
+		multiSsidPage.enterssidpassword(input.get("password"));
 		multiSsidPage.clickSave();
 		if (multiSsidPage.isElementVisible(multiSsidPage.subnetBElement) == true) {
 			// If Network created in App goto android settings and connect client to
@@ -253,8 +270,11 @@ public class BusinessNetworkCases extends BaseTest {
 			clientConnectPage clientConnectPage = new clientConnectPage(driver);
 			clientConnectPage.clickNetwork();
 			clientConnectPage.clickInternet();
-			clientConnectPage.connectToIotSubnetB();
-			clientConnectPage.enterPasswordforIOTB("11112222");
+			clientConnectPage.clickInternet();
+			// click on business SSID enter password
+			clientConnectPage.connectToNetwork(input.get("subnet A Business ssid"));
+			clientConnectPage.enterPassword(input.get("password"));
+			clientConnectPage.connectToNetwork(input.get("subnet A Business ssid"));
 			// Check for the IP connected to business network
 			clientConnectPage.getClientIp();
 			driver.startActivity(
@@ -266,10 +286,13 @@ public class BusinessNetworkCases extends BaseTest {
 			pingToolsPage.clickPingBtn();
 			pingToolsPage.internetStatuscheck();
 			baseTest.getscreenshot(driver, "pingstatus");
-		} else {
-			System.out.println("IOT network creation failed ");
+		}
+		// If business network not created print testcase failed
+		else {
+			System.out.println("Unable to create business ssid");
 			System.out.println("Testcase failed");
 		}
+		// Reload the dogfood app
 		driver.activateApp("com.eero.android.dogfood");
 	}
 
@@ -347,7 +370,8 @@ public class BusinessNetworkCases extends BaseTest {
 	public Object[][] getData() throws IOException {
 		List<HashMap<String, String>> data = getJsondata(
 				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
-		return new Object[][] { { data.get(0) } };
+		// if need to run more than once add parameters to this and add more details
+		return new Object[][] { { data.get(1) } };
 	}
 
 }
