@@ -21,11 +21,11 @@ public class multiSsidPage {
 
 	}
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Add wifi network\"]")
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/eb_add_wifi_network")
 	private WebElement addWifiNetworkElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add business wifi network\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add business wifi network\" or @text=\"Add business Wi-Fi network\"]")
 	private WebElement addBusinessnet;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add IoT wifi network\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add IoT wifi network\" or @text=\"Add IoT Wi-Fi network\"]")
 	private WebElement addIotNetwork;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='0']")
 	private WebElement guestNetworkElement;
@@ -87,6 +87,7 @@ public class multiSsidPage {
 
 	public void clickSave() throws InterruptedException {
 		saveBtnElement.click();
+		Thread.sleep(20000);
 	}
 
 	public void clickGuest() {
@@ -115,12 +116,13 @@ public class multiSsidPage {
 	}
 
 	public void deleteWifi() {
-		deleteWifiElement.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(deleteWifiElement)).click();
 	}
 
 	public void clickDelete() throws InterruptedException {
 		confirmDelete.click();
-		Thread.sleep(20000);
+		Thread.sleep(30000);
 	}
 
 	public void enableBandwith() {
@@ -129,6 +131,11 @@ public class multiSsidPage {
 
 	public void clickEnableCaptivePortal() {
 		enableCaptivePortalElement.click();
+	}
+
+	public String getWifiName() {
+		String wifiname = wifiNameElement.getText();
+		return wifiname;
 	}
 
 	public boolean isElementVisible(WebElement element) {

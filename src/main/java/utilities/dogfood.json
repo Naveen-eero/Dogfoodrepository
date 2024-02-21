@@ -1,7 +1,7 @@
 [
 {
-"Business name":"Asif",
-"Gateway place":"Kitchen",
+"Business name":"Badam",
+"Gateway place":"Office",
 "Main ssid":"kalan network",
 "password":"12345678",
 "static ip":"192.168.0.144",
@@ -11,11 +11,19 @@
 "Manual ip":"172.16.0.0"
 },
 {
-"subnet A Business ssid":"kakara",
-"subnet A iot ssid":"IOT ssid",
-"subnet B Business ssid":"Business B ssid",
-"subnet B iot ssid":"IOT B iot ssid",
-"password":"11117895454542"
+"subnet A Business ssid":"jasodj",
+"subnet A iot ssid":"Amaxon123",
+"subnet B Business ssid":"abcdefg",
+"subnet B iot ssid":"iolpa",
+"password":"ABCDEFGH"
+
+},
+{
+"subnet A Business ssid":"uaks",
+"subnet A iot ssid":"Amaxon123",
+"subnet B Business ssid":"abcdefg",
+"subnet B iot ssid":"iolpa",
+"password":"ABCDEFGH"
 
 }
 ]

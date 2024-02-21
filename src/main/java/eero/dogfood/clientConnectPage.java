@@ -33,14 +33,8 @@ public class clientConnectPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Naveen\"]")
 	private WebElement networkNameElement;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Business network\"]")
-	public WebElement businessnetworkssidElement;
-
 	@AndroidFindBy(id = "com.android.settings:id/password")
 	private WebElement passwordElement;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Naveen Guest\"]")
-	private WebElement guestnetworkElement;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IP address\"]/following-sibling::android.widget.TextView")
 	private WebElement ipaddressofclient;
@@ -48,48 +42,29 @@ public class clientConnectPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IOT network\"]")
 	private WebElement IOTSSIDsubA;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"subnet B ssid as iot\"]")
-	private WebElement iOTSUBBElement;
-
 	public void clickNetwork() throws InterruptedException {
-		netWorkElement.click();
+		try {
+			netWorkElement.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public void clickInternet() {
-		interElement.click();
+		try {
+			interElement.click();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 	}
 
 	public void connectToNetwork(String networkName) throws InterruptedException {
 		Thread.sleep(20000);
-		String xpath_locator = String.format("//android.widget.TextView[@text=" + "\"" + "" + networkName + "\"]");
-
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
 						+ networkName + "\").instance(0))"))
 				.click();
-	}
-
-	public void connectToBusiness() throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(businessnetworkssidElement)).click();
-
-	}
-
-	public void connectToIotSubnetA() throws InterruptedException {
-		driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"IOT network\").instance(0))"));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(IOTSSIDsubA)).click();
-
-	}
-
-	public void connectToIotSubnetB() throws InterruptedException {
-		driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"subnet B ssid as iot\").instance(0))"));
-		iOTSUBBElement.click();
-
 	}
 
 	public void enterPassword(String password) throws InterruptedException {
@@ -111,33 +86,14 @@ public class clientConnectPage {
 		return ipaddr;
 	}
 
-	public void checkNetworkAvailability(String networkName) {
-		driver.findElement(By.xpath("//android.widget.TextView[@text=\"Naveen\"]"));
-
-	}
-
-	public void enterPasswordforIOTA(String password) throws InterruptedException {
+	public void clickOnwifidetails(String networkName) throws InterruptedException {
 		// TODO Auto-generated method stub
-		try {
-			passwordElement.sendKeys(password);
-			driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-			connectToIotSubnetA();
-		} catch (Exception e) {
-			// TODO: handle exception
-			connectToIotSubnetA();
-		}
+		Thread.sleep(10000);
+		String xpath_locator = String.format("//android.widget.ImageView[@content-desc=" + "\"" + "" + networkName
+				+ " network details" + "\"or @content-desc=\"Settings\"]");
+		WebElement wifidetailsElement = driver.findElement(By.xpath(xpath_locator));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(wifidetailsElement)).click();
 	}
 
-	public void enterPasswordforIOTB(String password) throws InterruptedException {
-		// TODO Auto-generated method stub
-		try {
-			passwordElement.sendKeys(password);
-			driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-			connectToIotSubnetB();
-		} catch (Exception e) {
-			// TODO: handle exception
-			connectToIotSubnetB();
-
-		}
-	}
 }
