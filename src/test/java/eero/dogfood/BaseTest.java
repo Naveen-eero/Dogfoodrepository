@@ -82,8 +82,4 @@ public class BaseTest {
 
 	}
 
-	private void dummy() {
-		// TODO Auto-generated method stub
-
-	}
 }
