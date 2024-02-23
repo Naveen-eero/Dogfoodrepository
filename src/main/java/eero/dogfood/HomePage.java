@@ -76,6 +76,16 @@ public class HomePage {
 	private WebElement startSetupElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Skip\"]")
 	private WebElement skipElement;
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[1]")
+	public WebElement gatewayElement;
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[2]")
+	public WebElement wiredLeafElement;
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[3]")
+	public WebElement wirelessleafElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Advanced\"]")
+	private WebElement advancedElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Serial number\"]/following-sibling::android.widget.TextView[1]")
+	private WebElement serialNumElement;
 
 	public void clickStartSetup() throws InterruptedException {
 		// Click on start setup button
@@ -215,5 +225,21 @@ public class HomePage {
 
 	public void clickSkip() {
 		skipElement.click();
+	}
+
+	public void clickElement(WebElement element) {
+		element.click();
+
+	}
+
+	public void clickAdvanced() {
+		advancedElement.click();
+	}
+
+	public String getSerial() {
+		String nodeserial = serialNumElement.getText();
+		System.out.println(nodeserial.substring(nodeserial.length() - 4));
+		return (nodeserial.substring(nodeserial.length() - 4));
+
 	}
 }

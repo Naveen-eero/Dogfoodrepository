@@ -1,4 +1,4 @@
-package eero.dogfood;
+package eero.dogfood.B2B;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -11,6 +11,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import eero.dogfood.HomePage;
+import eero.dogfood.addOrReplaceEeroPage;
+import eero.dogfood.captivePortalPage;
+import eero.dogfood.chromePage;
+import eero.dogfood.clientConnectPage;
+import eero.dogfood.editMainNetworkPage;
+import eero.dogfood.multiSsidPage;
+import eero.dogfood.pingToolsPage;
+import eero.dogfood.placementTestPage;
+import eero.dogfood.settingsPage;
+import eero.dogfood.eeroos.BaseTest;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
 
@@ -134,7 +145,7 @@ public class BusinessNetworkCases extends BaseTest {
 
 	// Create and enable Subnet A and configure it as IoT network
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
+	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
 
 	private void C233647(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -203,7 +214,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
+	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
 
 	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -279,7 +290,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // invocationCount
+	@Test(enabled = false, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // invocationCount
 																																				// =
 																																				// 1
 

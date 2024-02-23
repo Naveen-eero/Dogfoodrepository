@@ -1,6 +1,12 @@
-package eero.dogfood;
+package eero.dogfood.B2B;
 
 import org.testng.annotations.Test;
+
+import eero.dogfood.HomePage;
+import eero.dogfood.NetworkSettingsPage;
+import eero.dogfood.dhcpNatConfPage;
+import eero.dogfood.settingsPage;
+import eero.dogfood.eeroos.BaseTest;
 
 public class BridgModeSection extends BaseTest {
 

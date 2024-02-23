@@ -3,12 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="eero.dogfood.BusinessNetworkCases">
+      <class name="eero.dogfood.multiSsidSection">
         <methods>
-          <include name="C29192" invocation-numbers="1"/>
+          <include name="C385604"/>
+          <include name="C37208"/>
+          <include name="C37206"/>
           <include name="BaseConfig"/>
         </methods>
-      </class> <!-- eero.dogfood.BusinessNetworkCases -->
+      </class> <!-- eero.dogfood.multiSsidSection -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

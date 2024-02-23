@@ -2,7 +2,7 @@
 {
 "Business name":"Badam",
 "Gateway place":"Office",
-"Main ssid":"kalan network",
+"Main ssid":"Static network",
 "password":"12345678",
 "static ip":"192.168.0.144",
 "Subnet":"255.255.255.0",
@@ -11,11 +11,12 @@
 "Manual ip":"172.16.0.0"
 },
 {
-"subnet A Business ssid":"jasodj",
+"Main ssid":"edne",
+"subnet A Business ssid":"bisiness",
 "subnet A iot ssid":"Amaxon123",
 "subnet B Business ssid":"abcdefg",
 "subnet B iot ssid":"iolpa",
-"password":"ABCDEFGH"
+"password":"11112222"
 
 },
 {

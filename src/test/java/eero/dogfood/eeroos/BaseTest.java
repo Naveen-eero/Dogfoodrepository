@@ -1,4 +1,4 @@
-package eero.dogfood;
+package eero.dogfood.eeroos;
 
 import java.io.File;
 import java.io.IOException;

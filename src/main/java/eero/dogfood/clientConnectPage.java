@@ -96,4 +96,12 @@ public class clientConnectPage {
 		wait.until(ExpectedConditions.visibilityOf(wifidetailsElement)).click();
 	}
 
+	public void connectToNetworkwithserial(String networkName, String serialNum) throws InterruptedException {
+		Thread.sleep(20000);
+		driver.findElement(AppiumBy.androidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ networkName + " - " + serialNum + "\").instance(0))"))
+				.click();
+	}
+
 }

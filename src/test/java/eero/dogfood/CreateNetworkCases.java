@@ -9,6 +9,7 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import eero.dogfood.eeroos.BaseTest;
 import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
