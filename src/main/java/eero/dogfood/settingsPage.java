@@ -92,7 +92,7 @@ public class settingsPage {
 		wifinamePasswordElement.click();
 	}
 
-	void clickGuestconf() throws InterruptedException {
+	public void clickGuestconf() throws InterruptedException {
 		// TODO Auto-generated method stub
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(guestNetworkElement)).click();

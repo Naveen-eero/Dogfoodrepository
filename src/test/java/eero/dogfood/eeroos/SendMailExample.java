@@ -1,4 +1,4 @@
-package eero.dogfood;
+package eero.dogfood.eeroos;
 
 import java.util.Properties;
 

@@ -1,4 +1,4 @@
-package eero.dogfood;
+package eero.dogfood.eeroos;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -9,7 +9,16 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import eero.dogfood.eeroos.BaseTest;
+import eero.dogfood.HomePage;
+import eero.dogfood.NetworkSettingsPage;
+import eero.dogfood.addOrReplaceEeroPage;
+import eero.dogfood.clientConnectPage;
+import eero.dogfood.deleteNetworkPage;
+import eero.dogfood.dhcpNatConfPage;
+import eero.dogfood.editGuestNetworkPage;
+import eero.dogfood.pingToolsPage;
+import eero.dogfood.placementTestPage;
+import eero.dogfood.settingsPage;
 import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
