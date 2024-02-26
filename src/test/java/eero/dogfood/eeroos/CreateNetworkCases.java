@@ -30,18 +30,18 @@ public class CreateNetworkCases extends BaseTest {
 		HomePage homePage = new HomePage(driver);
 		addOrReplaceEeroPage addorreplacepage = new addOrReplaceEeroPage(driver);
 		homePage.clickStartSetup();
-		homePage.clickStartBtn();
-		addorreplacepage.clickArrowBtn();
-		addorreplacepage.clickArrowBtn();
-		addorreplacepage.clickArrowBtn();
+		homePage.clickElement(homePage.startBtn);
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		homePage.clickNext();
 		placementTestPage placementtest = new placementTestPage(driver);
 		placementtest.selectLoc(input.get("Gateway place"));
 		addorreplacepage.enterNetworkName(input.get("Main ssid"));
 		addorreplacepage.setNetworkPassword(input.get("password"));
-		addorreplacepage.clickArrowBtn();
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		addorreplacepage.clickFinishSetup();
-		homePage.clickSkip();
+		homePage.clickElement(homePage.skipElement);
 		homePage.clickJoinBtn();
 		if (homePage.getInternetStatus().equals("Online")) {
 			System.out.println("Network Online, Testcase passed");
@@ -54,17 +54,17 @@ public class CreateNetworkCases extends BaseTest {
 	@Test(enabled = false, priority = 4, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
-		homepage.clickHome();
+		homepage.clickElement(homepage.homeBtnElement);
 		settingsPage settingspage = new settingsPage(driver);
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
-		homepage.clickSettings();
+		homepage.clickElement(homepage.settingBtn);
 		settingspage.clickNetworkSettings();
 		networkSettingsPage.deleteNetwork();
 		deleteNetworkPage deletenetworkpage = new deleteNetworkPage(driver);
 		deletenetworkpage.keepsubscription();
 		deletenetworkpage.confirmDelete();
-		deletenetworkpage.clickDeleteBtn();
-		deletenetworkpage.clickDeleteBtn();
+		deletenetworkpage.clickElement(deletenetworkpage.deleteConfirmationBtn);
+		deletenetworkpage.clickElement(deletenetworkpage.deleteConfirmationBtn);
 
 	}
 
@@ -73,8 +73,8 @@ public class CreateNetworkCases extends BaseTest {
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickHome();
-		homePage.clickSettings();
+		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.settingBtn);
 		settingsPage settingspage = new settingsPage(driver);
 		settingspage.clickGuestconf();
 		editGuestNetworkPage editguestpage = new editGuestNetworkPage(driver);
@@ -98,9 +98,9 @@ public class CreateNetworkCases extends BaseTest {
 				new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 		// Open ping tools app and check for interntet connectivity
 		pingToolsPage pingToolsPage = new pingToolsPage(driver);
-		pingToolsPage.clickTabBar();
-		pingToolsPage.selectPingFromOptions();
-		pingToolsPage.clickPingBtn();
+		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
+		pingToolsPage.clickElement(pingToolsPage.pingElement);
+		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
 		if (pingToolsPage.internetStatuscheck().equals("device online")) {
 			System.out.println("Testcase pass");
 
@@ -114,8 +114,8 @@ public class CreateNetworkCases extends BaseTest {
 	@Test(enabled = false, priority = 4, dataProvider = "getData", description = "Set DHCP to custom range ")
 	public void C2691(HashMap<String, String> input) throws InterruptedException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickHome();
-		homePage.clickSettings();
+		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.settingBtn);
 		settingsPage settingspage = new settingsPage(driver);
 		settingspage.clickNetworkSettings();
 		NetworkSettingsPage networksettingspage = new NetworkSettingsPage(driver);
@@ -125,7 +125,7 @@ public class CreateNetworkCases extends BaseTest {
 		dhcpnatconf.selectManulaIpaddr(input.get("Manual ip"));
 		dhcpnatconf.clickSave();
 		dhcpnatconf.clickReboot();
-		homePage.clickHome();
+		homePage.clickElement(homePage.homeBtnElement);
 		String internetstat = homePage.getInternetStatus();
 		if (internetstat.equals("Online")) {
 			System.out.println("Network is Online");
@@ -144,9 +144,9 @@ public class CreateNetworkCases extends BaseTest {
 						new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 				// Open ping tools app and check for interntet connectivity
 				pingToolsPage pingToolsPage = new pingToolsPage(driver);
-				pingToolsPage.clickTabBar();
-				pingToolsPage.selectPingFromOptions();
-				pingToolsPage.clickPingBtn();
+				pingToolsPage.clickElement(pingToolsPage.tabBarElement);
+				pingToolsPage.clickElement(pingToolsPage.pingElement);
+				pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
 				if (pingToolsPage.internetStatuscheck().equals("device online")) {
 					System.out.println("Testcase pass");
 
@@ -167,24 +167,24 @@ public class CreateNetworkCases extends BaseTest {
 	public void createStaticNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
-		homePage.clickStartBtn();
-		addOrReplaceEeroPage addOrReplaceEeroPage = new addOrReplaceEeroPage(driver);
-		addOrReplaceEeroPage.clickArrowBtn();
-		addOrReplaceEeroPage.clickArrowBtn();
-		addOrReplaceEeroPage.clickArrowBtn();
-		addOrReplaceEeroPage.clickInternetSettings();
-		addOrReplaceEeroPage.clickWanType();
-		addOrReplaceEeroPage.selectStaticIp();
-		addOrReplaceEeroPage.enterStaticIpdetails(input.get("static ip"), input.get("Subnet"), input.get("Router ip"));
-		addOrReplaceEeroPage.clickApply();
-		addOrReplaceEeroPage.clicksave();
+		homePage.clickElement(homePage.startBtn);
+		addOrReplaceEeroPage addorreplacepage = new addOrReplaceEeroPage(driver);
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
+		addorreplacepage.clickInternetSettings();
+		addorreplacepage.clickElement(addorreplacepage.wantypElement);
+		addorreplacepage.clickElement(addorreplacepage.staticipElement);
+		addorreplacepage.enterStaticIpdetails(input.get("static ip"), input.get("Subnet"), input.get("Router ip"));
+		addorreplacepage.clickElement(addorreplacepage.applyBtn);
+		addorreplacepage.clickElement(addorreplacepage.saveBtn);
 		placementTestPage placementTestPage = new placementTestPage(driver);
 		placementTestPage.selectLoc(input.get("Gateway place"));
-		addOrReplaceEeroPage.enterNetworkName(input.get("Main ssid"));
-		addOrReplaceEeroPage.setNetworkPassword(input.get("password"));
-		addOrReplaceEeroPage.clickArrowBtn();
-		addOrReplaceEeroPage.clickFinishSetup();
-		homePage.clickSkip();
+		addorreplacepage.enterNetworkName(input.get("Main ssid"));
+		addorreplacepage.setNetworkPassword(input.get("password"));
+		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
+		addorreplacepage.clickFinishSetup();
+		homePage.clickElement(homePage.skipElement);
 		homePage.clickJoinBtn();
 		String intstatuString = homePage.getInternetStatus();
 		if (intstatuString == "Online") {
@@ -198,13 +198,13 @@ public class CreateNetworkCases extends BaseTest {
 	@Test(enabled = false, priority = 2, description = "Reboot static network")
 	public void C2788() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickSettings();
+		homePage.clickElement(homePage.settingBtn);
 		settingsPage settingsPage = new settingsPage(driver);
 		settingsPage.clickNetworkSettings();
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
 		networkSettingsPage.restartNetwork();
 		networkSettingsPage.clickRestartBtn();
-		homePage.clickHome();
+		homePage.clickElement(homePage.homeBtnElement);
 		if (homePage.getInternetStatus().equals("Online")) {
 			System.out.println("Network rebooted successfully and online");
 		} else {

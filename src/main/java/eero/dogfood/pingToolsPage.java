@@ -22,25 +22,18 @@ public class pingToolsPage {
 	}
 
 	@AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Open navigation drawer\"]")
-	private WebElement tabBarElement;
+	public WebElement tabBarElement;
 	@AndroidFindBy(xpath = "//android.widget.CheckedTextView[@text=\"Ping\"]")
-	private WebElement pingElement;
+	public WebElement pingElement;
 	@AndroidFindBy(xpath = "//android.widget.ToggleButton[@text=\"PING\"]")
-	private WebElement pingBtnElement;
+	public WebElement pingBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Unknown Host google.com\"]")
-	private WebElement errorMsgElement;
+	public WebElement errorMsgElement;
 
-	public void clickTabBar() {
-		tabBarElement.click();
-	}
+	public void clickElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
 
-	public void selectPingFromOptions() {
-		pingElement.click();
-	}
-
-	public void clickPingBtn() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(pingBtnElement)).click();
 	}
 
 	public String internetStatuscheck() {

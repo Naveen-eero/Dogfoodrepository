@@ -29,7 +29,7 @@ public class BaseTest {
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
 		desiredCapabilities.setCapability("platformname", "Android");
-		desiredCapabilities.setCapability("appium:udid", "89FX09KX4");
+		desiredCapabilities.setCapability("appium:udid", "89FX09KX4");// DYUWKBCA8X55IRU8
 		desiredCapabilities.setCapability("appium:appName", dogfoodAppName);
 		desiredCapabilities.setCapability("appium:appActivity", dogfoodActivity);
 		desiredCapabilities.setCapability("appium:noReset", true);

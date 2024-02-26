@@ -12,11 +12,13 @@
 },
 {
 "Main ssid":"edne",
-"subnet A Business ssid":"bisiness",
-"subnet A iot ssid":"Amaxon123",
-"subnet B Business ssid":"abcdefg",
-"subnet B iot ssid":"iolpa",
-"password":"11112222"
+"subnet A Business ssid":"jakab",
+"subnet A iot ssid":"uevc",
+"subnet B Business ssid":"hkahd",
+"subnet B iot ssid":"iasda",
+"password":"11112222",
+"captiveportal url1":"dev.eeroportal.com",
+"captiveportal url2":"stage.eeroportal.com"
 
 },
 {

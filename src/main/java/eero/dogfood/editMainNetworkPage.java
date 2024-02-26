@@ -18,9 +18,9 @@ public class editMainNetworkPage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_name")
-	private WebElement mainNetWorkNameElement;
+	public WebElement mainNetWorkNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_password")
-	private WebElement mainNetworkPasswordElement;
+	public WebElement mainNetworkPasswordElement;
 
 	public String getMainNetworkName() {
 		String mainnetworknameString = mainNetWorkNameElement.getText();

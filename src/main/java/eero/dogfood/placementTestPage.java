@@ -23,15 +23,15 @@ public class placementTestPage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/text_button")
-	private WebElement testNewPlacementBtn;
+	public WebElement testNewPlacementBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/button_next")
-	private WebElement nextButton;
+	public WebElement nextButton;
 	@AndroidFindBy(xpath = "//android.widget.ImageButton")
-	private WebElement closeBtnElement;
+	public WebElement closeBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/info_button")
-	private WebElement infoBtnElement;
+	public WebElement infoBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"This will help you identify it later.\"]")
-	private WebElement placementpagElement;
+	public WebElement placementpagElement;
 
 	public void clickNewPlacement() {
 		testNewPlacementBtn.click();

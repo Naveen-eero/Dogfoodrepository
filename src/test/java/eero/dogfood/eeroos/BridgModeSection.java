@@ -1,4 +1,4 @@
-package eero.dogfood.B2B;
+package eero.dogfood.eeroos;
 
 import org.testng.annotations.Test;
 
@@ -6,7 +6,6 @@ import eero.dogfood.HomePage;
 import eero.dogfood.NetworkSettingsPage;
 import eero.dogfood.dhcpNatConfPage;
 import eero.dogfood.settingsPage;
-import eero.dogfood.eeroos.BaseTest;
 
 public class BridgModeSection extends BaseTest {
 
@@ -15,8 +14,8 @@ public class BridgModeSection extends BaseTest {
 	private void enableBridgeMode() throws InterruptedException {
 		// TODO Auto-generated method stub
 		HomePage homePage = new HomePage(driver);
-		homePage.clickHome();
-		homePage.clickSettings();
+		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.settingBtn);
 		settingsPage settingsPage = new settingsPage(driver);
 		settingsPage.clickNetworkSettings();
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
@@ -25,7 +24,7 @@ public class BridgModeSection extends BaseTest {
 		dhcpNatConfPage.selectBridge();
 		dhcpNatConfPage.clickSave();
 		dhcpNatConfPage.clickReboot();
-		homePage.clickHome();
+		homePage.clickElement(homePage.homeBtnElement);
 	}
 
 	@Test(description = "Disable BridgeMode case", enabled = false, priority = 2)
@@ -33,8 +32,8 @@ public class BridgModeSection extends BaseTest {
 	private void disableBridgeMode() throws InterruptedException {
 		// TODO Auto-generated method stub
 		HomePage homePage = new HomePage(driver);
-		homePage.clickHome();
-		homePage.clickSettings();
+		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.settingBtn);
 		settingsPage settingsPage = new settingsPage(driver);
 		settingsPage.clickNetworkSettings();
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
@@ -43,7 +42,7 @@ public class BridgModeSection extends BaseTest {
 		dhcpNatConfPage.selectAutomatic();
 		dhcpNatConfPage.clickSave();
 		dhcpNatConfPage.clickReboot();
-		homePage.clickHome();
+		homePage.clickElement(homePage.homeBtnElement);
 
 	}
 

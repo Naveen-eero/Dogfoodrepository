@@ -17,19 +17,19 @@ public class editGuestNetworkPage {
 	}
 
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id=\"guest_access_screen_id_enable_switch\"]")
-	private WebElement guestNetworkTogglElement;
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id=\"guest_access_screen_id_network_name_field\"]")
-	private WebElement guestNameElement;
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id=\"guest_access_screen_id_network_password_field\"]")
-	private WebElement guestnetworkpasswordElement;
+	public WebElement guestNetworkTogglElement;
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id=\"guest_access_screen_id_network_name_field\" or  @resource-id=\"com.eero.android.dogfood:id/wifi_network_name\"]")
+	public WebElement guestNameElement;
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id=\"guest_access_screen_id_network_password_field\"  or  @resource-id=\"com.eero.android.dogfood:id/wifi_network_password\"]")
+	public WebElement guestnetworkpasswordElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"SAVE\"]")
-	private WebElement saveBtnElement;
+	public WebElement saveBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Share QR code\"]")
-	private WebElement shareQrCodElement;
+	public WebElement shareQrCodElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Share wifi details\"]")
-	private WebElement shareWifiDetailsElement;
+	public WebElement shareWifiDetailsElement;
 	@AndroidFindBy(id = "guest_access_screen_id_back_button")
-	private WebElement backBtnElement;
+	public WebElement backBtnElement;
 
 	public void clickenableGuestToggle() throws InterruptedException {
 		guestNetworkTogglElement.click();
@@ -49,9 +49,15 @@ public class editGuestNetworkPage {
 	}
 
 	public String getGuestPassword() {
-		String guestPassword = guestnetworkpasswordElement.getText();
-		System.out.println("Guest Network Password: " + guestPassword);
-		return guestPassword;
+		try {
+			String guestPassword = guestnetworkpasswordElement.getText();
+			System.out.println("Guest Network Password: " + guestPassword);
+			return guestPassword;
+		} catch (Exception e) {
+			// TODO: handle exception
+
+		}
+		return null;
 	}
 
 	public void changeGuestPassword(String newGuestPassword) {

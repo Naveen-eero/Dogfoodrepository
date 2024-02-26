@@ -22,25 +22,25 @@ public class deleteNetworkPage {
 	}
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
-	private WebElement NextBtn;
+	public WebElement NextBtn;
 
 	@AndroidFindBy(id = "android.widget.ImageButton")
-	private WebElement backBtnElement;
+	public WebElement backBtnElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@test=\"CANCEL\"]")
-	private WebElement cancelBtnElement;
+	public WebElement cancelBtnElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Textview[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
-	private WebElement deleteConfirmationElement;
+	public WebElement deleteConfirmationElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE NETWORK\" or @text=\"Delete network\"]")
-	private WebElement deleteConfirmationBtn;
+	public WebElement deleteConfirmationBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Keep subscription\"]")
-	private WebElement keepSubscription;
+	public WebElement keepSubscription;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Cancel subscription\"]")
-	private WebElement cancelSubscription;
+	public WebElement cancelSubscription;
 
 	public void clickNext() {
 		try {
@@ -51,15 +51,6 @@ public class deleteNetworkPage {
 			deleteConfirmationElement.click();
 		}
 
-	}
-
-	public void goBack() {
-		backBtnElement.click();
-	}
-
-	public void clickCancel() {
-		// TODO Auto-generated method stub
-		cancelBtnElement.click();
 	}
 
 	public void confirmDelete() {
@@ -79,12 +70,10 @@ public class deleteNetworkPage {
 		}
 	}
 
-	public void cancelsubscription() {
-		cancelSubscription.click();
-	}
-
-	public void clickDeleteBtn() {
-		deleteConfirmationBtn.click();
+	public void clickElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
 
 	}
+
 }

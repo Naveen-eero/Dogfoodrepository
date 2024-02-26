@@ -25,22 +25,27 @@ public class clientConnectPage {
 	}
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network & internet\"]")
-	private WebElement netWorkElement;
+	public WebElement netWorkElement;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
-	private WebElement interElement;
+	public WebElement interElement;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Naveen\"]")
-	private WebElement networkNameElement;
+	public WebElement networkNameElement;
 
 	@AndroidFindBy(id = "com.android.settings:id/password")
-	private WebElement passwordElement;
+	public WebElement passwordElement;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IP address\"]/following-sibling::android.widget.TextView")
-	private WebElement ipaddressofclient;
+	public WebElement ipaddressofclient;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IOT network\"]")
-	private WebElement IOTSSIDsubA;
+	public WebElement IOTSSIDsubA;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Disconnect\"]")
+	public WebElement disconnectElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Connect\"]")
+	public WebElement connectelement;
 
 	public void clickNetwork() throws InterruptedException {
 		try {
@@ -102,6 +107,10 @@ public class clientConnectPage {
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
 						+ networkName + " - " + serialNum + "\").instance(0))"))
 				.click();
+	}
+
+	public void clickElement(WebElement element) {
+		element.click();
 	}
 
 }

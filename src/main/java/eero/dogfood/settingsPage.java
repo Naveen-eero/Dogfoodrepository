@@ -23,43 +23,43 @@ public class settingsPage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/settings_menu")
-	private WebElement settingsElement;
+	public WebElement settingsElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Transfer Network\"]")
-	private WebElement transferNetworkElement;
+	public WebElement transferNetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Switch network\"]")
-	private WebElement switchnetworkElement;
+	public WebElement switchnetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add a network\"]")
-	private WebElement addnetworkElement;
+	public WebElement addnetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Cancel\"]")
-	private WebElement cancelbtnElement;
+	public WebElement cancelbtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/account_item_row_container")
-	private WebElement accountSettingsElement;
+	public WebElement accountSettingsElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi name & password\"]")
-	private WebElement wifinamePasswordElement;
+	public WebElement wifinamePasswordElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Guest Network\" or  @text=\"Guest network\"]")
-	private WebElement guestNetworkElement;
+	public WebElement guestNetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network settings\"]")
-	private WebElement networkSettingsElement;
+	public WebElement networkSettingsElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network users\"]")
-	private WebElement networkUsersElement;
+	public WebElement networkUsersElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Nickname and timezone\"]")
-	private WebElement nicknamElement;
+	public WebElement nicknamElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Notifications\"]")
-	private WebElement notificationElement;
+	public WebElement notificationElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Software version\"]")
-	private WebElement softwareversionElement;
+	public WebElement softwareversionElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Appearance\"]")
-	private WebElement appearanceeElement;
+	public WebElement appearanceeElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Troubleshooting\"]")
-	private WebElement troubleshootingElement;
+	public WebElement troubleshootingElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Legal\"]")
-	private WebElement legalElement;
+	public WebElement legalElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Debug settings\"]")
-	private WebElement debugsettingsElement;
+	public WebElement debugsettingsElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi network details\"]")
-	private WebElement WifiNetworkDetails;
+	public WebElement WifiNetworkDetails;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Multi SSID\"]")
-	private WebElement MultiSsid;
+	public WebElement MultiSsid;
 
 	public void clicksettingsmenu() throws InterruptedException {
 		settingsElement.click();
@@ -151,9 +151,10 @@ public class settingsPage {
 		WifiNetworkDetails.click();
 	}
 
-	public void clickMultiSSID() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(MultiSsid)).click();
+	public void clickElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
+
 	}
 
 }

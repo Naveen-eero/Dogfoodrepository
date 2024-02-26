@@ -22,33 +22,33 @@ public class multiSsidPage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/eb_add_wifi_network")
-	private WebElement addWifiNetworkElement;
+	public WebElement addWifiNetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add business wifi network\" or @text=\"Add business Wi-Fi network\"]")
-	private WebElement addBusinessnet;
+	public WebElement addBusinessnet;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Add IoT wifi network\" or @text=\"Add IoT Wi-Fi network\"]")
-	private WebElement addIotNetwork;
+	public WebElement addIotNetwork;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='0']")
-	private WebElement guestNetworkElement;
+	public WebElement guestNetworkElement;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='1']")
 	public WebElement subnetAElement;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='2']")
 	public WebElement subnetBElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_name")
-	private WebElement wifiNameElement;
+	public WebElement wifiNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_password")
-	private WebElement wifiPasswordElement;
+	public WebElement wifiPasswordElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/save")
-	private WebElement saveBtnElement;
+	public WebElement saveBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/basic_switch")
-	private WebElement toggleElement;
+	public WebElement toggleElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DISABLE\"]")
-	private WebElement confirmDisablElement;
+	public WebElement confirmDisablElement;
 	@AndroidFindBy(id = "//android.widget.Button[@text=\\\"CANCEL\\\"]")
-	private WebElement cancelDisablElement;
+	public WebElement cancelDisablElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/delete_wifi")
-	private WebElement deleteWifiElement;
+	public WebElement deleteWifiElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE\"]")
-	private WebElement confirmDelete;
+	public WebElement confirmDelete;
 	@AndroidFindBy(xpath = "//*[@text=\"Enable captive portal\"]")
 	public WebElement enableCaptivePortalElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Bandwidth limit\"]")
@@ -92,45 +92,13 @@ public class multiSsidPage {
 
 	public void clickGuest() {
 		// TODO Auto-generated method stub
-		guestNetworkElement.click();
-	}
-
-	public void clickSubnetA() {
-		subnetAElement.click();
-	}
-
-	public void clickSubB() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(subnetBElement)).click();
-	}
-
-	public void clickEnableToggle() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(toggleElement)).click();
-	}
-
-	public void clickconfirm() {
-		// TODO Auto-generated method stub
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(confirmDisablElement)).click();
-	}
-
-	public void deleteWifi() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(deleteWifiElement)).click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(guestNetworkElement)).click();
 	}
 
 	public void clickDelete() throws InterruptedException {
 		confirmDelete.click();
 		Thread.sleep(30000);
-	}
-
-	public void enableBandwith() {
-		bandwidthElement.click();
-	}
-
-	public void clickEnableCaptivePortal() {
-		enableCaptivePortalElement.click();
 	}
 
 	public String getWifiName() {
@@ -148,4 +116,11 @@ public class multiSsidPage {
 		}
 		// TODO: handle exception
 	}
+
+	public void clickElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
+
+	}
+
 }

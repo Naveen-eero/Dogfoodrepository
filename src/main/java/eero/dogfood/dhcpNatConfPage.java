@@ -18,17 +18,17 @@ public class dhcpNatConfPage {
 	}
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Bridge\"]")
-	private WebElement BridgeModeCheck;
+	public WebElement BridgeModeCheck;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Automatic\"]")
-	private WebElement AutomaticCheckBtn;
+	public WebElement AutomaticCheckBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/save_button")
-	private WebElement savebtnElement;
+	public WebElement savebtnElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"REBOOT\"]")
-	private WebElement rebootBtnElement;
+	public WebElement rebootBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Manual IP\"]")
-	private WebElement manualIpOptionElement;
+	public WebElement manualIpOptionElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"10.0.0.0\"]")
-	private WebElement manualIpaddress;
+	public WebElement manualIpaddress;
 
 	public void selectBridge() throws InterruptedException {
 		BridgeModeCheck.click();

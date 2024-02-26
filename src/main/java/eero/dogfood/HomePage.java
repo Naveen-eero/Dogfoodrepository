@@ -21,61 +21,61 @@ public class HomePage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/home")
-	private WebElement homeBtnElement;
+	public WebElement homeBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/settings")
-	private WebElement settingBtn;
+	public WebElement settingBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/discover")
-	private WebElement discoverBtnElement;
+	public WebElement discoverBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/activity")
-	private WebElement activityBtnElement;
+	public WebElement activityBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Open the add menu\"]")
-	private WebElement addMarkElement;
+	public WebElement addMarkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
-	private WebElement internetElement;
+	public WebElement internetElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_device")
-	private WebElement addDeviceElement;
+	public WebElement addDeviceElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_profile")
-	private WebElement addProfilElement;
+	public WebElement addProfilElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_network")
-	private WebElement addNetworkElement;
+	public WebElement addNetworkElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_eero_device")
-	private WebElement addorreplacElement;
+	public WebElement addorreplacElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/invite_guest")
-	private WebElement inviteGuestElement;
+	public WebElement inviteGuestElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_network_admin")
-	private WebElement addNetworkAdminElement;
+	public WebElement addNetworkAdminElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_profile_button")
-	private WebElement profileBtnElement;
+	public WebElement profileBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/alertTitle")
-	private WebElement alertElement;
+	public WebElement alertElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"JOIN\"]")
-	private WebElement JoinoryesBtn;
+	public WebElement JoinoryesBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/status_button")
-	private WebElement statusBtnElement;
+	public WebElement statusBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Residential']")
-	private WebElement residentialNetwork;
+	public WebElement residentialNetwork;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business']")
-	private WebElement businessNetworkoptElement;
+	public WebElement businessNetworkoptElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Community']")
-	private WebElement communityElement;
+	public WebElement communityElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
-	private WebElement nextBtn;
+	public WebElement nextBtn;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start\"]")
-	private WebElement startBtn;
+	public WebElement startBtn;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_input")
-	private WebElement businessNameElement;
+	public WebElement businessNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_secondary_setup")
-	private WebElement guidedSetupElement;
+	public WebElement guidedSetupElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Quick setup\"]")
-	private WebElement quickSetupElement;
+	public WebElement quickSetupElement;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Link to customer\"]")
-	private WebElement LinkToCustomer;
+	public WebElement LinkToCustomer;
 	@AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Close button\"]")
-	private WebElement closeIcon;
+	public WebElement closeIcon;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start Setup\" or @text= \"Create network\"]")
-	private WebElement startSetupElement;
+	public WebElement startSetupElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Skip\"]")
-	private WebElement skipElement;
+	public WebElement skipElement;
 	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[1]")
 	public WebElement gatewayElement;
 	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[2]")
@@ -83,9 +83,9 @@ public class HomePage {
 	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[3]")
 	public WebElement wirelessleafElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Advanced\"]")
-	private WebElement advancedElement;
+	public WebElement advancedElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Serial number\"]/following-sibling::android.widget.TextView[1]")
-	private WebElement serialNumElement;
+	public WebElement serialNumElement;
 
 	public void clickStartSetup() throws InterruptedException {
 		// Click on start setup button
@@ -98,59 +98,6 @@ public class HomePage {
 			settingsPage.clickAddNewNetwork();
 
 		}
-	}
-
-	public void clickHome() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(homeBtnElement)).click();
-		Thread.sleep(10000);
-
-	}
-
-	public void clickSettings() throws InterruptedException {
-		settingBtn.click();
-	}
-
-	public void clickDiscover() throws InterruptedException {
-		discoverBtnElement.click();
-
-	}
-
-	public void clickActivity() throws InterruptedException {
-		activityBtnElement.click();
-	}
-
-	void clickInternet() throws InterruptedException {
-		internetElement.click();
-	}
-
-	public void clickaddDevice() throws InterruptedException {
-		addDeviceElement.click();
-	}
-
-	public void clickaddprofile() throws InterruptedException {
-		addProfilElement.click();
-	}
-
-	public void clickaddnetwork() throws InterruptedException {
-		addNetworkElement.click();
-	}
-
-	public void clickaddorreplcenode() throws InterruptedException {
-		addorreplacElement.click();
-	}
-
-	public void clickinviteguest() throws InterruptedException {
-		inviteGuestElement.click();
-	}
-
-	public void clickAddnetworkAdm() throws InterruptedException {
-		addNetworkAdminElement.click();
-	}
-
-	public void clickProfileBtn() {
-		profileBtnElement.click();
-
 	}
 
 	public void clickJoinBtn() throws InterruptedException {
@@ -173,20 +120,6 @@ public class HomePage {
 		return intstat;
 	}
 
-	public void selectResidential() {
-		residentialNetwork.click();
-
-	}
-
-	public void selectBusiness() {
-		businessNetworkoptElement.click();
-	}
-
-	public void selectCommunity() {
-		communityElement.click();
-
-	}
-
 	public void clickNext() {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
@@ -200,40 +133,10 @@ public class HomePage {
 		businessNameElement.sendKeys(businessname);
 	}
 
-	public void clickQuickSetup() {
-		quickSetupElement.click();
-	}
-
-	public void clickGuidedSetup() {
-		guidedSetupElement.click();
-	}
-
-	public void clickLinkToCustmer() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(LinkToCustomer)).click();
-	}
-
-	public void clickCloseIcon() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-		wait.until(ExpectedConditions.visibilityOf(closeIcon)).click();
-	}
-
-	public void clickStartBtn() {
-		startBtn.click();
-
-	}
-
-	public void clickSkip() {
-		skipElement.click();
-	}
-
 	public void clickElement(WebElement element) {
-		element.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
 
-	}
-
-	public void clickAdvanced() {
-		advancedElement.click();
 	}
 
 	public String getSerial() {

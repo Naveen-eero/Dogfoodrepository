@@ -24,28 +24,32 @@ public class captivePortalPage {
 	public WebElement captiveportalnetworkElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
-	private WebElement nextBtnElement;
+	public WebElement nextBtnElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Connect\"]")
-	private WebElement connectBtnElement;
+	public WebElement connectBtnElement;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"You're connected\"]")
-	private WebElement guestNetworkSuccessElement;
+	public WebElement guestNetworkSuccessElement;
 
-	public void clickNext() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(nextBtnElement)).click();
-	}
+	@AndroidFindBy(id = "com.android.chrome:id/toolbar_hairline")
+	public WebElement incognitoElement;
 
-	public void clickConnect() {
+	public void clickElement(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(connectBtnElement)).click();
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
 
 	}
 
 	public void guestSuccess() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(guestNetworkSuccessElement));
+
+	}
+
+	public void captivePortalPage() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		wait.until(ExpectedConditions.visibilityOf(captiveportalnetworkElement)).getText();
 
 	}
 }
