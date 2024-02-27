@@ -26,10 +26,7 @@ public class BaseTest {
 
 	@BeforeTest(alwaysRun = true)
 	public void BaseConfig() throws MalformedURLException {
-		// TODO Auto-generated method stub
-		Scanner myObj = new Scanner(System.in);
-		System.out.println("Enter Device id");
-		String deviceId = myObj.nextLine();
+		
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
 		desiredCapabilities.setCapability("platformname", "Android");
