@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -26,10 +27,13 @@ public class BaseTest {
 	@BeforeTest(alwaysRun = true)
 	public void BaseConfig() throws MalformedURLException {
 		// TODO Auto-generated method stub
+		Scanner myObj = new Scanner(System.in);
+		System.out.println("Enter Device id");
+		String deviceId = myObj.nextLine();
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
 		desiredCapabilities.setCapability("platformname", "Android");
-		desiredCapabilities.setCapability("appium:udid", "89FX09KX4");// DYUWKBCA8X55IRU8
+		desiredCapabilities.setCapability("appium:udid", deviceId);// DYUWKBCA8X55IRU8 89FX09KX4
 		desiredCapabilities.setCapability("appium:appName", dogfoodAppName);
 		desiredCapabilities.setCapability("appium:appActivity", dogfoodActivity);
 		desiredCapabilities.setCapability("appium:noReset", true);
