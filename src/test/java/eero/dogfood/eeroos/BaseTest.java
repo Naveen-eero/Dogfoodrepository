@@ -1,13 +1,14 @@
 package eero.dogfood.eeroos;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -21,22 +22,22 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class BaseTest {
 	public AndroidDriver driver;
-	String dogfoodAppName = "com.eero.android.dogfood";
-	String dogfoodActivity = "com.eero.android.v3.common.activity.TabBarActivity}";
 
 	@BeforeTest(alwaysRun = true)
-	public void BaseConfig() throws MalformedURLException {
-		
-		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-		desiredCapabilities.setCapability("appium:automationName", "UiAutomator2");
-		desiredCapabilities.setCapability("platformname", "Android");
-		desiredCapabilities.setCapability("appium:udid", deviceId);// DYUWKBCA8X55IRU8 89FX09KX4
-		desiredCapabilities.setCapability("appium:appName", dogfoodAppName);
-		desiredCapabilities.setCapability("appium:appActivity", dogfoodActivity);
-		desiredCapabilities.setCapability("appium:noReset", true);
-		URL remoteUrl = new URL("http://127.0.0.1:4723");
-		driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+	public void BaseConfig() throws InterruptedException, IOException {
+		// TODO Auto-generated method stub
 
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("platformName", "Android");
+		capabilities.setCapability("deviceName", "Navee");
+		capabilities.setCapability("automationName", "UiAutomator2");
+		capabilities.setCapability("udid", getDeviceId());
+		capabilities.setCapability("appPackage", "com.eero.android.dogfood");
+		capabilities.setCapability("appActivity", "com.eero.android.v3.features.splash.SplashActivity");
+		capabilities.setCapability("noReset", true);
+		// Specify Appium server URL
+		URL appiumServerURL = new URL("http://127.0.0.1:4723");
+		driver = new AndroidDriver(appiumServerURL, capabilities);
 	}
 
 	public void configureAppTosettings() throws MalformedURLException {
@@ -66,10 +67,29 @@ public class BaseTest {
 
 	public void getscreenshot(AndroidDriver driver, String filename) throws IOException {
 		File source = driver.getScreenshotAs(OutputType.FILE);
-		File destString = new File(
-				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\reports\\"
-						+ filename + ".png");
+		File destString = new File(System.getProperty("user.dir") + "\\src\\main\\java\\reports\\" + filename + ".png");
 		FileUtils.copyFile(source, destString);
+	}
+
+	public String getDeviceId() throws InterruptedException, IOException {
+		String deviceId = null;
+		String command = "adb devices -l";
+		Process process = Runtime.getRuntime().exec(command);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		String line;
+		while ((line = reader.readLine()) != null) {
+			if (line.contains("device ")) {
+				// Extract the device ID from the line
+				String[] parts = line.split("\\s+");
+				deviceId = parts[0];
+				System.out.println("Device ID: " + deviceId);
+				// Assuming only one device is connected
+				process.waitFor();
+				// Wait for the process to complete
+			}
+
+		}
+		return deviceId;
 	}
 
 	public List<HashMap<String, String>> getJsondata(String jsonFilePath) throws IOException {
