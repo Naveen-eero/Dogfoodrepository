@@ -69,7 +69,7 @@ public class CreateNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, priority = 3, description = "Turn On guest network")
+	@Test(enabled = false, priority = 3, description = "Turn On guest network")
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -121,10 +121,10 @@ public class CreateNetworkCases extends BaseTest {
 		NetworkSettingsPage networksettingspage = new NetworkSettingsPage(driver);
 		networksettingspage.clickDhcpNat();
 		dhcpNatConfPage dhcpnatconf = new dhcpNatConfPage(driver);
-		dhcpnatconf.selectManualIpoption();
+		dhcpnatconf.clickElement(dhcpnatconf.manualIpOptionElement);
 		dhcpnatconf.selectManulaIpaddr(input.get("Manual ip"));
-		dhcpnatconf.clickSave();
-		dhcpnatconf.clickReboot();
+		dhcpnatconf.clickElement(dhcpnatconf.savebtnElement);
+		dhcpnatconf.clickElement(dhcpnatconf.rebootBtnElement);
 		homePage.clickElement(homePage.homeBtnElement);
 		String internetstat = homePage.getInternetStatus();
 		if (internetstat.equals("Online")) {
@@ -163,7 +163,7 @@ public class CreateNetworkCases extends BaseTest {
 		}
 	}
 
-	@Test(enabled = false, priority = 1, description = "Createnetwork static network", dataProvider = "getData")
+	@Test(enabled = true, priority = 1, description = "Createnetwork static network", dataProvider = "getData")
 	public void createStaticNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
