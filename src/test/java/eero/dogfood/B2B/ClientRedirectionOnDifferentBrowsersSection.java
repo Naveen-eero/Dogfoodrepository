@@ -20,6 +20,10 @@ import eero.dogfood.settingsPage;
 import eero.dogfood.eeroos.BaseTest;
 import io.appium.java_client.android.Activity;
 
+//Preconditions
+//Network with 3 nodes gateway , wiredleaf and wirless leaf
+//Network is added with add_serial_to_ssid feature flag
+
 public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	String guestNameString;
 
@@ -38,7 +42,12 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		editGuestNetworkPage editGuestNetworkPage = new editGuestNetworkPage(driver);
 		guestNameString = editGuestNetworkPage.getGuestNetworkName();
 		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.gatewayElement);
+		if (input.get("Topology").equalsIgnoreCase("CrHH")) {
+			homePage.clickElement(homePage.wirelessleafElement);
+		} else {
+			homePage.clickElement(homePage.gatewayElement);
+
+		}
 		homePage.clickElement(homePage.advancedElement);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
@@ -50,6 +59,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
 		}
+
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
 		driver.runAppInBackground(Duration.ofSeconds(-1));
@@ -85,7 +95,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 			throws InterruptedException, MalformedURLException, AWTException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.gatewayElement);
+		homePage.clickElement(homePage.wiredLeafElement);
 		homePage.clickElement(homePage.advancedElement);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
@@ -175,8 +185,8 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		List<HashMap<String, String>> data = getJsondata(
-				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
+		String filepath = "C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json";
+		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
 		return new Object[][] { { data.get(1) } };
 	}
