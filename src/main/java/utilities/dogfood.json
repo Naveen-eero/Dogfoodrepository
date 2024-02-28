@@ -1,9 +1,9 @@
 [
 {
 "Business name":"Badam",
-"Gateway place":"Office",
-"Main ssid":"Static network",
-"password":"12345678",
+"Gateway place":"Hallway",
+"Main ssid":"Naveen network",
+"password":"11112222",
 "static ip":"192.168.0.144",
 "Subnet":"255.255.255.0",
 "Router ip":"192.168.0.1",
@@ -11,6 +11,7 @@
 "Manual ip":"172.16.0.0"
 },
 {
+"Topology":"CrHH",
 "Main ssid":"edne",
 "subnet A Business ssid":"jakab",
 "subnet A iot ssid":"uevc",
