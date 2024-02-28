@@ -1,7 +1,11 @@
 package eero.dogfood;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -30,23 +34,6 @@ public class dhcpNatConfPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"10.0.0.0\"]")
 	public WebElement manualIpaddress;
 
-	public void selectBridge() throws InterruptedException {
-		BridgeModeCheck.click();
-	}
-
-	public void clickSave() throws InterruptedException {
-		savebtnElement.click();
-	}
-
-	public void clickReboot() throws InterruptedException {
-		rebootBtnElement.click();
-
-	}
-
-	public void selectManualIpoption() {
-		manualIpOptionElement.click();
-	}
-
 	public void selectManulaIpaddr(String manualip) {
 		String xpath_locator = String
 				.format("//android.widget.TextView[contains(@text," + "\"" + "" + manualip + "\")]");
@@ -54,7 +41,10 @@ public class dhcpNatConfPage {
 		ele.click();
 	}
 
-	public void selectAutomatic() {
-		AutomaticCheckBtn.click();
+	public void clickElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
+
 	}
+
 }

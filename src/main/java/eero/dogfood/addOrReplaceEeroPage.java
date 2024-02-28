@@ -115,7 +115,7 @@ public class addOrReplaceEeroPage {
 
 	public void clickInternetSettings() {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(150));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
 		wait.until(ExpectedConditions.visibilityOf(internetSettingsElement)).click();
 	}
 
