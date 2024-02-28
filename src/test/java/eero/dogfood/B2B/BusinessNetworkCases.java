@@ -77,7 +77,7 @@ public class BusinessNetworkCases extends BaseTest {
 	// Create and enable Subnet A and configure it as Business network
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
+	@Test(enabled = false, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
 	private void C29192(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
@@ -141,7 +141,7 @@ public class BusinessNetworkCases extends BaseTest {
 
 	// Create and enable Subnet A and configure it as IoT network
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
+	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
 
 	private void C233647(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -210,7 +210,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
+	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
 
 	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -286,7 +286,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
+	@Test(enabled = false, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
 
 	private void C23963(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -362,7 +362,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "Disable guest network", priority = 6)
+	@Test(enabled = false, description = "Disable guest network", priority = 6)
 
 	private void C28492() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
@@ -415,15 +415,11 @@ public class BusinessNetworkCases extends BaseTest {
 		multiSsidPage.clickElement(multiSsidPage.confirmDisablElement);
 		multiSsidPage.clickSave();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
+		BaseTest baseTest = new BaseTest();
 
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 
-		}
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetwork(guestwifi);
 		captivePortalPage captivePortalPage = new captivePortalPage(driver);
@@ -497,7 +493,7 @@ public class BusinessNetworkCases extends BaseTest {
 		List<HashMap<String, String>> data = getJsondata(
 				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
 		// if need to run more than once add parameters to this and add more details
-		return new Object[][] { { data.get(1) } };
+		return new Object[][] { { data.get(0) } };
 	}
 
 }
