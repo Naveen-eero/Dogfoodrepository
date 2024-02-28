@@ -185,7 +185,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		String filepath = "C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json";
+		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
 		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
 		return new Object[][] { { data.get(1) } };
