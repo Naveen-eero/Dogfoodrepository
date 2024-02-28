@@ -21,13 +21,13 @@ public class BridgModeSection extends BaseTest {
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
 		networkSettingsPage.clickDhcpNat();
 		dhcpNatConfPage dhcpNatConfPage = new dhcpNatConfPage(driver);
-		dhcpNatConfPage.selectBridge();
-		dhcpNatConfPage.clickSave();
-		dhcpNatConfPage.clickReboot();
+		dhcpNatConfPage.clickElement(dhcpNatConfPage.BridgeModeCheck);
+		dhcpNatConfPage.clickElement(dhcpNatConfPage.savebtnElement);
+		dhcpNatConfPage.clickElement(dhcpNatConfPage.rebootBtnElement);
 		homePage.clickElement(homePage.homeBtnElement);
 	}
 
-	@Test(description = "Disable BridgeMode case", enabled = false, priority = 2)
+	@Test(description = "Disable BridgeMode case", enabled = true, priority = 2)
 
 	private void disableBridgeMode() throws InterruptedException {
 		// TODO Auto-generated method stub
@@ -39,9 +39,9 @@ public class BridgModeSection extends BaseTest {
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
 		networkSettingsPage.clickDhcpNat();
 		dhcpNatConfPage dhcpNatConfPage = new dhcpNatConfPage(driver);
-		dhcpNatConfPage.selectAutomatic();
-		dhcpNatConfPage.clickSave();
-		dhcpNatConfPage.clickReboot();
+		dhcpNatConfPage.clickElement(dhcpNatConfPage.AutomaticCheckBtn);
+		dhcpNatConfPage.clickElement(dhcpNatConfPage.savebtnElement);
+		dhcpNatConfPage.clickElement(dhcpNatConfPage.rebootBtnElement);
 		homePage.clickElement(homePage.homeBtnElement);
 
 	}
