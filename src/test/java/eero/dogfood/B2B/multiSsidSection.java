@@ -27,43 +27,48 @@ public class multiSsidSection extends BaseTest {
 	@SuppressWarnings("deprecation")
 	@Test(enabled = true, description = " Main network - WAN access - Devices connected to gateway can reach the Internet when WAN_access is enabled  ", priority = 1, dataProvider = "getData")
 	private void C37206(HashMap<String, String> input) throws InterruptedException, IOException {
+
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.settingBtn);
 		settingsPage settingsPage = new settingsPage(driver);
 		settingsPage.clickWifiNameAndPassword();
 		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.gatewayElement);
-		homePage.clickElement(homePage.advancedElement);
-		String sernumString = homePage.getSerial();
-		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
+		if (input.get("Topology").equalsIgnoreCase("CrHH")) {
+			System.out.println("Skipping case Crane doesn't have wifi radio");
+		} else {
+			homePage.clickElement(homePage.gatewayElement);
+			homePage.clickElement(homePage.advancedElement);
+			String sernumString = homePage.getSerial();
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+			try {
+				driver.startActivity(
+						new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
+			} catch (Exception e) {
 
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
+				driver.startActivity(new Activity("com.android.settings",
+						"com.android.settings.Settings$NetworkProviderSettingsActivity"));
+
+			}
+			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
+			clientConnectPage.enterPassword(input.get("password"));
+			clientConnectPage.clickOnwifidetails(input.get("Main ssid"));
+			// Check for the IP connected to business network
+			clientConnectPage.getClientIp();
+			BaseTest baseTest = new BaseTest();
+			driver.startActivity(
+					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
+			// Open ping tools app and check for interntet connectivity
+			pingToolsPage pingToolsPage = new pingToolsPage(driver);
+			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
+			pingToolsPage.clickElement(pingToolsPage.pingElement);
+			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
+			pingToolsPage.internetStatuscheck();
+			baseTest.getscreenshot(driver, "pingstatus");
+			driver.activateApp("com.eero.android.dogfood");
 
 		}
-		clientConnectPage clientConnectPage = new clientConnectPage(driver);
-		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
-		clientConnectPage.enterPassword(input.get("password"));
-		clientConnectPage.clickOnwifidetails(input.get("Main ssid"));
-		// Check for the IP connected to business network
-		clientConnectPage.getClientIp();
-		BaseTest baseTest = new BaseTest();
-		driver.startActivity(
-				new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
-		// Open ping tools app and check for interntet connectivity
-		pingToolsPage pingToolsPage = new pingToolsPage(driver);
-		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
-		pingToolsPage.clickElement(pingToolsPage.pingElement);
-		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-		pingToolsPage.internetStatuscheck();
-		baseTest.getscreenshot(driver, "pingstatus");
-		driver.activateApp("com.eero.android.dogfood");
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -334,8 +339,8 @@ public class multiSsidSection extends BaseTest {
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		List<HashMap<String, String>> data = getJsondata(
-				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
+		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
+		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
 		return new Object[][] { { data.get(1) } };
 	}

@@ -77,7 +77,7 @@ public class BusinessNetworkCases extends BaseTest {
 	// Create and enable Subnet A and configure it as Business network
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
 	private void C29192(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
@@ -89,6 +89,7 @@ public class BusinessNetworkCases extends BaseTest {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
 			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+			Thread.sleep(35000);
 		}
 		multiSsidPage.clickaddWifi();
 		multiSsidPage.addBusinessSSID();
@@ -141,7 +142,7 @@ public class BusinessNetworkCases extends BaseTest {
 
 	// Create and enable Subnet A and configure it as IoT network
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
 
 	private void C233647(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -157,6 +158,7 @@ public class BusinessNetworkCases extends BaseTest {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
 			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+			Thread.sleep(35000);
 		}
 		multiSsidPage.clickaddWifi();
 		// click on add business ssid
@@ -210,7 +212,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
+	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
 
 	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -226,6 +228,8 @@ public class BusinessNetworkCases extends BaseTest {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
 			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+			Thread.sleep(35000);
+
 		}
 		multiSsidPage.clickaddWifi();
 		// click on add business ssid
@@ -286,7 +290,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
+	@Test(enabled = true, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
 
 	private void C23963(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -302,6 +306,8 @@ public class BusinessNetworkCases extends BaseTest {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
 			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+			Thread.sleep(35000);
+
 		}
 		multiSsidPage.clickaddWifi();
 		// click on add business ssid
@@ -401,7 +407,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "Captive Portal - Enable/Disable Captive Portal", priority = 5)
+	@Test(enabled = false, description = "Captive Portal - Enable/Disable Captive Portal", priority = 5)
 	private void C37224() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
@@ -490,10 +496,10 @@ public class BusinessNetworkCases extends BaseTest {
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		List<HashMap<String, String>> data = getJsondata(
-				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
+		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
+		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
-		return new Object[][] { { data.get(0) } };
+		return new Object[][] { { data.get(1) } };
 	}
 
 }

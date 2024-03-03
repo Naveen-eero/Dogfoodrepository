@@ -12,6 +12,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class pingToolsPage {
+
 	AndroidDriver driver;
 
 	public pingToolsPage(AndroidDriver driver) {

@@ -12,11 +12,11 @@
 },
 {
 "Topology":"CrHH",
-"Main ssid":"edne",
-"subnet A Business ssid":"jakab",
-"subnet A iot ssid":"uevc",
-"subnet B Business ssid":"hkahd",
-"subnet B iot ssid":"iasda",
+"Main ssid":"kaaal",
+"subnet A Business ssid":"Kaaal",
+"subnet A iot ssid":"rayma",
+"subnet B Business ssid":"class",
+"subnet B iot ssid":"parva",
 "password":"11112222",
 "captiveportal url1":"dev.eeroportal.com",
 "captiveportal url2":"stage.eeroportal.com"
