@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -82,8 +83,8 @@ public class HomePage {
 	public WebElement wiredLeafElement;
 	@AndroidFindBy(xpath = "//*[(@resource-id='com.eero.android.dogfood:id/header_list')]//android.view.ViewGroup[3]")
 	public WebElement wirelessleafElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Advanced\"]")
-	public WebElement advancedElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Device information\"]")
+	public WebElement deviceInfo;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Serial number\"]/following-sibling::android.widget.TextView[1]")
 	public WebElement serialNumElement;
 
@@ -144,5 +145,11 @@ public class HomePage {
 		System.out.println(nodeserial.substring(nodeserial.length() - 4));
 		return (nodeserial.substring(nodeserial.length() - 4));
 
+	}
+
+	public void clickDeviceInfo() {
+		WebElement ele = driver.findElement(AppiumBy.androidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Device information\").instance(0))"));
+		deviceInfo.click();
 	}
 }

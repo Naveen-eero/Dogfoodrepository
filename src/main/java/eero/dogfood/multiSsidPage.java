@@ -53,10 +53,15 @@ public class multiSsidPage {
 	public WebElement enableCaptivePortalElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Bandwidth limit\"]")
 	public WebElement bandwidthElement;
+	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"TRY AGAIN\"]")
+	public WebElement tryAgainElement;
 
 	public void clickaddWifi() {
 		try {
 			addWifiNetworkElement.click();
+			while (isElementVisible(addBusinessnet) == false) {
+				tryAgainElement.click();
+			}
 		} catch (Exception e) {
 
 		}
@@ -65,8 +70,10 @@ public class multiSsidPage {
 	public void addBusinessSSID() {
 		try {
 			addBusinessnet.click();
+			while (isElementVisible(addBusinessnet) == false) {
+				tryAgainElement.click();
+			}
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 	}
 
@@ -108,7 +115,7 @@ public class multiSsidPage {
 
 	public boolean isElementVisible(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 			wait.until(ExpectedConditions.visibilityOf(element));
 			return element.isDisplayed();
 		} catch (Exception e) {

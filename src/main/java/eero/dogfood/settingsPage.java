@@ -140,6 +140,10 @@ public class settingsPage {
 
 	}
 
+	public void clickOnElement(WebElement element) {
+		element.click();
+	}
+
 	public void clickDebugMenu() {
 		driver.findElement(AppiumBy.androidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Debug settings\").instance(0))"));

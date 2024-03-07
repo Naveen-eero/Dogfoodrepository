@@ -46,26 +46,28 @@ public class BaseTest {
 		URL appiumServerURL = new URL("http://127.0.0.1:4723");
 		driver = new AndroidDriver(appiumServerURL, capabilities);
 		Thread.sleep(10000);
-		try {
-			DesiredCapabilities capabilities1 = new DesiredCapabilities();
-			capabilities1.setCapability("platformName", "Android");
-			capabilities1.setCapability("udid", getDeviceIds().get(1));
-			System.out.println("device id: " + getDeviceIds().get(0));
-			capabilities1.setCapability("platformversion", getAndroidVersion(getDeviceIds().get(1)));
-			System.out.println("device android version:" + getAndroidVersion(getDeviceIds().get(1)));
-			capabilities1.setCapability("deviceName", getDeviceName(getDeviceIds().get(1)));
-			System.out.println("device android version:" + getDeviceName(getDeviceIds().get(1)));
-			capabilities1.setCapability("automationName", "UiAutomator2");
-			capabilities1.setCapability("appPackage", "ua.com.streamsoft.pingtools");
-			capabilities1.setCapability("appActivity", "ua.com.streamsoft.pingtools.MainActivity_AA");
-			capabilities1.setCapability("noReset", true);
-			// Specify Appium server URL
-			URL appiumServerURL1 = new URL("http://127.0.0.1:4724");
-			driver1 = new AndroidDriver(appiumServerURL1, capabilities1);
-			Thread.sleep(10000);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("second device not found");
+		if (getDeviceIds().size() > 1) {
+			try {
+				DesiredCapabilities capabilities1 = new DesiredCapabilities();
+				capabilities1.setCapability("platformName", "Android");
+				capabilities1.setCapability("udid", getDeviceIds().get(1));
+				System.out.println("device id: " + getDeviceIds().get(0));
+				capabilities1.setCapability("platformversion", getAndroidVersion(getDeviceIds().get(1)));
+				System.out.println("device android version:" + getAndroidVersion(getDeviceIds().get(1)));
+				capabilities1.setCapability("deviceName", getDeviceName(getDeviceIds().get(1)));
+				System.out.println("device name:" + getDeviceName(getDeviceIds().get(1)));
+				capabilities1.setCapability("automationName", "UiAutomator2");
+				capabilities1.setCapability("appPackage", "ua.com.streamsoft.pingtools");
+				capabilities1.setCapability("appActivity", "ua.com.streamsoft.pingtools.MainActivity_AA");
+				capabilities1.setCapability("noReset", true);
+				// Specify Appium server URL
+				URL appiumServerURL1 = new URL("http://127.0.0.1:4724");
+				driver1 = new AndroidDriver(appiumServerURL1, capabilities1);
+				Thread.sleep(10000);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("second device not found");
+			}
 		}
 
 	}
@@ -146,7 +148,7 @@ public class BaseTest {
 
 	public void changeCountryCode() {
 		try {
-			String curlCommand = "curl -L -X POST \"https://admin.stage.e2ro.com/api/networks/605131/country_code\" -H \"x-admin-token: 72080|4eNt7SQ-_8RA4fO9s8f4ro67ct-CI72cMFsgeGh7i2q6qnGA4ET5xQ==\" -H \"Content-Type: application/json\" --data-raw \"{\\\"country_code\\\": \\\"CA\\\"}\"";
+			String curlCommand = "curl -L -X POST \"https://admin.stage.e2ro.com/api/networks/networkid/country_code\" -H \"x-admin-token: admin token\" -H \"Content-Type: application/json\" --data-raw \"{\\\"country_code\\\": \\\"CA\\\"}\"";
 			// Execute the curl command
 			ProcessBuilder processBuilder = new ProcessBuilder(curlCommand.split("\\s+"));
 			Process process = processBuilder.start();

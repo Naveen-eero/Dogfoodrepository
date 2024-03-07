@@ -65,6 +65,9 @@ public class BrowserPages {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text=\"Search or enter address\"]")
 	public WebElement firefoxSearchBoxElement;
 
+	@AndroidFindBy(xpath = "//android.widget.Image[@text=\"Google\"]")
+	public WebElement googlePageElement;
+
 	public void clickElement(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(element)).click();

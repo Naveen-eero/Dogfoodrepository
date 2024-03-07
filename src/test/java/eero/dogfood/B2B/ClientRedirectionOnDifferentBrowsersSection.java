@@ -15,6 +15,7 @@ import eero.dogfood.HomePage;
 import eero.dogfood.captivePortalPage;
 import eero.dogfood.clientConnectPage;
 import eero.dogfood.editGuestNetworkPage;
+import eero.dogfood.editMainNetworkPage;
 import eero.dogfood.multiSsidPage;
 import eero.dogfood.settingsPage;
 import eero.dogfood.eeroos.BaseTest;
@@ -46,7 +47,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		} else {
 			homePage.clickElement(homePage.gatewayElement);
 		}
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickDeviceInfo();
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -94,10 +95,11 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 
 	private void C36852(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {
+		BaseTest baseTest = new BaseTest();
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -148,7 +150,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.wirelessleafElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -188,10 +190,18 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		} else {
 			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
 		}
+		driver.activateApp("com.eero.android.dogfood");
+		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.settingBtn);
+		settingsPage settingsPage = new settingsPage(driver);
+		settingsPage.clickOnElement(settingsPage.wifinamePasswordElement);
+		editMainNetworkPage editMainNetworkPage = new editMainNetworkPage(driver);
+		String networkname = editMainNetworkPage.getNetworkName();
+		String password = editMainNetworkPage.getNetworkPassword();
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
-		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
-		clientConnectPage.enterPassword(input.get("password"));
+		clientConnectPage.connectToNetworkwithserial(networkname, sernumString);
+		clientConnectPage.enterPassword(password);
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.activateApp("com.eero.android.dogfood");
 
@@ -202,7 +212,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
 		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
-		return new Object[][] { { data.get(1) } };
+		return new Object[][] { { data.get(0) } };
 	}
 
 }

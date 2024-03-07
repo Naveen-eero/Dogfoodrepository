@@ -8,6 +8,7 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import eero.dogfood.BrowserPages;
 import eero.dogfood.HomePage;
 import eero.dogfood.captivePortalPage;
 import eero.dogfood.clientConnectPage;
@@ -35,21 +36,14 @@ public class multiSsidSection extends BaseTest {
 		settingsPage.clickWifiNameAndPassword();
 		homePage.clickElement(homePage.homeBtnElement);
 		if (input.get("Topology").equalsIgnoreCase("CrHH")) {
-			System.out.println("Skipping case Crane doesn't have wifi radio");
+			System.out.println("Skipping C37206 test case since Crane doesn't have wifi radio");
 		} else {
 			homePage.clickElement(homePage.gatewayElement);
-			homePage.clickElement(homePage.advancedElement);
+			homePage.clickElement(homePage.deviceInfo);
 			String sernumString = homePage.getSerial();
 			driver.runAppInBackground(Duration.ofSeconds(-1));
-			try {
-				driver.startActivity(
-						new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-			} catch (Exception e) {
-
-				driver.startActivity(new Activity("com.android.settings",
-						"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-
-			}
+			driver.startActivity(new Activity("com.android.settings",
+					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
 			clientConnectPage clientConnectPage = new clientConnectPage(driver);
 			clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
 			clientConnectPage.enterPassword(input.get("password"));
@@ -64,8 +58,33 @@ public class multiSsidSection extends BaseTest {
 			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 			pingToolsPage.clickElement(pingToolsPage.pingElement);
 			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-			pingToolsPage.internetStatuscheck();
-			baseTest.getscreenshot(driver, "pingstatus");
+			if (pingToolsPage.internetStatuscheck().equals("device online")) {
+				driver.runAppInBackground(Duration.ofSeconds(-1));
+				driver.startActivity(new Activity("com.android.chrome", "com.google.android.apps.chrome.Main"));
+				BrowserPages chromeBrowserPages = new BrowserPages(driver);
+				chromeBrowserPages.clickElement(chromeBrowserPages.menuElement);
+				chromeBrowserPages.clickElement(chromeBrowserPages.incognitotabElement);
+				chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
+				chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("internetCheckUrl1"));
+				if (chromeBrowserPages.googlePageElement.isDisplayed() == true) {
+					System.out.println("able to reach webpage");
+					chromeBrowserPages.clickElement(chromeBrowserPages.menuElement);
+					chromeBrowserPages.clickElement(chromeBrowserPages.incognitotabElement);
+					chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
+					chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("internetCheckUrl2"));
+					if (chromeBrowserPages.googlePageElement.isDisplayed() == true) {
+						System.out.println("able to reach webpage");
+					} else {
+						System.out.println("Unable to reacch webpage");
+					}
+
+				}
+				System.out.println("Testcase C37206 pass");
+			} else {
+				System.out.println("Testcase C37206 fail");
+
+			}
+			baseTest.getscreenshot(driver, "pingstatus main network gateway");
 			driver.activateApp("com.eero.android.dogfood");
 
 		}
@@ -81,22 +100,15 @@ public class multiSsidSection extends BaseTest {
 		settingsPage.clickWifiNameAndPassword();
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.wirelessleafElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
-
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-
-		}
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
 		clientConnectPage.enterPassword(input.get("password"));
-		clientConnectPage.clickOnwifidetails(input.get("Main ssid"));
+		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
 		// Check for the IP connected to business network
 		clientConnectPage.getClientIp();
 		BaseTest baseTest = new BaseTest();
@@ -107,7 +119,19 @@ public class multiSsidSection extends BaseTest {
 		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 		pingToolsPage.clickElement(pingToolsPage.pingElement);
 		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-		pingToolsPage.internetStatuscheck();
+		if (pingToolsPage.internetStatuscheck().equals("device online")) {
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+			driver.startActivity(new Activity("com.android.chrome", "com.google.android.apps.chrome.Main"));
+			BrowserPages chromeBrowserPages = new BrowserPages(driver);
+			chromeBrowserPages.clickElement(chromeBrowserPages.menuElement);
+			chromeBrowserPages.clickElement(chromeBrowserPages.incognitotabElement);
+			chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
+			chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("internetCheckUrl1"));
+			System.out.println("Testcase C37208 pass");
+		} else {
+			System.out.println("Testcase C37208 fail");
+
+		}
 		baseTest.getscreenshot(driver, "pingstatus");
 		driver.activateApp("com.eero.android.dogfood");
 
@@ -123,18 +147,11 @@ public class multiSsidSection extends BaseTest {
 		settingsPage.clickWifiNameAndPassword();
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
-
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-
-		}
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
 		clientConnectPage.enterPassword(input.get("password"));
@@ -149,14 +166,19 @@ public class multiSsidSection extends BaseTest {
 		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 		pingToolsPage.clickElement(pingToolsPage.pingElement);
 		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-		pingToolsPage.internetStatuscheck();
+		if (pingToolsPage.internetStatuscheck().equals("device online")) {
+			System.out.println("Testcase C385604 pass");
+		} else {
+			System.out.println("Testcase C385604 fail");
+
+		}
 		baseTest.getscreenshot(driver, "pingstatus");
 		driver.activateApp("com.eero.android.dogfood");
 
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Guest Network-  WAN access - Devices connected to gateway can reach the Internet when WAN_access is enabled ", priority = 4, dataProvider = "getData")
+	@Test(enabled = true, description = " Guest Network-  WAN access - Devices connected to gateway can reach the Internet when WAN_access is enabled ", priority = 4, dataProvider = "getData")
 	private void C37146(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
@@ -167,44 +189,49 @@ public class multiSsidSection extends BaseTest {
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
 		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.gatewayElement);
-		homePage.clickElement(homePage.advancedElement);
-		String sernumString = homePage.getSerial();
-		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
-
+		if (input.get("Topology").equalsIgnoreCase("CrHH")) {
+			System.out.println("Skipping C37206 test case since Crane doesn't have wifi radio");
+		} else {
+			homePage.clickElement(homePage.gatewayElement);
+			homePage.clickElement(homePage.deviceInfo);
+			String sernumString = homePage.getSerial();
+			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-
+			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
+			captivePortalPage captivePortalPage = new captivePortalPage(driver);
+			Thread.sleep(10000);
+			captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
+			captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+			captivePortalPage.guestSuccess();
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			Thread.sleep(10000);
+			driver.startActivity(
+					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
+			// Open ping tools app and check for interntet connectivity
+			pingToolsPage pingToolsPage = new pingToolsPage(driver);
+			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
+			pingToolsPage.clickElement(pingToolsPage.pingElement);
+			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
+			if (pingToolsPage.internetStatuscheck().equals("device online")) {
+				System.out.println("Testcase C37146 pass");
+			} else {
+				System.out.println("Testcase C37146 fail");
+			}
+			driver.startActivity(new Activity("com.android.settings",
+					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
+			clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
+			clientConnectPage.enterPassword(input.get("password"));
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+			driver.activateApp("com.eero.android.dogfood");
 		}
-		clientConnectPage clientConnectPage = new clientConnectPage(driver);
-		clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
-		captivePortalPage captivePortalPage = new captivePortalPage(driver);
-		Thread.sleep(10000);
-		captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-		captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
-		captivePortalPage.guestSuccess();
-		driver.pressKey(new KeyEvent(AndroidKey.BACK));
-		driver.pressKey(new KeyEvent(AndroidKey.BACK));
-		driver.pressKey(new KeyEvent(AndroidKey.BACK));
-		Thread.sleep(10000);
-		driver.startActivity(
-				new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
-		// Open ping tools app and check for interntet connectivity
-		pingToolsPage pingToolsPage = new pingToolsPage(driver);
-		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
-		pingToolsPage.clickElement(pingToolsPage.pingElement);
-		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-		pingToolsPage.internetStatuscheck();
-		driver.activateApp("com.eero.android.dogfood");
-
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "Guest Network-  WAN access - Devices connected to wired leaf can reach the Internet when WAN_access is enabled ", priority = 5, dataProvider = "getData")
+	@Test(enabled = true, description = "Guest Network-  WAN access - Devices connected to wired leaf can reach the Internet when WAN_access is enabled ", priority = 5, dataProvider = "getData")
 	private void C37148(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
@@ -216,18 +243,10 @@ public class multiSsidSection extends BaseTest {
 		String guestwifi = multiSsidPage.getWifiName();
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
-		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
-
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-
-		}
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
 		captivePortalPage captivePortalPage = new captivePortalPage(driver);
@@ -246,13 +265,22 @@ public class multiSsidSection extends BaseTest {
 		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 		pingToolsPage.clickElement(pingToolsPage.pingElement);
 		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-		pingToolsPage.internetStatuscheck();
+		if (pingToolsPage.internetStatuscheck().equals("device online")) {
+			System.out.println("Testcase C37148 pass");
+		} else {
+			System.out.println("Testcase C37148 fail");
+		}
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
+		clientConnectPage.enterPassword(input.get("password"));
+		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.activateApp("com.eero.android.dogfood");
 
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "Guest Network-  WAN access - Devices connected to wireless leaf can reach the Internet when WAN_access is enabled ", priority = 5, dataProvider = "getData")
+	@Test(enabled = true, description = "Guest Network-  WAN access - Devices connected to wireless leaf can reach the Internet when WAN_access is enabled ", priority = 6, dataProvider = "getData")
 	private void C385605(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
@@ -263,19 +291,14 @@ public class multiSsidSection extends BaseTest {
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
 		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.wirelessleafElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
 
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 
-		}
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
 		captivePortalPage captivePortalPage = new captivePortalPage(driver);
@@ -294,9 +317,17 @@ public class multiSsidSection extends BaseTest {
 		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 		pingToolsPage.clickElement(pingToolsPage.pingElement);
 		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
-		pingToolsPage.internetStatuscheck();
+		if (pingToolsPage.internetStatuscheck().equals("device online")) {
+			System.out.println("Testcase  C385605 pass");
+		} else {
+			System.out.println("Testcase  C385605 fail");
+		}
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		clientConnectPage.connectToNetworkwithserial(input.get("Main ssid"), sernumString);
+		clientConnectPage.enterPassword(input.get("password"));
+		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.activateApp("com.eero.android.dogfood");
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -305,18 +336,12 @@ public class multiSsidSection extends BaseTest {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.homeBtnElement);
 		homePage.clickElement(homePage.gatewayElement);
-		homePage.clickElement(homePage.advancedElement);
+		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
-		driver.runAppInBackground(Duration.ofSeconds(-1));
-		try {
-			driver.startActivity(
-					new Activity("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity"));
-		} catch (Exception e) {
 
-			driver.startActivity(new Activity("com.android.settings",
-					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 
-		}
 		clientConnectPage clientConnectPage = new clientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(input.get("subnet A Business ssid"), sernumString);
 		clientConnectPage.enterPassword(input.get("password"));

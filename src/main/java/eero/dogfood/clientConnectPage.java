@@ -96,6 +96,9 @@ public class clientConnectPage {
 		Thread.sleep(10000);
 		String xpath_locator = String.format("//android.widget.ImageView[@content-desc=" + "\"" + "" + networkName
 				+ " network details" + "\"or @content-desc=\"Settings\"]");
+		driver.findElement(AppiumBy.androidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+						+ networkName + "\").instance(0))"));
 		WebElement wifidetailsElement = driver.findElement(By.xpath(xpath_locator));
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(wifidetailsElement)).click();

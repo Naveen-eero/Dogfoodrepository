@@ -1,33 +1,17 @@
 [
-{
-"Business name":"Badam",
-"Gateway place":"Hallway",
-"Main ssid":"Naveen network",
-"password":"11112222",
-"static ip":"192.168.0.144",
-"Subnet":"255.255.255.0",
-"Router ip":"192.168.0.1",
-"status filename":"internet status",
-"Manual ip":"172.16.0.0"
-},
+
 {
 "Topology":"CrHH",
-"Main ssid":"kaaal",
-"subnet A Business ssid":"Kaaal",
-"subnet A iot ssid":"rayma",
-"subnet B Business ssid":"class",
-"subnet B iot ssid":"parva",
+"Main ssid":"hornbill business",
+"subnet A Business ssid":"kite",
+"subnet A iot ssid":"King",
+"subnet B Business ssid":"lion",
+"subnet B iot ssid":"basket",
 "password":"11112222",
 "captiveportal url1":"dev.eeroportal.com",
-"captiveportal url2":"stage.eeroportal.com"
-
-},
-{
-"subnet A Business ssid":"uaks",
-"subnet A iot ssid":"Amaxon123",
-"subnet B Business ssid":"abcdefg",
-"subnet B iot ssid":"iolpa",
-"password":"ABCDEFGH"
+"captiveportal url2":"stage.eeroportal.com",
+"internetCheckUrl1" : "http://www.google.com",
+"internetCheckUrl2": "https://www.google.com"
 
 }
 ]

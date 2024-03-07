@@ -2,42 +2,42 @@
 <testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-03-03T14:09:35 IST" name="Default suite" finished-at="2024-03-03T14:15:47 IST" duration-ms="372226">
+  <suite started-at="2024-03-07T18:46:50 IST" name="Default suite" finished-at="2024-03-07T18:52:53 IST" duration-ms="362835">
     <groups>
     </groups>
-    <test started-at="2024-03-03T14:09:35 IST" name="Default test" finished-at="2024-03-03T14:15:47 IST" duration-ms="372226">
+    <test started-at="2024-03-07T18:46:50 IST" name="Default test" finished-at="2024-03-07T18:52:53 IST" duration-ms="362835">
       <class name="eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection">
-        <test-method is-config="true" signature="BaseConfig()[pri:0, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-03T14:09:35 IST" name="BaseConfig" finished-at="2024-03-03T14:09:58 IST" duration-ms="23255" status="PASS">
+        <test-method is-config="true" signature="BaseConfig()[pri:0, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:46:50 IST" name="BaseConfig" finished-at="2024-03-07T18:47:10 IST" duration-ms="20219" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BaseConfig -->
-        <test-method signature="C36850(java.util.HashMap)[pri:1, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-03T14:09:59 IST" name="C36850" description=" Open Captive portal using Chrome " data-provider="getData" finished-at="2024-03-03T14:12:05 IST" duration-ms="126699" status="PASS">
+        <test-method signature="C36850(java.util.HashMap)[pri:1, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:47:11 IST" name="C36850" description=" Open Captive portal using Chrome " data-provider="getData" finished-at="2024-03-07T18:49:01 IST" duration-ms="110769" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{captiveportal url2=stage.eeroportal.com, Main ssid=kaaal, captiveportal url1=dev.eeroportal.com, password=11112222, subnet A Business ssid=Kaaal, subnet A iot ssid=rayma, Topology=CrHH, subnet B iot ssid=parva, subnet B Business ssid=class}]]>
+                <![CDATA[{captiveportal url2=stage.eeroportal.com, internetCheckUrl2=https://www.google.com, Main ssid=hornbill business, captiveportal url1=dev.eeroportal.com, password=11112222, internetCheckUrl1=http://www.google.com, subnet A Business ssid=kite, subnet A iot ssid=King, Topology=CrHH, subnet B iot ssid=basket, subnet B Business ssid=lion}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- C36850 -->
-        <test-method signature="C36852(java.util.HashMap)[pri:2, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-03T14:12:05 IST" name="C36852" description="  Open Captive portal using edge browser  " data-provider="getData" finished-at="2024-03-03T14:13:51 IST" duration-ms="105183" status="PASS">
+        <test-method signature="C36852(java.util.HashMap)[pri:2, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:49:01 IST" name="C36852" description="  Open Captive portal using edge browser  " data-provider="getData" finished-at="2024-03-07T18:50:45 IST" duration-ms="103669" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{captiveportal url2=stage.eeroportal.com, Main ssid=kaaal, captiveportal url1=dev.eeroportal.com, password=11112222, subnet A Business ssid=Kaaal, subnet A iot ssid=rayma, Topology=CrHH, subnet B iot ssid=parva, subnet B Business ssid=class}]]>
+                <![CDATA[{captiveportal url2=stage.eeroportal.com, internetCheckUrl2=https://www.google.com, Main ssid=hornbill business, captiveportal url1=dev.eeroportal.com, password=11112222, internetCheckUrl1=http://www.google.com, subnet A Business ssid=kite, subnet A iot ssid=King, Topology=CrHH, subnet B iot ssid=basket, subnet B Business ssid=lion}]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- C36852 -->
-        <test-method signature="C36853(java.util.HashMap)[pri:3, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-03T14:13:51 IST" name="C36853" description="  Open Captive portal using Firefox browser  " data-provider="getData" finished-at="2024-03-03T14:15:47 IST" duration-ms="116653" status="PASS">
+        <test-method signature="C36853(java.util.HashMap)[pri:3, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:50:45 IST" name="C36853" description="  Open Captive portal using Firefox browser  " data-provider="getData" finished-at="2024-03-07T18:52:53 IST" duration-ms="127873" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{captiveportal url2=stage.eeroportal.com, Main ssid=kaaal, captiveportal url1=dev.eeroportal.com, password=11112222, subnet A Business ssid=Kaaal, subnet A iot ssid=rayma, Topology=CrHH, subnet B iot ssid=parva, subnet B Business ssid=class}]]>
+                <![CDATA[{captiveportal url2=stage.eeroportal.com, internetCheckUrl2=https://www.google.com, Main ssid=hornbill business, captiveportal url1=dev.eeroportal.com, password=11112222, internetCheckUrl1=http://www.google.com, subnet A Business ssid=kite, subnet A iot ssid=King, Topology=CrHH, subnet B iot ssid=basket, subnet B Business ssid=lion}]]>
               </value>
             </param>
           </params>

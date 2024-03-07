@@ -17,6 +17,10 @@ public class editMainNetworkPage {
 
 	}
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi network name\"]/following-sibling::android.widget.EditText")
+	public WebElement networkName;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi network password\"]/following-sibling::android.widget.EditText")
+	public WebElement password;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_name")
 	public WebElement mainNetWorkNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_password")
@@ -29,6 +33,13 @@ public class editMainNetworkPage {
 
 	}
 
+	public String getNetworkName() {
+		String networknameString = networkName.getText();
+		System.out.println(networknameString);
+		return networknameString;
+
+	}
+
 	public String getMainNetworkPassword() {
 		String mainnetworkpassword = mainNetworkPasswordElement.getText();
 		System.out.println(mainnetworkpassword);
@@ -36,4 +47,10 @@ public class editMainNetworkPage {
 
 	}
 
+	public String getNetworkPassword() {
+		String networkpassword = password.getText();
+		System.out.println(networkpassword);
+		return networkpassword;
+
+	}
 }
