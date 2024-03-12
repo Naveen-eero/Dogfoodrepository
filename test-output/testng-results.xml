@@ -1,50 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="5" total="6" passed="0" failed="0" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-03-07T18:46:50 IST" name="Default suite" finished-at="2024-03-07T18:52:53 IST" duration-ms="362835">
+  <suite started-at="2024-03-12T16:11:54 IST" name="Default suite" finished-at="2024-03-12T16:11:57 IST" duration-ms="2677">
     <groups>
     </groups>
-    <test started-at="2024-03-07T18:46:50 IST" name="Default test" finished-at="2024-03-07T18:52:53 IST" duration-ms="362835">
-      <class name="eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection">
-        <test-method is-config="true" signature="BaseConfig()[pri:0, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:46:50 IST" name="BaseConfig" finished-at="2024-03-07T18:47:10 IST" duration-ms="20219" status="PASS">
+    <test started-at="2024-03-12T16:11:54 IST" name="Default test" finished-at="2024-03-12T16:11:57 IST" duration-ms="2677">
+      <class name="eero.dogfood.B2B.BusinessNetworkCases">
+        <test-method is-config="true" signature="BaseConfig()[pri:0, instance:eero.dogfood.B2B.BusinessNetworkCases@298a5e20]" started-at="2024-03-12T16:11:54 IST" name="BaseConfig" finished-at="2024-03-12T16:11:57 IST" duration-ms="2620" status="FAIL">
+          <exception class="java.lang.IndexOutOfBoundsException">
+            <message>
+              <![CDATA[Index 0 out of bounds for length 0]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+at java.base/java.util.Objects.checkIndex(Objects.java:359)
+at java.base/java.util.ArrayList.get(ArrayList.java:427)
+at eero.dogfood.eeroos.BaseTest.BaseConfig(BaseTest.java:35)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+at org.testng.TestRunner.run(TestRunner.java:589)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BaseConfig -->
-        <test-method signature="C36850(java.util.HashMap)[pri:1, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:47:11 IST" name="C36850" description=" Open Captive portal using Chrome " data-provider="getData" finished-at="2024-03-07T18:49:01 IST" duration-ms="110769" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{captiveportal url2=stage.eeroportal.com, internetCheckUrl2=https://www.google.com, Main ssid=hornbill business, captiveportal url1=dev.eeroportal.com, password=11112222, internetCheckUrl1=http://www.google.com, subnet A Business ssid=kite, subnet A iot ssid=King, Topology=CrHH, subnet B iot ssid=basket, subnet B Business ssid=lion}]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="C28492()[pri:6, instance:eero.dogfood.B2B.BusinessNetworkCases@298a5e20]" started-at="2024-03-12T16:11:57 IST" name="C28492" description="Disable guest network" finished-at="2024-03-12T16:11:57 IST" duration-ms="0" status="SKIP">
+          <exception class="java.lang.IndexOutOfBoundsException">
+            <message>
+              <![CDATA[Index 0 out of bounds for length 0]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+at java.base/java.util.Objects.checkIndex(Objects.java:359)
+at java.base/java.util.ArrayList.get(ArrayList.java:427)
+at eero.dogfood.eeroos.BaseTest.BaseConfig(BaseTest.java:35)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+at org.testng.TestRunner.beforeRun(TestRunner.java:627)
+at org.testng.TestRunner.run(TestRunner.java:589)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.IndexOutOfBoundsException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- C36850 -->
-        <test-method signature="C36852(java.util.HashMap)[pri:2, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:49:01 IST" name="C36852" description="  Open Captive portal using edge browser  " data-provider="getData" finished-at="2024-03-07T18:50:45 IST" duration-ms="103669" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{captiveportal url2=stage.eeroportal.com, internetCheckUrl2=https://www.google.com, Main ssid=hornbill business, captiveportal url1=dev.eeroportal.com, password=11112222, internetCheckUrl1=http://www.google.com, subnet A Business ssid=kite, subnet A iot ssid=King, Topology=CrHH, subnet B iot ssid=basket, subnet B Business ssid=lion}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C36852 -->
-        <test-method signature="C36853(java.util.HashMap)[pri:3, instance:eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection@298a5e20]" started-at="2024-03-07T18:50:45 IST" name="C36853" description="  Open Captive portal using Firefox browser  " data-provider="getData" finished-at="2024-03-07T18:52:53 IST" duration-ms="127873" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[{captiveportal url2=stage.eeroportal.com, internetCheckUrl2=https://www.google.com, Main ssid=hornbill business, captiveportal url1=dev.eeroportal.com, password=11112222, internetCheckUrl1=http://www.google.com, subnet A Business ssid=kite, subnet A iot ssid=King, Topology=CrHH, subnet B iot ssid=basket, subnet B Business ssid=lion}]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- C36853 -->
-      </class> <!-- eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection -->
+        </test-method> <!-- C28492 -->
+      </class> <!-- eero.dogfood.B2B.BusinessNetworkCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
