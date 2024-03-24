@@ -11,11 +11,11 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class pingToolsPage {
+public class PingToolsPage {
 
 	AndroidDriver driver;
 
-	public pingToolsPage(AndroidDriver driver) {
+	public PingToolsPage(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);

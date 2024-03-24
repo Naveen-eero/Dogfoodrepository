@@ -22,29 +22,29 @@ public class HomePage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/home")
-	public WebElement homeBtnElement;
-	@AndroidFindBy(id = "com.eero.android.dogfood:id/settings")
-	public WebElement settingBtn;
-	@AndroidFindBy(id = "com.eero.android.dogfood:id/discover")
-	public WebElement discoverBtnElement;
+	public WebElement HOME_TAB;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/activity")
-	public WebElement activityBtnElement;
+	public WebElement ACTIVITY_TAB;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/discover")
+	public WebElement DISCOVER_TAB;
+	@AndroidFindBy(id = "com.eero.android.dogfood:id/settings")
+	public WebElement SETTINGS_TAB;
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Open the add menu\"]")
-	public WebElement addMarkElement;
+	public WebElement ADD_ICON;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
-	public WebElement internetElement;
+	public WebElement INTERNET_ROW;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_device")
-	public WebElement addDeviceElement;
+	public WebElement ADD_DEVICE_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_profile")
-	public WebElement addProfilElement;
+	public WebElement ADD_PROFILE_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_network")
-	public WebElement addNetworkElement;
+	public WebElement ADD_NETWORK_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_eero_device")
-	public WebElement addorreplacElement;
+	public WebElement ADD_OR_REPLACE_EERO_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/invite_guest")
-	public WebElement inviteGuestElement;
+	public WebElement INVITE_GUEST_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_network_admin")
-	public WebElement addNetworkAdminElement;
+	public WebElement ADD_NETWORK_ADMIN_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/add_profile_button")
 	public WebElement profileBtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/alertTitle")
@@ -54,15 +54,13 @@ public class HomePage {
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/status_button")
 	public WebElement statusBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Residential']")
-	public WebElement residentialNetwork;
+	public WebElement RESIDENTIAL_NETWORK;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Business']")
-	public WebElement businessNetworkoptElement;
+	public WebElement BUSINESS_NETWORK;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Community']")
-	public WebElement communityElement;
+	public WebElement COMMUNITY_NETWORK;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
-	public WebElement nextBtn;
-	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Start\"]")
-	public WebElement startBtn;
+	public WebElement NEXT_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_input")
 	public WebElement businessNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/business_name_secondary_setup")
@@ -93,9 +91,9 @@ public class HomePage {
 		try {
 			startSetupElement.click();
 		} catch (Exception e) {
-			settingBtn.click();
-			settingsPage settingsPage = new settingsPage(driver);
-			settingsPage.clicksettingsmenu();
+			SETTINGS_TAB.click();
+			SettingsPage settingsPage = new SettingsPage(driver);
+			clickElement(SETTINGS_TAB);
 			settingsPage.clickAddNewNetwork();
 
 		}
@@ -124,7 +122,7 @@ public class HomePage {
 	public void clickNext() {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
-			wait.until(ExpectedConditions.visibilityOf(nextBtn)).click();
+			wait.until(ExpectedConditions.visibilityOf(NEXT_BUTTON)).click();
 		} catch (Exception e) {
 
 		}

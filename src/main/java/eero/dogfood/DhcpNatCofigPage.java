@@ -12,10 +12,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class dhcpNatConfPage {
+public class DhcpNatCofigPage {
 	AndroidDriver driver;
 
-	public dhcpNatConfPage(AndroidDriver driver) {
+	public DhcpNatCofigPage(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);

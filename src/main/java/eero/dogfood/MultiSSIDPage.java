@@ -11,10 +11,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class multiSsidPage {
+public class MultiSSIDPage {
 	AndroidDriver driver;
 
-	public multiSsidPage(AndroidDriver driver) {
+	public MultiSSIDPage(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);

@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.testng.annotations.Test;
 
 import eero.dogfood.HomePage;
-import eero.dogfood.pingToolsPage;
+import eero.dogfood.PingToolsPage;
 
 public class lanAccessSection extends BaseTest {
 
@@ -13,9 +13,9 @@ public class lanAccessSection extends BaseTest {
 
 	public void C356577() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		BaseTest baseTest = new BaseTest();
-		pingToolsPage pingToolsPage = new pingToolsPage(driver1);
+		PingToolsPage pingToolsPage = new PingToolsPage(driver1);
 		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 	}
 }

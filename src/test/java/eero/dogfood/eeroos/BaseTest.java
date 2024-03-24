@@ -22,14 +22,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 public class BaseTest {
 	public AndroidDriver driver;
 	public AndroidDriver driver1;
+	public AppiumDriverLocalService service;
 
 	@BeforeTest(alwaysRun = true)
 	public void BaseConfig() throws InterruptedException, IOException {
 		// TODO Auto-generated method stub
+		service = new AppiumServiceBuilder()
+				.withAppiumJS(new File(
+						"C:\\Users\\kunnavee\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+				.withIPAddress("127.0.0.1").usingPort(4723).build();
+		service.start();
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("udid", getDeviceIds().get(0));
@@ -38,6 +46,7 @@ public class BaseTest {
 		System.out.println("device android version:" + getAndroidVersion(getDeviceIds().get(0)));
 		capabilities.setCapability("deviceName", getDeviceName(getDeviceIds().get(0)));
 		System.out.println("device android version:" + getDeviceName(getDeviceIds().get(0)));
+
 		capabilities.setCapability("automationName", "UiAutomator2");
 		capabilities.setCapability("appPackage", "com.eero.android.dogfood");
 		capabilities.setCapability("appActivity", "com.eero.android.v3.features.splash.SplashActivity");
@@ -51,7 +60,7 @@ public class BaseTest {
 				DesiredCapabilities capabilities1 = new DesiredCapabilities();
 				capabilities1.setCapability("platformName", "Android");
 				capabilities1.setCapability("udid", getDeviceIds().get(1));
-				System.out.println("device id: " + getDeviceIds().get(0));
+				System.out.println("device id: " + getDeviceIds().get(1));
 				capabilities1.setCapability("platformversion", getAndroidVersion(getDeviceIds().get(1)));
 				System.out.println("device android version:" + getAndroidVersion(getDeviceIds().get(1)));
 				capabilities1.setCapability("deviceName", getDeviceName(getDeviceIds().get(1)));
@@ -69,7 +78,6 @@ public class BaseTest {
 				System.out.println("second device not found");
 			}
 		}
-
 	}
 
 	@SuppressWarnings("deprecation")
@@ -130,7 +138,7 @@ public class BaseTest {
 		return deviceIds;
 	}
 
-	private static String getAndroidVersion(String deviceID) throws IOException {
+	public String getAndroidVersion(String deviceID) throws IOException {
 		String adbCommand = "adb -s " + deviceID + " shell getprop ro.build.version.release";
 		Process process = Runtime.getRuntime().exec(adbCommand);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -138,8 +146,16 @@ public class BaseTest {
 
 	}
 
-	private static String getDeviceName(String deviceID) throws IOException {
+	public String getDeviceName(String deviceID) throws IOException {
 		String adbCommand = "adb -s " + deviceID + " shell getprop ro.product.model";
+		Process process = Runtime.getRuntime().exec(adbCommand);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		return reader.readLine();
+
+	}
+
+	public String getDevicemanufacturer(String deviceID) throws IOException {
+		String adbCommand = "adb -s " + deviceID + " shell getprop ro.product.brand";
 		Process process = Runtime.getRuntime().exec(adbCommand);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		return reader.readLine();

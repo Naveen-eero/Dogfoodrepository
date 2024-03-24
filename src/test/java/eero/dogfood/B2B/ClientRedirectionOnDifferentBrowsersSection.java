@@ -11,14 +11,14 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import eero.dogfood.BrowserPages;
+import eero.dogfood.BrowserScreen;
+import eero.dogfood.CaptivePortalPage;
+import eero.dogfood.ClientConnectPage;
+import eero.dogfood.EditGuestNetworkPage;
+import eero.dogfood.EditMainNetworkPage;
 import eero.dogfood.HomePage;
-import eero.dogfood.captivePortalPage;
-import eero.dogfood.clientConnectPage;
-import eero.dogfood.editGuestNetworkPage;
-import eero.dogfood.editMainNetworkPage;
-import eero.dogfood.multiSsidPage;
-import eero.dogfood.settingsPage;
+import eero.dogfood.MultiSSIDPage;
+import eero.dogfood.SettingsPage;
 import eero.dogfood.eeroos.BaseTest;
 import io.appium.java_client.android.Activity;
 
@@ -34,15 +34,15 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 
 	private void C36850(HashMap<String, String> input) throws InterruptedException, AWTException, IOException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
-		editGuestNetworkPage editGuestNetworkPage = new editGuestNetworkPage(driver);
+		EditGuestNetworkPage editGuestNetworkPage = new EditGuestNetworkPage(driver);
 		guestNameString = editGuestNetworkPage.getGuestNetworkName();
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		if (input.get("Topology").equalsIgnoreCase("CrHH")) {
 			homePage.clickElement(homePage.wirelessleafElement);
 		} else {
@@ -53,7 +53,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
-		clientConnectPage clientConnectPage = new clientConnectPage(driver);
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
 		Thread.sleep(10000);
 		String currentActivity = driver.currentActivity();
@@ -65,12 +65,12 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		}
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(new Activity("com.android.chrome", "com.google.android.apps.chrome.Main"));
-		BrowserPages chromeBrowserPages = new BrowserPages(driver);
+		BrowserScreen chromeBrowserPages = new BrowserScreen(driver);
 		chromeBrowserPages.clickElement(chromeBrowserPages.menuElement);
 		chromeBrowserPages.clickElement(chromeBrowserPages.incognitotabElement);
 		chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
 		chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("captiveportal url1"));
-		captivePortalPage captivePortalPage = new captivePortalPage(driver);
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
 		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with first URL");
@@ -98,15 +98,14 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 			throws InterruptedException, MalformedURLException, AWTException {
 		BaseTest baseTest = new BaseTest();
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.wiredLeafElement);
 		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
-
-		clientConnectPage clientConnectPage = new clientConnectPage(driver);
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
 		Thread.sleep(10000);
 		String currentActivity = driver.currentActivity();
@@ -119,12 +118,12 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(new Activity("com.microsoft.emmx", "com.microsoft.ruby.Main"));
 		Thread.sleep(10000);
-		BrowserPages edgeBrowserPages = new BrowserPages(driver);
+		BrowserScreen edgeBrowserPages = new BrowserScreen(driver);
 		edgeBrowserPages.clickElement(edgeBrowserPages.edgeBrowerTabsElement);
 		edgeBrowserPages.clickElement(edgeBrowserPages.edgeBrowserPrivateTabElement);
 		edgeBrowserPages.clickElement(edgeBrowserPages.addIncogElement);
 		edgeBrowserPages.enterUrl(edgeBrowserPages.searchBarElement, input.get("captiveportal url1"));
-		captivePortalPage captivePortalPage = new captivePortalPage(driver);
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
 		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with first URL");
@@ -149,7 +148,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	private void C36853(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.wirelessleafElement);
 		homePage.clickElement(homePage.deviceInfo);
 		String sernumString = homePage.getSerial();
@@ -157,7 +156,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
 
-		clientConnectPage clientConnectPage = new clientConnectPage(driver);
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
 		Thread.sleep(10000);
 		String currentActivity = driver.currentActivity();
@@ -170,12 +169,12 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(new Activity("org.mozilla.firefox", "org.mozilla.firefox.App"));
 		Thread.sleep(10000);
-		BrowserPages firefoxPage = new BrowserPages(driver);
+		BrowserScreen firefoxPage = new BrowserScreen(driver);
 		if (firefoxPage.firefoxIncognitoElement.isDisplayed() == true) {
 			firefoxPage.clickElement(firefoxPage.firefoxIncognitoElement);
 		}
 		firefoxPage.enterUrl(firefoxPage.firefoxSearchElement, input.get("captiveportal url1"));
-		captivePortalPage captivePortalPage = new captivePortalPage(driver);
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
 		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with first URL");
@@ -192,11 +191,11 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
 		}
 		driver.activateApp("com.eero.android.dogfood");
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickOnElement(settingsPage.wifinamePasswordElement);
-		editMainNetworkPage editMainNetworkPage = new editMainNetworkPage(driver);
+		EditMainNetworkPage editMainNetworkPage = new EditMainNetworkPage(driver);
 		String networkname = editMainNetworkPage.getNetworkName();
 		String password = editMainNetworkPage.getNetworkPassword();
 		driver.startActivity(

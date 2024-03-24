@@ -12,10 +12,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class settingsPage {
+public class SettingsPage {
 	AndroidDriver driver;
 
-	public settingsPage(AndroidDriver driver) {
+	public SettingsPage(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -23,7 +23,7 @@ public class settingsPage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/settings_menu")
-	public WebElement settingsElement;
+	public WebElement SETTINGS_ICON;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Transfer Network\"]")
 	public WebElement transferNetworkElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Switch network\"]")
@@ -60,10 +60,6 @@ public class settingsPage {
 	public WebElement WifiNetworkDetails;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Multi SSID\"]")
 	public WebElement MultiSsid;
-
-	public void clicksettingsmenu() throws InterruptedException {
-		settingsElement.click();
-	}
 
 	public void clickTransferNetwork() throws InterruptedException {
 		transferNetworkElement.click();
