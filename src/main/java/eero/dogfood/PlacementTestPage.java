@@ -12,10 +12,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class placementTestPage {
+public class PlacementTestPage {
 	AndroidDriver driver;
 
-	public placementTestPage(AndroidDriver driver) {
+	public PlacementTestPage(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);

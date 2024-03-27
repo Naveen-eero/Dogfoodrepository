@@ -11,10 +11,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class addOrReplaceEeroPage {
+public class AddOrReplaceEeroPage {
 	AndroidDriver driver;
 
-	public addOrReplaceEeroPage(AndroidDriver driver) {
+	public AddOrReplaceEeroPage(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -22,9 +22,9 @@ public class addOrReplaceEeroPage {
 	}
 
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/next_button")
-	public WebElement startNetworkCreationElement;
+	public WebElement START_NETWORK_CREATION;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/primary_button")
-	public WebElement addEeroBtnElement;
+	public WebElement ADD_EERO_BUTTON;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/text_button")
 	public WebElement replaceEeroBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.ImageButton")

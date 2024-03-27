@@ -11,12 +11,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import eero.dogfood.CaptivePortalPage;
+import eero.dogfood.ClientConnectPage;
 import eero.dogfood.HomePage;
-import eero.dogfood.captivePortalPage;
-import eero.dogfood.clientConnectPage;
-import eero.dogfood.multiSsidPage;
-import eero.dogfood.pingToolsPage;
-import eero.dogfood.settingsPage;
+import eero.dogfood.MultiSSIDPage;
+import eero.dogfood.PingToolsPage;
+import eero.dogfood.SettingsPage;
 import eero.dogfood.eeroos.BaseTest;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.Activity;
@@ -28,14 +28,14 @@ public class BusinessNetworkCases extends BaseTest {
 	// Create and enable Subnet A and configure it as Business network
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
 	private void C29192(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
@@ -51,7 +51,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 			clientConnectPage.connectToNetwork(input.get("subnet A Business ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
 			clientConnectPage.clickOnwifidetails(input.get("subnet A Business ssid"));
@@ -59,7 +59,7 @@ public class BusinessNetworkCases extends BaseTest {
 			BaseTest baseTest = new BaseTest();
 			driver.startActivity(
 					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
-			pingToolsPage pingToolsPage = new pingToolsPage(driver);
+			PingToolsPage pingToolsPage = new PingToolsPage(driver);
 			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 			pingToolsPage.clickElement(pingToolsPage.pingElement);
 			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
@@ -79,18 +79,18 @@ public class BusinessNetworkCases extends BaseTest {
 
 	// Create and enable Subnet A and configure it as IoT network
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
 
 	private void C233647(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		// click on home
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		// click on settings
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		// click on multissid
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
@@ -113,7 +113,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 			// click on business SSID enter password
 			clientConnectPage.connectToNetwork(input.get("subnet A iot ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
@@ -124,7 +124,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.startActivity(
 					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 			// Open ping tools app and check for interntet connectivity
-			pingToolsPage pingToolsPage = new pingToolsPage(driver);
+			PingToolsPage pingToolsPage = new PingToolsPage(driver);
 			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 			pingToolsPage.clickElement(pingToolsPage.pingElement);
 			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
@@ -143,18 +143,18 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
+	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
 
 	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		// click on home
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		// click on settings
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		// click on multissid
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
@@ -183,7 +183,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 			// click on business SSID enter password
 			clientConnectPage.connectToNetwork(input.get("subnet B Business ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
@@ -194,7 +194,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.startActivity(
 					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 			// Open ping tools app and check for interntet connectivity
-			pingToolsPage pingToolsPage = new pingToolsPage(driver);
+			PingToolsPage pingToolsPage = new PingToolsPage(driver);
 			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 			pingToolsPage.clickElement(pingToolsPage.pingElement);
 			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
@@ -215,18 +215,15 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
+	@Test(enabled = true, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
 
 	private void C23963(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
-		// click on home
-		homePage.clickElement(homePage.homeBtnElement);
-		// click on settings
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
-		// click on multissid
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
 			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
 			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
@@ -256,7 +253,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
-			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 			// click on business SSID enter password
 			clientConnectPage.connectToNetwork(input.get("subnet B iot ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
@@ -267,7 +264,7 @@ public class BusinessNetworkCases extends BaseTest {
 			driver.startActivity(
 					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 			// Open ping tools app and check for interntet connectivity
-			pingToolsPage pingToolsPage = new pingToolsPage(driver);
+			PingToolsPage pingToolsPage = new PingToolsPage(driver);
 			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 			pingToolsPage.clickElement(pingToolsPage.pingElement);
 			pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
@@ -290,14 +287,14 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "Captive Portal - Enable/Disable Captive Portal", priority = 5)
+	@Test(enabled = true, description = "Captive Portal - Enable/Disable Captive Portal", priority = 5)
 	private void C37224() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
 		multiSsidPage.clickElement(multiSsidPage.enableCaptivePortalElement);
@@ -306,9 +303,9 @@ public class BusinessNetworkCases extends BaseTest {
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
-		clientConnectPage clientConnectPage = new clientConnectPage(driver);
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 		clientConnectPage.connectToNetwork(guestwifi);
-		captivePortalPage captivePortalPage = new captivePortalPage(driver);
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(20000);
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -322,8 +319,8 @@ public class BusinessNetworkCases extends BaseTest {
 		}
 		driver.activateApp("com.eero.android.dogfood");
 		Thread.sleep(10000);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
 		settingsPage.clickElement(settingsPage.MultiSsid);
 		multiSsidPage.clickGuest();
 		multiSsidPage.clickElement(multiSsidPage.enableCaptivePortalElement);
@@ -355,7 +352,7 @@ public class BusinessNetworkCases extends BaseTest {
 				captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
 				captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
 				Thread.sleep(10000);
-				while (homePage.homeBtnElement.isDisplayed()) {
+				while (homePage.HOME_TAB.isDisplayed()) {
 					driver.pressKey(new KeyEvent(AndroidKey.BACK));
 				}
 			} catch (Exception e1) {
@@ -372,11 +369,11 @@ public class BusinessNetworkCases extends BaseTest {
 
 	private void C28492() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickElement(settingsPage.MultiSsid);
-		multiSsidPage multiSsidPage = new multiSsidPage(driver);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestnameString = multiSsidPage.getWifiName();
 		multiSsidPage.clickElement(multiSsidPage.toggleElement);
@@ -404,7 +401,7 @@ public class BusinessNetworkCases extends BaseTest {
 		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
 		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
-		return new Object[][] { { data.get(1) } };
+		return new Object[][] { { data.get(0) } };
 	}
 
 }

@@ -19,7 +19,7 @@ public class NetworkSettingsPage {
 	}
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"DHCP & NAT\"]")
-	private WebElement DHCPNATBtnElement;
+	private WebElement DHCP_NAT_ELEMENT;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"WAN IP address\"]/following-sibling::android.widget.TextView")
 	private WebElement wanIpAddressElement;
@@ -94,7 +94,7 @@ public class NetworkSettingsPage {
 	}
 
 	public void clickDhcpNat() throws InterruptedException {
-		DHCPNATBtnElement.click();
+		DHCP_NAT_ELEMENT.click();
 	}
 
 	public void restartNetwork() throws InterruptedException {

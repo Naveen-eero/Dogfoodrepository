@@ -9,16 +9,17 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import eero.dogfood.AddOrReplaceEeroPage;
+import eero.dogfood.ClientConnectPage;
+import eero.dogfood.DeleteNetworkPage;
+import eero.dogfood.DhcpNatCofigPage;
+import eero.dogfood.EditGuestNetworkPage;
 import eero.dogfood.HomePage;
+import eero.dogfood.NetworkCreationScreen;
 import eero.dogfood.NetworkSettingsPage;
-import eero.dogfood.addOrReplaceEeroPage;
-import eero.dogfood.clientConnectPage;
-import eero.dogfood.deleteNetworkPage;
-import eero.dogfood.dhcpNatConfPage;
-import eero.dogfood.editGuestNetworkPage;
-import eero.dogfood.pingToolsPage;
-import eero.dogfood.placementTestPage;
-import eero.dogfood.settingsPage;
+import eero.dogfood.PingToolsPage;
+import eero.dogfood.PlacementTestPage;
+import eero.dogfood.SettingsPage;
 import io.appium.java_client.android.Activity;
 
 public class CreateNetworkCases extends BaseTest {
@@ -28,14 +29,13 @@ public class CreateNetworkCases extends BaseTest {
 	void createNetwork(HashMap<String, String> input) throws InterruptedException {
 		// TODO Auto-generated method stub
 		HomePage homePage = new HomePage(driver);
-		addOrReplaceEeroPage addorreplacepage = new addOrReplaceEeroPage(driver);
+		AddOrReplaceEeroPage addorreplacepage = new AddOrReplaceEeroPage(driver);
 		homePage.clickStartSetup();
-		homePage.clickElement(homePage.startBtn);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		homePage.clickNext();
-		placementTestPage placementtest = new placementTestPage(driver);
+		PlacementTestPage placementtest = new PlacementTestPage(driver);
 		placementtest.selectLoc(input.get("Gateway place"));
 		addorreplacepage.enterNetworkName(input.get("Main ssid"));
 		addorreplacepage.setNetworkPassword(input.get("password"));
@@ -54,13 +54,13 @@ public class CreateNetworkCases extends BaseTest {
 	@Test(enabled = false, priority = 4, description = "Delete network")
 	void DeleteNetwork() throws InterruptedException {
 		HomePage homepage = new HomePage(driver);
-		homepage.clickElement(homepage.homeBtnElement);
-		settingsPage settingspage = new settingsPage(driver);
+		homepage.clickElement(homepage.HOME_TAB);
+		SettingsPage settingspage = new SettingsPage(driver);
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
-		homepage.clickElement(homepage.settingBtn);
+		homepage.clickElement(homepage.SETTINGS_TAB);
 		settingspage.clickNetworkSettings();
 		networkSettingsPage.deleteNetwork();
-		deleteNetworkPage deletenetworkpage = new deleteNetworkPage(driver);
+		DeleteNetworkPage deletenetworkpage = new DeleteNetworkPage(driver);
 		deletenetworkpage.keepsubscription();
 		deletenetworkpage.confirmDelete();
 		deletenetworkpage.clickElement(deletenetworkpage.deleteConfirmationBtn);
@@ -73,11 +73,11 @@ public class CreateNetworkCases extends BaseTest {
 
 	void TurnOnGuest() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingspage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingspage = new SettingsPage(driver);
 		settingspage.clickGuestconf();
-		editGuestNetworkPage editguestpage = new editGuestNetworkPage(driver);
+		EditGuestNetworkPage editguestpage = new EditGuestNetworkPage(driver);
 		editguestpage.clickenableGuestToggle();
 		String guestname = editguestpage.getGuestNetworkName();
 		String guestpassword = editguestpage.getGuestPassword();
@@ -87,7 +87,7 @@ public class CreateNetworkCases extends BaseTest {
 		baseTest.configureAppTosettings();
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
-		clientConnectPage clientconnectpage = new clientConnectPage(driver);
+		ClientConnectPage clientconnectpage = new ClientConnectPage(driver);
 		clientconnectpage.clickNetwork();
 		clientconnectpage.clickInternet();
 		clientconnectpage.connectToNetwork(guestname);
@@ -97,7 +97,7 @@ public class CreateNetworkCases extends BaseTest {
 		driver.startActivity(
 				new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 		// Open ping tools app and check for interntet connectivity
-		pingToolsPage pingToolsPage = new pingToolsPage(driver);
+		PingToolsPage pingToolsPage = new PingToolsPage(driver);
 		pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 		pingToolsPage.clickElement(pingToolsPage.pingElement);
 		pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
@@ -114,25 +114,25 @@ public class CreateNetworkCases extends BaseTest {
 	@Test(enabled = false, priority = 4, dataProvider = "getData", description = "Set DHCP to custom range ")
 	public void C2691(HashMap<String, String> input) throws InterruptedException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.homeBtnElement);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingspage = new settingsPage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingspage = new SettingsPage(driver);
 		settingspage.clickNetworkSettings();
 		NetworkSettingsPage networksettingspage = new NetworkSettingsPage(driver);
 		networksettingspage.clickDhcpNat();
-		dhcpNatConfPage dhcpnatconf = new dhcpNatConfPage(driver);
+		DhcpNatCofigPage dhcpnatconf = new DhcpNatCofigPage(driver);
 		dhcpnatconf.clickElement(dhcpnatconf.manualIpOptionElement);
 		dhcpnatconf.selectManulaIpaddr(input.get("Manual ip"));
 		dhcpnatconf.clickElement(dhcpnatconf.savebtnElement);
 		dhcpnatconf.clickElement(dhcpnatconf.rebootBtnElement);
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		String internetstat = homePage.getInternetStatus();
 		if (internetstat.equals("Online")) {
 			System.out.println("Network is Online");
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(
 					new Activity("com.android.settings", "com.android.settings.homepage.SettingsHomepageActivity"));
-			clientConnectPage clientConnectPage = new clientConnectPage(driver);
+			ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
 			clientConnectPage.clickNetwork();
 			clientConnectPage.clickInternet();
 			clientConnectPage.connectToNetwork(input.get("Main ssid"));
@@ -143,7 +143,7 @@ public class CreateNetworkCases extends BaseTest {
 				driver.startActivity(
 						new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
 				// Open ping tools app and check for interntet connectivity
-				pingToolsPage pingToolsPage = new pingToolsPage(driver);
+				PingToolsPage pingToolsPage = new PingToolsPage(driver);
 				pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 				pingToolsPage.clickElement(pingToolsPage.pingElement);
 				pingToolsPage.clickElement(pingToolsPage.pingBtnElement);
@@ -167,8 +167,9 @@ public class CreateNetworkCases extends BaseTest {
 	public void createStaticNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
-		homePage.clickElement(homePage.startBtn);
-		addOrReplaceEeroPage addorreplacepage = new addOrReplaceEeroPage(driver);
+		NetworkCreationScreen networkCreationScreen = new NetworkCreationScreen(driver);
+		networkCreationScreen.START_BUTTON.click();
+		AddOrReplaceEeroPage addorreplacepage = new AddOrReplaceEeroPage(driver);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
@@ -178,7 +179,7 @@ public class CreateNetworkCases extends BaseTest {
 		addorreplacepage.enterStaticIpdetails(input.get("static ip"), input.get("Subnet"), input.get("Router ip"));
 		addorreplacepage.clickElement(addorreplacepage.applyBtn);
 		addorreplacepage.clickElement(addorreplacepage.saveBtn);
-		placementTestPage placementTestPage = new placementTestPage(driver);
+		PlacementTestPage placementTestPage = new PlacementTestPage(driver);
 		placementTestPage.selectLoc(input.get("Gateway place"));
 		addorreplacepage.enterNetworkName(input.get("Main ssid"));
 		addorreplacepage.setNetworkPassword(input.get("password"));
@@ -198,13 +199,13 @@ public class CreateNetworkCases extends BaseTest {
 	@Test(enabled = false, priority = 2, description = "Reboot static network")
 	public void C2788() throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
-		homePage.clickElement(homePage.settingBtn);
-		settingsPage settingsPage = new settingsPage(driver);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickNetworkSettings();
 		NetworkSettingsPage networkSettingsPage = new NetworkSettingsPage(driver);
 		networkSettingsPage.restartNetwork();
 		networkSettingsPage.clickRestartBtn();
-		homePage.clickElement(homePage.homeBtnElement);
+		homePage.clickElement(homePage.HOME_TAB);
 		if (homePage.getInternetStatus().equals("Online")) {
 			System.out.println("Network rebooted successfully and online");
 		} else {
@@ -215,8 +216,10 @@ public class CreateNetworkCases extends BaseTest {
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		List<HashMap<String, String>> data = getJsondata(
-				"C:\\Users\\kunnavee\\Desktop\\Eero Automation\\EeroDogfoodApp\\EeroDogfoodApp\\src\\main\\java\\utilities\\dogfood.json");
+		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
+
+		List<HashMap<String, String>> data = getJsondata(filepath);
+		// if need to run more than once add parameters to this and add more details
 		return new Object[][] { { data.get(0) } };
 	}
 

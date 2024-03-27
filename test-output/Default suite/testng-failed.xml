@@ -3,14 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection">
+      <class name="eero.dogfood.B2B.BusinessNetworkCases">
         <methods>
+          <include name="C235445" invocation-numbers="0"/>
+          <include name="C29192" invocation-numbers="0"/>
           <include name="BaseConfig"/>
-          <include name="C36852" invocation-numbers="0"/>
-          <include name="C36853" invocation-numbers="0"/>
-          <include name="C36850" invocation-numbers="0"/>
+          <include name="C23963" invocation-numbers="0"/>
+          <include name="C28492"/>
+          <include name="C233647" invocation-numbers="0"/>
+          <include name="C37224"/>
         </methods>
-      </class> <!-- eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection -->
+      </class> <!-- eero.dogfood.B2B.BusinessNetworkCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

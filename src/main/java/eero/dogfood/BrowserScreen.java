@@ -13,10 +13,10 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
-public class BrowserPages {
+public class BrowserScreen {
 	AndroidDriver driver;
 
-	public BrowserPages(AndroidDriver driver) {
+	public BrowserScreen(AndroidDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
