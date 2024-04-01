@@ -1,116 +1,222 @@
-package eero.dogfood;
 
+package eero.dogfood.B2B;
+
+import java.awt.AWTException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import eero.dogfood.BrowserScreen;
+import eero.dogfood.CaptivePortalPage;
+import eero.dogfood.ClientConnectPage;
+import eero.dogfood.EditGuestNetworkPage;
+import eero.dogfood.EditMainNetworkPage;
+import eero.dogfood.HomePage;
+import eero.dogfood.MultiSSIDPage;
+import eero.dogfood.SettingsPage;
+import eero.dogfood.eeroos.BaseTest;
+import io.appium.java_client.android.Activity;
 
-public class ClientConnectPage {
-	AndroidDriver driver;
+//Preconditions
+//Network with 3 nodes gateway , wiredleaf and wirless leaf
+//Network is added with add_serial_to_ssid feature flag
 
-	public ClientConnectPage(AndroidDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
-		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-	}
+public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
+	String guestNameString = "meme Guest";
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Network & internet\"]")
-	public WebElement netWorkElement;
+	@SuppressWarnings("deprecation")
+	@Test(enabled = false, description = " Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
-	public WebElement interElement;
-
-	@AndroidFindBy(id = "com.android.settings:id/password")
-	public WebElement passwordElement;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IP address\"]/following-sibling::android.widget.TextView")
-	public WebElement ipaddressofclient;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"IOT network\"]")
-	public WebElement IOTSSIDsubA;
-
-	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Disconnect\"]")
-	public WebElement disconnectElement;
-	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Connect\"]")
-	public WebElement connectelement;
-
-	public void clickNetwork() throws InterruptedException {
-		try {
-			netWorkElement.click();
-		} catch (Exception e) {
-			// TODO: handle exception
+	private void C36850(HashMap<String, String> input) throws InterruptedException, AWTException, IOException {
+		HomePage homePage = new HomePage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
+		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
+		multiSsidPage.clickGuest();
+		EditGuestNetworkPage editGuestNetworkPage = new EditGuestNetworkPage(driver);
+		guestNameString = editGuestNetworkPage.getGuestNetworkName();
+		homePage.clickElement(homePage.HOME_TAB);
+		if (homePage.GATEWAY_TEXT.getText().equalsIgnoreCase("Gateway eero PoE Gateway")) {
+			homePage.clickElement(homePage.WIRELESS_LEAF);
+		} else {
+			homePage.clickElement(homePage.gatewayElement);
 		}
-	}
-
-	public void clickInternet() {
-		try {
-			interElement.click();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-	}
-
-	public void connectToNetwork(String networkName) throws InterruptedException {
-		Thread.sleep(20000);
-		driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ networkName + "\").instance(0))"))
-				.click();
-	}
-
-	public void enterPassword(String password) throws InterruptedException {
-		try {
-			passwordElement.sendKeys(password);
-			driver.pressKey(new KeyEvent(AndroidKey.ENTER));
-		} catch (Exception e) {
-			// TODO: handle exception
-
-		}
-	}
-
-	public String getClientIp() throws InterruptedException {
-
-		driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"Ip address\").instance(0))"));
-		String ipaddr = ipaddressofclient.getText();
-		System.out.println("Ip Address of client device is " + ipaddr);
-		return ipaddr;
-	}
-
-	public void clickOnwifidetails(String networkName) throws InterruptedException {
-		// TODO Auto-generated method stub
+		homePage.clickElement(homePage.DEVICE_INFO);
+		String sernumString = homePage.getSerial();
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
+		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
 		Thread.sleep(10000);
-		String xpath_locator = String.format("//android.widget.ImageView[@content-desc=" + "\"" + "" + networkName
-				+ " network details" + "\"or @content-desc=\"Settings\"]");
-		driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ networkName + "\").instance(0))"));
-		WebElement wifidetailsElement = driver.findElement(By.xpath(xpath_locator));
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(wifidetailsElement)).click();
-	}
-
-	public void connectToNetworkwithserial(String networkName, String serialNum) throws InterruptedException {
+		String currentActivity = driver.currentActivity();
+		String[] activityParts = currentActivity.split("\\.");
+		String appName = activityParts[activityParts.length - 1];
+		System.out.println("Current running app name: " + appName);
+		if (appName == "CaptivePortalLoginActivity") {
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+		}
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.startActivity(new Activity("com.android.chrome", "com.google.android.apps.chrome.Main"));
+		BrowserScreen chromeBrowserPages = new BrowserScreen(driver);
+		chromeBrowserPages.clickElement(chromeBrowserPages.menuElement);
+		chromeBrowserPages.clickElement(chromeBrowserPages.incognitotabElement);
+		chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
+		chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("captiveportal url1"));
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
+		Thread.sleep(10000);
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
+			System.out.println(" client redirected to captive portal with first URL");
+		} else {
+			System.out.println("client didn't redirected to captive portal with first URL,Testcase failed");
+		}
+		chromeBrowserPages.clickElement(chromeBrowserPages.menuElement);
+		chromeBrowserPages.clickElement(chromeBrowserPages.incognitotabElement);
+		chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
+		chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("captiveportal url2"));
 		Thread.sleep(20000);
-		driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
-						+ networkName + " - " + serialNum + "\").instance(0))"))
-				.click();
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
+			System.out.println(" client redirected to captive portal with second URL,testcase pass");
+		} else {
+			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
+		}
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.activateApp("com.eero.android.dogfood");
 	}
 
-	public void clickElement(WebElement element) {
-		element.click();
+	@SuppressWarnings("deprecation")
+	@Test(enabled = false, description = " Open Captive portal using edge browser  ", priority = 2, dataProvider = "getData", suiteName = "captive portal")
+
+	private void C36852(HashMap<String, String> input)
+			throws InterruptedException, MalformedURLException, AWTException {
+		HomePage homePage = new HomePage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.wiredLeafElement);
+		homePage.clickElement(homePage.DEVICE_INFO);
+		String sernumString = homePage.getSerial();
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
+		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
+		Thread.sleep(10000);
+		String currentActivity = driver.currentActivity();
+		String[] activityParts = currentActivity.split("\\.");
+		String appName = activityParts[activityParts.length - 1];
+		System.out.println("Current running app name: " + appName);
+		if (appName == "CaptivePortalLoginActivity") {
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+		}
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.startActivity(new Activity("com.microsoft.emmx", "com.microsoft.ruby.Main"));
+		Thread.sleep(10000);
+		BrowserScreen edgeBrowserPages = new BrowserScreen(driver);
+		edgeBrowserPages.clickElement(edgeBrowserPages.edgeBrowerTabsElement);
+		edgeBrowserPages.clickElement(edgeBrowserPages.edgeBrowserPrivateTabElement);
+		edgeBrowserPages.clickElement(edgeBrowserPages.addIncogElement);
+		edgeBrowserPages.enterUrl(edgeBrowserPages.searchBarElement, input.get("captiveportal url1"));
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
+		Thread.sleep(10000);
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
+			System.out.println(" client redirected to captive portal with first URL");
+		} else {
+			System.out.println("client didn't redirected to captive portal with first URL,Testcase failed");
+		}
+		edgeBrowserPages.clickElement(edgeBrowserPages.edgeAddNewTabElement);
+		edgeBrowserPages.enterUrl(edgeBrowserPages.searchBarElement, input.get("captiveportal url2"));
+		Thread.sleep(20000);
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
+			System.out.println(" client redirected to captive portal with second URL,testcase pass");
+		} else {
+			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
+		}
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.activateApp("com.eero.android.dogfood");
+	}
+
+	@SuppressWarnings("deprecation")
+	@Test(enabled = true, description = "  Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal", invocationCount = 3)
+
+	private void C36853(HashMap<String, String> input)
+			throws InterruptedException, MalformedURLException, AWTException {
+		HomePage homePage = new HomePage(driver);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.WIRELESS_LEAF);
+		homePage.clickElement(homePage.DEVICE_INFO);
+		String sernumString = homePage.getSerial();
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
+
+		ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
+		clientConnectPage.connectToNetworkwithserial(guestNameString, sernumString);
+		Thread.sleep(10000);
+		String currentActivity = driver.currentActivity();
+		String[] activityParts = currentActivity.split("\\.");
+		String appName = activityParts[activityParts.length - 1];
+		System.out.println("Current running app name: " + appName);
+		if (appName == "CaptivePortalLoginActivity") {
+			driver.runAppInBackground(Duration.ofSeconds(-1));
+		}
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.startActivity(new Activity("org.mozilla.firefox", "org.mozilla.firefox.App"));
+		Thread.sleep(10000);
+		BrowserScreen firefoxPage = new BrowserScreen(driver);
+		if (driver.getPageSource().contains("Unable to connect")) {
+			firefoxPage.clickElement(firefoxPage.firefoxNewTabElement);
+			firefoxPage.clickElement(firefoxPage.PRIVATE_TAB);
+			firefoxPage.clickElement(firefoxPage.firefoxaddnewIncogElement);
+		} else if (driver.getPageSource().contains("Disable private browsing")) {
+
+		}
+		firefoxPage.enterUrl(firefoxPage.firefoxSearchElement, input.get("captiveportal url1"));
+		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
+		Thread.sleep(10000);
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
+			System.out.println(" client redirected to captive portal with first URL");
+		} else {
+			System.out.println("client didn't redirected to captive portal with first URL,Testcase failed");
+		}
+		firefoxPage.clickElement(firefoxPage.firefoxNewTabElement);
+		firefoxPage.clickElement(firefoxPage.firefoxaddnewIncogElement);
+		firefoxPage.enterUrl(firefoxPage.firefoxSearchElement, input.get("captiveportal url2"));
+		Thread.sleep(10000);
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
+			System.out.println(" client redirected to captive portal with second URL,testcase pass");
+		} else {
+			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
+		}
+		driver.activateApp("com.eero.android.dogfood");
+		Thread.sleep(10000);
+		homePage.clickElement(homePage.HOME_TAB);
+		homePage.clickElement(homePage.SETTINGS_TAB);
+		SettingsPage settingsPage = new SettingsPage(driver);
+		settingsPage.clickOnElement(settingsPage.wifinamePasswordElement);
+		EditMainNetworkPage editMainNetworkPage = new EditMainNetworkPage(driver);
+		String networkname = editMainNetworkPage.getNetworkName();
+		String password = editMainNetworkPage.getNetworkPassword();
+		driver.startActivity(
+				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
+		clientConnectPage.connectToNetworkwithserial(networkname, sernumString);
+		clientConnectPage.enterPassword(password);
+		driver.runAppInBackground(Duration.ofSeconds(-1));
+		driver.activateApp("com.eero.android.dogfood");
+
+	}
+
+	@DataProvider
+	public Object[][] getData() throws IOException {
+		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
+		List<HashMap<String, String>> data = getJsondata(filepath);
+		// if need to run more than once add parameters to this and add more details
+		return new Object[][] { { data.get(0) } };
 	}
 
 }
