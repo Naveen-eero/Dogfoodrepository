@@ -68,6 +68,9 @@ public class BrowserScreen {
 	@AndroidFindBy(xpath = "//android.widget.Image[@text=\"Google\"]")
 	public WebElement googlePageElement;
 
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc=\"Private tabs\"]")
+	public WebElement PRIVATE_TAB;
+
 	public void clickElement(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.visibilityOf(element)).click();
