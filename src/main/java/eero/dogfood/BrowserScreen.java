@@ -52,6 +52,8 @@ public class BrowserScreen {
 
 	@AndroidFindBy(id = "org.mozilla.firefox:id/privateBrowsingButton")
 	public WebElement firefoxIncognitoElement;
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@content-desc=\"Private tabs\"]")
+	public WebElement PRIVATE_TAB;
 
 	@AndroidFindBy(id = "org.mozilla.firefox:id/counter_box")
 	public WebElement firefoxNewTabElement;

@@ -30,6 +30,8 @@ public class PingToolsPage {
 	public WebElement pingBtnElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Unknown Host google.com\"]")
 	public WebElement errorMsgElement;
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"From 192.168.16.1\"]")
+	public WebElement PING_FROM_GATEWAY;
 
 	public void clickElement(WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -39,9 +41,15 @@ public class PingToolsPage {
 
 	public String internetStatuscheck() {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-			wait.until(ExpectedConditions.visibilityOf(errorMsgElement)).click();
-			System.out.println("Device is not online");
+			if (PING_FROM_GATEWAY.isDisplayed()) {
+
+				System.out.println("Device is not online");
+
+				return "device offline";
+			} else {
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+				wait.until(ExpectedConditions.visibilityOf(errorMsgElement));
+			}
 			return "device offline";
 		} catch (Exception e) {
 			System.out.println("Device is online");

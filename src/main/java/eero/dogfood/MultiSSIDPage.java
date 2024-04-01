@@ -30,9 +30,9 @@ public class MultiSSIDPage {
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='0']")
 	public WebElement guestNetworkElement;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='1']")
-	public WebElement subnetAElement;
+	public WebElement SUBNET_A;
 	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView//android.widget.FrameLayout[@index='2']")
-	public WebElement subnetBElement;
+	public WebElement SUBNET_B;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_name")
 	public WebElement wifiNameElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/wifi_network_password")
@@ -46,9 +46,9 @@ public class MultiSSIDPage {
 	@AndroidFindBy(id = "//android.widget.Button[@text=\\\"CANCEL\\\"]")
 	public WebElement cancelDisablElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/delete_wifi")
-	public WebElement deleteWifiElement;
+	public WebElement DELETE_BUTTON;
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"DELETE\"]")
-	public WebElement confirmDelete;
+	public WebElement DELETE_CONFIRM_BUTON;
 	@AndroidFindBy(xpath = "//*[@text=\"Enable captive portal\"]")
 	public WebElement enableCaptivePortalElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Bandwidth limit\"]")
@@ -101,11 +101,6 @@ public class MultiSSIDPage {
 		// TODO Auto-generated method stub
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.visibilityOf(guestNetworkElement)).click();
-	}
-
-	public void clickDelete() throws InterruptedException {
-		confirmDelete.click();
-		Thread.sleep(30000);
 	}
 
 	public String getWifiName() {

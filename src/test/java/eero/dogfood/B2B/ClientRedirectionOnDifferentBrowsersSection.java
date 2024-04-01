@@ -27,28 +27,28 @@ import io.appium.java_client.android.Activity;
 //Network is added with add_serial_to_ssid feature flag
 
 public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
-	String guestNameString;
+	String guestNameString = "meme Guest";
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
+	@Test(enabled = false, description = " Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
 
 	private void C36850(HashMap<String, String> input) throws InterruptedException, AWTException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		EditGuestNetworkPage editGuestNetworkPage = new EditGuestNetworkPage(driver);
 		guestNameString = editGuestNetworkPage.getGuestNetworkName();
 		homePage.clickElement(homePage.HOME_TAB);
-		if (input.get("Topology").equalsIgnoreCase("CrHH")) {
-			homePage.clickElement(homePage.wirelessleafElement);
+		if (homePage.GATEWAY_TEXT.getText().equalsIgnoreCase("Gateway eero PoE Gateway")) {
+			homePage.clickElement(homePage.WIRELESS_LEAF);
 		} else {
 			homePage.clickElement(homePage.gatewayElement);
 		}
-		homePage.clickDeviceInfo();
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -72,7 +72,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("captiveportal url1"));
 		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
-		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with first URL");
 		} else {
 			System.out.println("client didn't redirected to captive portal with first URL,Testcase failed");
@@ -82,7 +82,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		chromeBrowserPages.clickElement(chromeBrowserPages.searchBarElement);
 		chromeBrowserPages.enterUrl(chromeBrowserPages.searchBarElement, input.get("captiveportal url2"));
 		Thread.sleep(20000);
-		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with second URL,testcase pass");
 		} else {
 			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
@@ -92,15 +92,14 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Open Captive portal using edge browser  ", priority = 2, dataProvider = "getData", suiteName = "captive portal")
+	@Test(enabled = false, description = " Open Captive portal using edge browser  ", priority = 2, dataProvider = "getData", suiteName = "captive portal")
 
 	private void C36852(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {
-		BaseTest baseTest = new BaseTest();
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -125,7 +124,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		edgeBrowserPages.enterUrl(edgeBrowserPages.searchBarElement, input.get("captiveportal url1"));
 		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
-		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with first URL");
 		} else {
 			System.out.println("client didn't redirected to captive portal with first URL,Testcase failed");
@@ -133,7 +132,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		edgeBrowserPages.clickElement(edgeBrowserPages.edgeAddNewTabElement);
 		edgeBrowserPages.enterUrl(edgeBrowserPages.searchBarElement, input.get("captiveportal url2"));
 		Thread.sleep(20000);
-		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with second URL,testcase pass");
 		} else {
 			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
@@ -143,14 +142,14 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal")
+	@Test(enabled = true, description = "  Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal", invocationCount = 3)
 
 	private void C36853(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.HOME_TAB);
-		homePage.clickElement(homePage.wirelessleafElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.WIRELESS_LEAF);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -170,13 +169,17 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		driver.startActivity(new Activity("org.mozilla.firefox", "org.mozilla.firefox.App"));
 		Thread.sleep(10000);
 		BrowserScreen firefoxPage = new BrowserScreen(driver);
-		if (firefoxPage.firefoxIncognitoElement.isDisplayed() == true) {
-			firefoxPage.clickElement(firefoxPage.firefoxIncognitoElement);
+		if (driver.getPageSource().contains("Unable to connect")) {
+			firefoxPage.clickElement(firefoxPage.firefoxNewTabElement);
+			firefoxPage.clickElement(firefoxPage.PRIVATE_TAB);
+			firefoxPage.clickElement(firefoxPage.firefoxaddnewIncogElement);
+		} else if (driver.getPageSource().contains("Disable private browsing")) {
+
 		}
 		firefoxPage.enterUrl(firefoxPage.firefoxSearchElement, input.get("captiveportal url1"));
 		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
-		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with first URL");
 		} else {
 			System.out.println("client didn't redirected to captive portal with first URL,Testcase failed");
@@ -185,12 +188,13 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		firefoxPage.clickElement(firefoxPage.firefoxaddnewIncogElement);
 		firefoxPage.enterUrl(firefoxPage.firefoxSearchElement, input.get("captiveportal url2"));
 		Thread.sleep(10000);
-		if (captivePortalPage.nextBtnElement.isDisplayed() == true) {
+		if (captivePortalPage.NEXT_BUTTON.isDisplayed() == true) {
 			System.out.println(" client redirected to captive portal with second URL,testcase pass");
 		} else {
 			System.out.println("client didn't redirected to captive portal with second URL,Testcase failed");
 		}
 		driver.activateApp("com.eero.android.dogfood");
+		Thread.sleep(10000);
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);

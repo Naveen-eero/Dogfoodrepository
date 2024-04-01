@@ -34,7 +34,7 @@ public class SettingsPage {
 	public WebElement cancelbtnElement;
 	@AndroidFindBy(id = "com.eero.android.dogfood:id/account_item_row_container")
 	public WebElement accountSettingsElement;
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi name & password\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi name & password\" or  @text=\"Wifi network details\"]")
 	public WebElement wifinamePasswordElement;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Guest Network\" or  @text=\"Guest network\"]")
 	public WebElement guestNetworkElement;
@@ -59,7 +59,7 @@ public class SettingsPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi network details\"]")
 	public WebElement WifiNetworkDetails;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Multi SSID\"]")
-	public WebElement MultiSsid;
+	public WebElement MULTI_SSID_TAB;
 
 	public void clickTransferNetwork() throws InterruptedException {
 		transferNetworkElement.click();
@@ -137,7 +137,9 @@ public class SettingsPage {
 	}
 
 	public void clickOnElement(WebElement element) {
-		element.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOf(element)).click();
+
 	}
 
 	public void clickDebugMenu() {

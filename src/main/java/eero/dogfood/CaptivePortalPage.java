@@ -24,13 +24,13 @@ public class CaptivePortalPage {
 	public WebElement captiveportalnetworkElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
-	public WebElement nextBtnElement;
+	public WebElement NEXT_BUTTON;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Connect\"]")
-	public WebElement connectBtnElement;
+	public WebElement CONNECT_BUTTON;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"You're connected\"]")
-	public WebElement guestNetworkSuccessElement;
+	public WebElement SUCCESS_ELEMENT;
 
 	@AndroidFindBy(id = "com.android.chrome:id/toolbar_hairline")
 	public WebElement incognitoElement;
@@ -43,7 +43,7 @@ public class CaptivePortalPage {
 
 	public void guestSuccess() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOf(guestNetworkSuccessElement));
+		wait.until(ExpectedConditions.visibilityOf(SUCCESS_ELEMENT));
 
 	}
 

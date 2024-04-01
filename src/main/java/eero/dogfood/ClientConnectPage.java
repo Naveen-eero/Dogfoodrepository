@@ -30,9 +30,6 @@ public class ClientConnectPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
 	public WebElement interElement;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Naveen\"]")
-	public WebElement networkNameElement;
-
 	@AndroidFindBy(id = "com.android.settings:id/password")
 	public WebElement passwordElement;
 

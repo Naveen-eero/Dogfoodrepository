@@ -34,19 +34,19 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
-		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
-			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
-			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
-			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+		while (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A)) {
+			multiSsidPage.clickElement(multiSsidPage.SUBNET_A);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_BUTTON);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_CONFIRM_BUTON);
 		}
 		multiSsidPage.clickaddWifi();
 		multiSsidPage.addBusinessSSID();
 		multiSsidPage.enterssidName(input.get("subnet A Business ssid"));
 		multiSsidPage.enterssidpassword(input.get("password"));
 		multiSsidPage.clickSave();
-		if (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement) == true) {
+		if (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A) == true) {
 			System.out.println("Business network created successfully on subnet A");
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
@@ -89,41 +89,32 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
 		// click on multissid
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
-		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
-			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
-			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
-			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+		while (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A)) {
+			multiSsidPage.clickElement(multiSsidPage.SUBNET_A);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_BUTTON);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_CONFIRM_BUTON);
 			Thread.sleep(35000);
 		}
 		multiSsidPage.clickaddWifi();
-		// click on add business ssid
 		multiSsidPage.addIOTSSID();
-		// Enter iot SSID name and password
 		multiSsidPage.enterssidName(input.get("subnet A iot ssid"));
 		multiSsidPage.enterssidpassword(input.get("password"));
-		// click on save
 		multiSsidPage.clickSave();
-		// Check whether Business SSID is created in APP
-		if (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement) == true) {
-			// If Network created in App goto android settings and connect client to
-			// business ssid
+		if (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A) == true) {
 			System.out.println("iot network created successfully on subnet A");
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
 					"com.android.settings.Settings$NetworkProviderSettingsActivity"));
 			ClientConnectPage clientConnectPage = new ClientConnectPage(driver);
-			// click on business SSID enter password
 			clientConnectPage.connectToNetwork(input.get("subnet A iot ssid"));
 			clientConnectPage.enterPassword(input.get("password"));
 			clientConnectPage.clickOnwifidetails(input.get("subnet A iot ssid"));
-			// Check for the IP connected to business network
 			clientConnectPage.getClientIp();
 			BaseTest baseTest = new BaseTest();
 			driver.startActivity(
 					new Activity("ua.com.streamsoft.pingtools", "ua.com.streamsoft.pingtools.MainActivity_AA"));
-			// Open ping tools app and check for interntet connectivity
 			PingToolsPage pingToolsPage = new PingToolsPage(driver);
 			pingToolsPage.clickElement(pingToolsPage.tabBarElement);
 			pingToolsPage.clickElement(pingToolsPage.pingElement);
@@ -153,20 +144,18 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
 		// click on multissid
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
-		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
-			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
-			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
-			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
+		while (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A)) {
+			multiSsidPage.clickElement(multiSsidPage.SUBNET_A);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_BUTTON);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_CONFIRM_BUTON);
+			Thread.sleep(35000);
 		}
 		multiSsidPage.clickaddWifi();
-		// click on add business ssid
 		multiSsidPage.addIOTSSID();
-		// Enter business SSID name and password
 		multiSsidPage.enterssidName(input.get("subnet A iot ssid"));
 		multiSsidPage.enterssidpassword(input.get("password"));
-		// click on save
 		multiSsidPage.clickSave();
 		multiSsidPage.clickaddWifi();
 		multiSsidPage.addBusinessSSID();
@@ -176,9 +165,8 @@ public class BusinessNetworkCases extends BaseTest {
 		// click on save
 		multiSsidPage.clickSave();
 		// Check whether Business SSID is created in APP
-		if (multiSsidPage.isElementVisible(multiSsidPage.subnetBElement) == true) {
-			// If Network created in App goto android settings and connect client to
-			// business ssid
+		if (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A) == true) {
+
 			System.out.println("Business network created successfully on subnet B");
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
@@ -222,31 +210,25 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
-		while (multiSsidPage.isElementVisible(multiSsidPage.subnetAElement)) {
-			multiSsidPage.clickElement(multiSsidPage.subnetAElement);
-			multiSsidPage.clickElement(multiSsidPage.deleteWifiElement);
-			multiSsidPage.clickElement(multiSsidPage.confirmDelete);
-
+		while (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_A)) {
+			multiSsidPage.clickElement(multiSsidPage.SUBNET_A);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_BUTTON);
+			multiSsidPage.clickElement(multiSsidPage.DELETE_CONFIRM_BUTON);
+			Thread.sleep(35000);
 		}
 		multiSsidPage.clickaddWifi();
-		// click on add business ssid
 		multiSsidPage.addIOTSSID();
-		// Enter business SSID name and password
 		multiSsidPage.enterssidName(input.get("subnet A iot ssid"));
 		multiSsidPage.enterssidpassword(input.get("password"));
-		// click on save
 		multiSsidPage.clickSave();
 		multiSsidPage.clickaddWifi();
 		multiSsidPage.addIOTSSID();
-		// Enter business SSID name and password
 		multiSsidPage.enterssidName(input.get("subnet B iot ssid"));
 		multiSsidPage.enterssidpassword(input.get("password"));
-		// click on save
 		multiSsidPage.clickSave();
-		// Check whether Business SSID is created in APP
-		if (multiSsidPage.isElementVisible(multiSsidPage.subnetBElement) == true) {
+		if (multiSsidPage.isElementVisible(multiSsidPage.SUBNET_B) == true) {
 			// If Network created in App goto android settings and connect client to
 			// business ssid
 			System.out.println("iot network created successfully on subnet B");
@@ -293,7 +275,7 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
@@ -311,8 +293,8 @@ public class BusinessNetworkCases extends BaseTest {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			wait.until(ExpectedConditions.visibilityOf(captivePortalPage.captiveportalnetworkElement));
 			System.out.println("captive portal is still visible, Testcase failed");
-			captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-			captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+			captivePortalPage.clickElement(captivePortalPage.NEXT_BUTTON);
+			captivePortalPage.clickElement(captivePortalPage.CONNECT_BUTTON);
 			Thread.sleep(10000);
 		} catch (Exception e) {
 			System.out.println("captive portal is not visible after disabling captive portal");
@@ -321,7 +303,7 @@ public class BusinessNetworkCases extends BaseTest {
 		Thread.sleep(10000);
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		multiSsidPage.clickGuest();
 		multiSsidPage.clickElement(multiSsidPage.enableCaptivePortalElement);
 		multiSsidPage.clickSave();
@@ -334,8 +316,8 @@ public class BusinessNetworkCases extends BaseTest {
 			wait.until(ExpectedConditions.visibilityOf(captivePortalPage.captiveportalnetworkElement));
 			System.out.println("captive portal is  visible, Testcase pass");
 			Thread.sleep(10000);
-			captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-			captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+			captivePortalPage.clickElement(captivePortalPage.NEXT_BUTTON);
+			captivePortalPage.clickElement(captivePortalPage.CONNECT_BUTTON);
 			Thread.sleep(10000);
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -349,8 +331,8 @@ public class BusinessNetworkCases extends BaseTest {
 				wait.until(ExpectedConditions.visibilityOf(captivePortalPage.captiveportalnetworkElement));
 				System.out.println("captive portal is  visible after captive portal enabled,C37224 Testcase pass");
 				Thread.sleep(10000);
-				captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-				captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+				captivePortalPage.clickElement(captivePortalPage.NEXT_BUTTON);
+				captivePortalPage.clickElement(captivePortalPage.CONNECT_BUTTON);
 				Thread.sleep(10000);
 				while (homePage.HOME_TAB.isDisplayed()) {
 					driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -372,7 +354,7 @@ public class BusinessNetworkCases extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestnameString = multiSsidPage.getWifiName();

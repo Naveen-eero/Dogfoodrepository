@@ -39,7 +39,7 @@ public class multiSsidSection extends BaseTest {
 			System.out.println("Skipping C37206 test case since Crane doesn't have wifi radio");
 		} else {
 			homePage.clickElement(homePage.gatewayElement);
-			homePage.clickElement(homePage.deviceInfo);
+			homePage.clickElement(homePage.DEVICE_INFO);
 			String sernumString = homePage.getSerial();
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
@@ -99,8 +99,8 @@ public class multiSsidSection extends BaseTest {
 		SettingsPage settingsPage = new SettingsPage(driver);
 		settingsPage.clickWifiNameAndPassword();
 		homePage.clickElement(homePage.HOME_TAB);
-		homePage.clickElement(homePage.wirelessleafElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.WIRELESS_LEAF);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -147,7 +147,7 @@ public class multiSsidSection extends BaseTest {
 		settingsPage.clickWifiNameAndPassword();
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.startActivity(
@@ -184,7 +184,7 @@ public class multiSsidSection extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
@@ -193,7 +193,7 @@ public class multiSsidSection extends BaseTest {
 			System.out.println("Skipping C37206 test case since Crane doesn't have wifi radio");
 		} else {
 			homePage.clickElement(homePage.gatewayElement);
-			homePage.clickElement(homePage.deviceInfo);
+			homePage.clickElement(homePage.DEVICE_INFO);
 			String sernumString = homePage.getSerial();
 			driver.runAppInBackground(Duration.ofSeconds(-1));
 			driver.startActivity(new Activity("com.android.settings",
@@ -202,8 +202,8 @@ public class multiSsidSection extends BaseTest {
 			clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
 			CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 			Thread.sleep(10000);
-			captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-			captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+			captivePortalPage.clickElement(captivePortalPage.NEXT_BUTTON);
+			captivePortalPage.clickElement(captivePortalPage.CONNECT_BUTTON);
 			captivePortalPage.guestSuccess();
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -237,13 +237,13 @@ public class multiSsidSection extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.wiredLeafElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.startActivity(
 				new Activity("com.android.settings", "com.android.settings.Settings$NetworkProviderSettingsActivity"));
@@ -251,8 +251,8 @@ public class multiSsidSection extends BaseTest {
 		clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
 		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
-		captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-		captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+		captivePortalPage.clickElement(captivePortalPage.NEXT_BUTTON);
+		captivePortalPage.clickElement(captivePortalPage.CONNECT_BUTTON);
 		captivePortalPage.guestSuccess();
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -286,13 +286,13 @@ public class multiSsidSection extends BaseTest {
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage settingsPage = new SettingsPage(driver);
-		settingsPage.clickElement(settingsPage.MultiSsid);
+		settingsPage.clickElement(settingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage multiSsidPage = new MultiSSIDPage(driver);
 		multiSsidPage.clickGuest();
 		String guestwifi = multiSsidPage.getWifiName();
 		homePage.clickElement(homePage.HOME_TAB);
-		homePage.clickElement(homePage.wirelessleafElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.WIRELESS_LEAF);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 
@@ -303,8 +303,8 @@ public class multiSsidSection extends BaseTest {
 		clientConnectPage.connectToNetworkwithserial(guestwifi, sernumString);
 		CaptivePortalPage captivePortalPage = new CaptivePortalPage(driver);
 		Thread.sleep(10000);
-		captivePortalPage.clickElement(captivePortalPage.nextBtnElement);
-		captivePortalPage.clickElement(captivePortalPage.connectBtnElement);
+		captivePortalPage.clickElement(captivePortalPage.NEXT_BUTTON);
+		captivePortalPage.clickElement(captivePortalPage.CONNECT_BUTTON);
 		captivePortalPage.guestSuccess();
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -336,7 +336,7 @@ public class multiSsidSection extends BaseTest {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.HOME_TAB);
 		homePage.clickElement(homePage.gatewayElement);
-		homePage.clickElement(homePage.deviceInfo);
+		homePage.clickElement(homePage.DEVICE_INFO);
 		String sernumString = homePage.getSerial();
 
 		driver.startActivity(
