@@ -30,7 +30,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	String guestNameString = "meme Guest";
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
+	@Test(enabled = true, description = " Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
 
 	private void C36850(HashMap<String, String> input) throws InterruptedException, AWTException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -92,7 +92,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Open Captive portal using edge browser  ", priority = 2, dataProvider = "getData", suiteName = "captive portal")
+	@Test(enabled = true, description = " Open Captive portal using edge browser  ", priority = 2, dataProvider = "getData", suiteName = "captive portal")
 
 	private void C36852(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {
@@ -142,7 +142,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal", invocationCount = 3)
+	@Test(enabled = true, description = "  Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal", invocationCount = 1)
 
 	private void C36853(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {

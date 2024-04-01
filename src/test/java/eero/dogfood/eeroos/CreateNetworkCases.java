@@ -15,7 +15,6 @@ import eero.dogfood.DeleteNetworkPage;
 import eero.dogfood.DhcpNatCofigPage;
 import eero.dogfood.EditGuestNetworkPage;
 import eero.dogfood.HomePage;
-import eero.dogfood.NetworkCreationScreen;
 import eero.dogfood.NetworkSettingsPage;
 import eero.dogfood.PingToolsPage;
 import eero.dogfood.PlacementTestPage;
@@ -167,8 +166,6 @@ public class CreateNetworkCases extends BaseTest {
 	public void createStaticNetwork(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickStartSetup();
-		NetworkCreationScreen networkCreationScreen = new NetworkCreationScreen(driver);
-		networkCreationScreen.START_BUTTON.click();
 		AddOrReplaceEeroPage addorreplacepage = new AddOrReplaceEeroPage(driver);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);
 		addorreplacepage.clickElement(addorreplacepage.arrowBtn);

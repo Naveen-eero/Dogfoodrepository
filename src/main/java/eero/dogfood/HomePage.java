@@ -85,6 +85,8 @@ public class HomePage {
 	public WebElement DEVICE_INFO;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Serial number\"]/following-sibling::android.widget.TextView[1]")
 	public WebElement serialNumElement;
+	@AndroidFindBy(xpath = "(//*[(@resource-id='com.eero.android.dogfood:id/subtitle')])[1]")
+	public WebElement GATEWAY_TEXT;
 
 	public void clickStartSetup() throws InterruptedException {
 		// Click on start setup button
