@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="eero.dogfood.eeroos.CreateNetworkCases">
+      <class name="eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection">
         <methods>
           <include name="BaseConfig"/>
-          <include name="createStaticNetwork" invocation-numbers="0"/>
+          <include name="C36850" invocation-numbers="0"/>
         </methods>
-      </class> <!-- eero.dogfood.eeroos.CreateNetworkCases -->
+      </class> <!-- eero.dogfood.B2B.ClientRedirectionOnDifferentBrowsersSection -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
