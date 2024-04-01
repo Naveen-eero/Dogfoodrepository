@@ -59,7 +59,7 @@ public class SettingsPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Wifi network details\"]")
 	public WebElement WifiNetworkDetails;
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Multi SSID\"]")
-	public WebElement MultiSsid;
+	public WebElement MULTI_SSID_TAB;
 
 	public void clickTransferNetwork() throws InterruptedException {
 		transferNetworkElement.click();

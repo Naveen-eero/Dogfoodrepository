@@ -24,7 +24,7 @@ public class CaptivePortalPage {
 	public WebElement captiveportalnetworkElement;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Next\"]")
-	public WebElement nextBtnElement;
+	public WebElement NEXT_BUTTON;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text=\"Connect\"]")
 	public WebElement connectBtnElement;
