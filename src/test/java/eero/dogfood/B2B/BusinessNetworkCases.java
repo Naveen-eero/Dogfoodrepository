@@ -405,7 +405,7 @@ public class BusinessNetworkCases extends BaseTest {
 		String filepath = System.getProperty("user.dir") + "\\src\\main\\java\\utilities\\dogfood.json";
 		List<HashMap<String, String>> data = getJsondata(filepath);
 		// if need to run more than once add parameters to this and add more details
-		return new Object[][] { { data.get(1) } };
+		return new Object[][] { { data.get(0) } };
 	}
 
 }
