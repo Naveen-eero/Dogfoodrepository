@@ -15,6 +15,8 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -30,14 +32,18 @@ public class BaseTest {
 	public AndroidDriver driver1;
 	public AppiumDriverLocalService service;
 
-	@BeforeTest(alwaysRun = true)
-	public void BaseConfig() throws InterruptedException, IOException {
-		// TODO Auto-generated method stub
+	@BeforeSuite
+	public void startServer() {
 		service = new AppiumServiceBuilder()
 				.withAppiumJS(new File(
 						"C:\\Users\\kunnavee\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
 				.withIPAddress("127.0.0.1").usingPort(4723).build();
 		service.start();
+	}
+
+	@BeforeTest(alwaysRun = true)
+	public void BaseConfig() throws InterruptedException, IOException {
+		// TODO Auto-generated method stub
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("udid", getDeviceIds().get(0));
@@ -187,6 +193,12 @@ public class BaseTest {
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@AfterSuite
+	public void tearDown() throws Exception {
+		driver.quit();
+		service.stop();
 	}
 
 	public List<HashMap<String, String>> getJsondata(String jsonFilePath) throws IOException {

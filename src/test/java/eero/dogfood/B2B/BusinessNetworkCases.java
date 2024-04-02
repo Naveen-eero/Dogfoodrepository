@@ -29,7 +29,7 @@ public class BusinessNetworkCases extends BaseTest {
 	// Create and enable Subnet A and configure it as Business network
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as Business network  ", dataProvider = "getData", priority = 1)
 	private void C29192(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.HOME_TAB);
@@ -80,7 +80,7 @@ public class BusinessNetworkCases extends BaseTest {
 
 	// Create and enable Subnet A and configure it as IoT network
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
+	@Test(enabled = true, description = " Create and enable Subnet A and configure it as IoT network ", priority = 2, dataProvider = "getData")
 
 	private void C233647(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -144,7 +144,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
+	@Test(enabled = true, description = "  Create and enable Subnet B and configure it as Business Subnet ", priority = 3, dataProvider = "getData")
 
 	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -216,7 +216,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
+	@Test(enabled = true, description = " Create and enable Subnet B and configure it as IoT Subnet ", priority = 4, dataProvider = "getData") // 1
 
 	private void C23963(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -291,7 +291,7 @@ public class BusinessNetworkCases extends BaseTest {
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = false, description = "Captive Portal - Enable/Disable Captive Portal", priority = 5)
+	@Test(enabled = true, description = "Captive Portal - Enable/Disable Captive Portal", priority = 5)
 	private void C37224() throws InterruptedException, MalformedURLException {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickElement(homePage.HOME_TAB);
