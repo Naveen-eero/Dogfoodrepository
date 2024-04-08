@@ -148,33 +148,26 @@ public class BusinessNetworkCases extends BaseTest {
 
 	private void C235445(HashMap<String, String> input) throws InterruptedException, IOException {
 		HomePage homePage = new HomePage(driver);
-		// click on home
 		homePage.clickElement(homePage.HOME_TAB);
-		// click on settings
 		homePage.clickElement(homePage.SETTINGS_TAB);
 		SettingsPage SettingsPage = new SettingsPage(driver);
-		// click on multissid
 		SettingsPage.clickElement(SettingsPage.MULTI_SSID_TAB);
 		MultiSSIDPage MultiSSIDPage = new MultiSSIDPage(driver);
 		while (MultiSSIDPage.isElementVisible(MultiSSIDPage.subnetAElement)) {
 			MultiSSIDPage.clickElement(MultiSSIDPage.subnetAElement);
 			MultiSSIDPage.clickElement(MultiSSIDPage.deleteWifiElement);
 			MultiSSIDPage.clickElement(MultiSSIDPage.confirmDelete);
+			Thread.sleep(25000);
 		}
 		MultiSSIDPage.clickaddWifi();
-		// click on add business ssid
 		MultiSSIDPage.addIOTSSID();
-		// Enter business SSID name and password
 		MultiSSIDPage.enterssidName(input.get("subnet A iot ssid"));
 		MultiSSIDPage.enterssidpassword(input.get("password"));
-		// click on save
 		MultiSSIDPage.clickSave();
 		MultiSSIDPage.clickaddWifi();
 		MultiSSIDPage.addBusinessSSID();
-		// Enter business SSID name and password
 		MultiSSIDPage.enterssidName(input.get("subnet B Business ssid"));
 		MultiSSIDPage.enterssidpassword(input.get("password"));
-		// click on save
 		MultiSSIDPage.clickSave();
 		// Check whether Business SSID is created in APP
 		if (MultiSSIDPage.isElementVisible(MultiSSIDPage.subnetBElement) == true) {
@@ -232,6 +225,7 @@ public class BusinessNetworkCases extends BaseTest {
 			MultiSSIDPage.clickElement(MultiSSIDPage.subnetAElement);
 			MultiSSIDPage.clickElement(MultiSSIDPage.deleteWifiElement);
 			MultiSSIDPage.clickElement(MultiSSIDPage.confirmDelete);
+			Thread.sleep(25000);
 
 		}
 		MultiSSIDPage.clickaddWifi();
