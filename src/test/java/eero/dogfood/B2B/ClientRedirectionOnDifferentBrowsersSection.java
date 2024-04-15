@@ -27,10 +27,10 @@ import io.appium.java_client.android.Activity;
 //Network is added with add_serial_to_ssid feature flag
 
 public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
-	String guestNameString = "meme Guest";
+	String guestNameString = "jakk Guest";
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = " Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
+	@Test(enabled = true, description = "Open Captive portal using Chrome ", priority = 1, dataProvider = "getData", suiteName = "captive portal")
 
 	private void C36850(HashMap<String, String> input) throws InterruptedException, AWTException, IOException {
 		HomePage homePage = new HomePage(driver);
@@ -43,6 +43,7 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		EditGuestNetworkPage editGuestNetworkPage = new EditGuestNetworkPage(driver);
 		guestNameString = editGuestNetworkPage.getGuestNetworkName();
 		homePage.clickElement(homePage.HOME_TAB);
+		Thread.sleep(10000);
 		if (homePage.GATEWAY_TEXT.getText().equalsIgnoreCase("Gateway eero PoE Gateway")) {
 			homePage.clickElement(homePage.WIRELESS_LEAF);
 		} else {
@@ -139,10 +140,11 @@ public class ClientRedirectionOnDifferentBrowsersSection extends BaseTest {
 		}
 		driver.runAppInBackground(Duration.ofSeconds(-1));
 		driver.activateApp("com.eero.android.dogfood");
+		Thread.sleep(10000);
 	}
 
 	@SuppressWarnings("deprecation")
-	@Test(enabled = true, description = "  Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal", invocationCount = 1)
+	@Test(enabled = true, description = "Open Captive portal using Firefox browser  ", priority = 3, dataProvider = "getData", suiteName = "captive portal", invocationCount = 1)
 
 	private void C36853(HashMap<String, String> input)
 			throws InterruptedException, MalformedURLException, AWTException {
