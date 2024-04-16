@@ -36,7 +36,7 @@ public class BaseTest {
 	public void startServer() {
 		service = new AppiumServiceBuilder()
 				.withAppiumJS(new File(
-						"C:\\Users\\tkarthis\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+						"C:\\Users\\kunnavee\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
 				.withIPAddress("127.0.0.1").usingPort(4723).build();
 		service.start();
 	}
