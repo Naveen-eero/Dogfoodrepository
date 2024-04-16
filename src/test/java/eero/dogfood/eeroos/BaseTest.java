@@ -52,12 +52,11 @@ public class BaseTest {
 		System.out.println("device android version:" + getAndroidVersion(getDeviceIds().get(0)));
 		capabilities.setCapability("deviceName", getDeviceName(getDeviceIds().get(0)));
 		System.out.println("device android version:" + getDeviceName(getDeviceIds().get(0)));
-
 		capabilities.setCapability("automationName", "UiAutomator2");
 		capabilities.setCapability("appPackage", "com.eero.android.dogfood");
 		capabilities.setCapability("appActivity", "com.eero.android.v3.features.splash.SplashActivity");
 		capabilities.setCapability("noReset", true);
-		// Specify Appium server URL
+		capabilities.setCapability("autoGrantPermissions", true); // Specify Appium server URL
 		URL appiumServerURL = new URL("http://127.0.0.1:4723");
 		driver = new AndroidDriver(appiumServerURL, capabilities);
 		Thread.sleep(10000);
