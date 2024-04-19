@@ -30,9 +30,6 @@ public class ClientConnectPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Internet\"]")
 	public WebElement interElement;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Naveen\"]")
-	public WebElement networkNameElement;
-
 	@AndroidFindBy(id = "com.android.settings:id/password")
 	public WebElement passwordElement;
 
@@ -92,7 +89,6 @@ public class ClientConnectPage {
 	}
 
 	public void clickOnwifidetails(String networkName) throws InterruptedException {
-		// TODO Auto-generated method stub
 		Thread.sleep(10000);
 		String xpath_locator = String.format("//android.widget.ImageView[@content-desc=" + "\"" + "" + networkName
 				+ " network details" + "\"or @content-desc=\"Settings\"]");
