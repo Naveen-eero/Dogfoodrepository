@@ -34,9 +34,10 @@ public class BaseTest {
 
 	@BeforeSuite
 	public void startServer() {
+		String username = System.getProperty("user.name");
 		service = new AppiumServiceBuilder()
-				.withAppiumJS(
-						new File("C:\\Users\\navee\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+				.withAppiumJS(new File("C:\\Users\\" + username
+						+ "\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
 				.withIPAddress("127.0.0.1").usingPort(4723).build();
 		service.start();
 	}
@@ -48,6 +49,7 @@ public class BaseTest {
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("udid", getDeviceIds().get(0));
 		System.out.println("device id: " + getDeviceIds().get(0));
+
 		capabilities.setCapability("platformversion", getAndroidVersion(getDeviceIds().get(0)));
 		System.out.println("device android version:" + getAndroidVersion(getDeviceIds().get(0)));
 		capabilities.setCapability("deviceName", getDeviceName(getDeviceIds().get(0)));
